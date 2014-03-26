@@ -1,0 +1,4 @@
+ofi_gestion:
+    resource: "@OfiGestionBundle/Resources/config/routing.yml"
+    prefix:   /
+
