@@ -3,6 +3,11 @@
 namespace Ofi\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Ofi\GestionBundle\Entity\Telefono;
+use Ofi\GestionBundle\Entity\Correo;
+use Ofi\GestionBundle\Entity\DatosFacturacion;
 
 /**
  * Cliente
@@ -41,6 +46,38 @@ class Cliente
      * @ORM\Column(name="nomsocial", type="string", length=255)
      */
     private $nomsocial;
+
+
+	/**
+     * @ORM\ManyToMany(targetEntity="Telefono")
+     * @ORM\JoinTable(name="Cliente_telefono",
+     *      joinColumns={@ORM\JoinColumn(name="cliente_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="telefono_id", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    private $telefonos;
+
+	/**
+     * @ORM\ManyToMany(targetEntity="Correo")
+     * @ORM\JoinTable(name="Cliente_correos",
+     *      joinColumns={@ORM\JoinColumn(name="cliente_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="correo_id", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    private $correos;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="DatosFacturacion")
+     * @ORM\JoinColumn(name="datosfacturacion_id", referencedColumnName="id")
+     */
+    private $datosfacturacion;
+
+
+    public function __construct() {
+        $this->telefonos 	= new ArrayCollection();
+        $this->correos 		= new ArrayCollection();
+    }
 
 
     /**
