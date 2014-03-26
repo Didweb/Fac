@@ -1,0 +1,27 @@
+/*-------------------------------------------------------------------
+ * Generales
+ * ----------------------------------------------------------------- */
+
+body {background-color:#EBF3F3; text-align:center; 
+		font-family: Helvetica, Arial, "Lucida Grande" , sans-serif;  
+		font-weight: 300;
+		}
+
+div#contenedor {width:90%; margin-left:auto;  margin-right:auto;}
+div#contenidos {float:left; width:100%; background-color:#ffffff;}
+
+footer {float:left; width:100%; background-color:#E6E6E6;}
+footer p {font-size:11px; color:#7C8087;}
+
+
+/*-------------------------------------------------------------------
+ * Sesion
+ * ----------------------------------------------------------------- */
+aside#sesion { float:right; margin-right:10px; background-color:#F4F4D6;
+			padding:20px; margin-top:10px; z-index:50; font-size:12px;
+			border:1px solid #D6CE2C; font-weight:lighter;
+			color:#64611F;
+			border-radius: 5px 5px 5px 5px;
+			-moz-border-radius: 5px 5px 5px 5px;
+			-webkit-border-radius: 5px 5px 5px 5px;
+			}

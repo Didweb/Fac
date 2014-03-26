@@ -2,12 +2,25 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        {% block metas %}{% endblock%}
+        {% block stylesheets %}
+        <link href="{{ asset('css/reset.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/comun.css') }}" rel="stylesheet" type="text/css" />
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+    <div id="contenedor">
+	<div id="contenidos">
+		{% block cabecera %}{% endblock %}
         {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        
+    </div>
+	</div>
+
     </body>
 </html>
+
