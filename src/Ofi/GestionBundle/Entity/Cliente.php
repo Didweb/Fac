@@ -103,6 +103,59 @@ class Cliente
         return $this;
     }
 
+
+
+    /**
+     * Get correos
+     *
+     * @return integer 
+     */
+    public function getCorreos()
+    {
+        return $this->correos;
+    }
+
+    /**
+     * Set correos
+     *
+     * @param string $correos
+     * @return Cliente
+     */
+    public function setCorreos($correos)
+    {
+        $this->correos = $correos;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Get telefonos
+     *
+     * @return integer 
+     */
+    public function getTelefonos()
+    {
+        return $this->telefonos;
+    }
+
+    /**
+     * Set telefonos
+     *
+     * @param string $telefonos
+     * @return Cliente
+     */
+    public function setTelefonos($telefonos)
+    {
+        $this->telefonos = $telefonos;
+
+        return $this;
+    }
+
+
+
+
     /**
      * Get nombre
      *
