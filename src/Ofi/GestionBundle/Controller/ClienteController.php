@@ -49,7 +49,8 @@ class ClienteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OfiGestionBundle:Cliente')->find($id);
+        $entity = $em->getRepository('OfiGestionBundle:Cliente')
+						->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException(
@@ -70,7 +71,7 @@ class ClienteController extends Controller
 
 
 	/*
-	 * Listamos lso clientes
+	 * Listamos los clientes
 	 * */
 	public function listarAction()
 	{
@@ -78,7 +79,7 @@ class ClienteController extends Controller
       $entity = $em->getRepository('OfiGestionBundle:Cliente')
 				->findAll();
 
-        return $this->render('OfiGestionBundle:Cliente:listar.html.twig',
+       return $this->render('OfiGestionBundle:Cliente:listar.html.twig',
 					array('entity' => $entity));
 	}
 
@@ -91,5 +92,45 @@ class ClienteController extends Controller
             ->getForm()
         ;
     }
+
+
+
+	/*
+	 * Eliminar
+	 * */
+	public function eliminarAction($id,$ok)
+	{
+	   $em = $this->getDoctrine()->getManager();
+      $entity = $em->getRepository('OfiGestionBundle:Cliente')
+						->find($id);	
+		
+	  if($ok=='no'){
+		  
+		 return $this->render(
+					'OfiGestionBundle:Cliente:eliminar.html.twig',
+					array('entity' => $entity,'ok'=>'no'));
+		  
+		  }elseif($ok=='si'){
+		$nombreeliminado = $entity->getNombre().' '.
+							$entity->getApellido().
+							' <b>'.$entity->getNomsocial().'</b>';	  		
+		
+		$em->remove($entity);
+        $em->flush();
+		
+		$this->get('session')->getFlashBag()
+						->add('cliente_error',
+						'Se ha eliminado el cliente:<br /> '.
+						$nombreeliminado.'.');
+						
+		$entity = $em->getRepository('OfiGestionBundle:Cliente')
+				->findAll();	
+							
+        return $this->render(
+						'OfiGestionBundle:Cliente:listar.html.twig',
+						array('entity' => $entity));
+			
+			}		
+	}
 
 }

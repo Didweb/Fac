@@ -16,5 +16,5 @@ ofi_gestion_listarcliente:
     defaults: { _controller: OfiGestionBundle:Cliente:listar }
 
 ofi_gestion_eliminarcliente:
-    pattern:  /listado-clientes/
+    pattern:  /listado-clientes/{id}/{ok}
     defaults: { _controller: OfiGestionBundle:Cliente:eliminar }

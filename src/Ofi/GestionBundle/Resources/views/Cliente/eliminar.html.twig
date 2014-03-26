@@ -41,45 +41,17 @@
     </div>
 {% endfor %}
  
+ {% if ok=='no' %}
  
- <table>
-        
-        <thead>
-            <tr>
-                <th class="acciones">Acciones</th>
-				<th class="alaiz">Nombre</th>
-				<th class="alaiz">Apellido</th>
-				<th class="alaiz">Nombre comercial</th>          
-            </tr>
-            
-        </thead>
-        
-        <tbody>
-            {% set n=1 %}
-        {% for cliente in entity %}
-        
-			{% if n is divisibleby(2)  %}
-				{% set linea="impar" %} 
-            {% else %}
-				{% set linea="par" %}
-            {% endif %}
-        
-        
-            <tr class=" {{ linea }}">
-				<td>
-				<a href="{{ path('ofi_gestion_editarcliente',{'id':cliente.id })}}">Edita</a>
-				<a href="{{ path('ofi_gestion_eliminarcliente',{'id':cliente.id,'ok':'no' })}}">Eliminar</a>
-				</td>
-				<td>{{ cliente.nombre }}</td>
-				<td>{{ cliente.apellido }}</td>
-				<td>{{ cliente.nomsocial }}</td>
-            
-            </tr>
-               {% set n=n+1 %}    
-        {% endfor %}
-        </tbody>
-        
-    </table>    
+ Estas seguro de que quieres eliminar este registro.
+ ¿Quieres eliminar este registro?
+ <a href="{{ path('ofi_gestion_eliminarcliente',{'id':entity.id,'ok':'si'}) }}">Sí, quiero eliminarlo</a>
+ <br />
+ <a href="{{ path('ofi_gestion_listarcliente') }}">No, quiero conservarlo</a>
+ 
+ {% endif %}
+ 
+ 
  {% endblock%}
  
  {% block footer %}
