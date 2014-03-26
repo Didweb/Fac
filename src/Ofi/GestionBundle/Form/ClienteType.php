@@ -14,7 +14,6 @@ class ClienteType extends AbstractType
             ->add('nombre')
             ->add('apellido')
             ->add('nomsocial')
-            ->add('Crear', 'submit')
         ;
     }
 

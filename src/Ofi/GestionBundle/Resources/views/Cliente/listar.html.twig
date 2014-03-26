@@ -41,38 +41,42 @@
     </div>
 {% endfor %}
  
- <h1>{{ entity.nombre }} {{ entity.apellido }}</h1>
  
- 
- <form action="{{ path('ofi_gestion_crearcliente') }}" method="post" {{ form_enctype(edit_form) }}>
-        <input type="hidden" name="_method" value="PUT" />
-        {{ form_errors(edit_form) }}
-
-			<div>
-				{{ form_label(edit_form.nombre) }}
-				{{ form_errors(edit_form.nombre) }}
-				{{ form_widget(edit_form.nombre) }}
-			</div>
-			
-			<div>
-				{{ form_label(edit_form.apellido) }}
-				{{ form_errors(edit_form.apellido) }}
-				{{ form_widget(edit_form.apellido) }}
-			</div>
-			
-			<div>
-				{{ form_label(edit_form.nomsocial) }}
-				{{ form_errors(edit_form.nomsocial) }}
-				{{ form_widget(edit_form.nomsocial) }}
-			</div>		
-			
-			<div id="datos_envio">
-			
-			<button type="submit"  class="botones_verde" title="Editar Cliente" >Aplicar Cambios</button>
-			  
-		    </div>
-         {{ form_rest(edit_form) }}
- </form>       
+ <table>
+        
+        <thead>
+            <tr>
+                <th class="acciones">Acciones</th>
+				<th class="alaiz">Nombre</th>
+				<th class="alaiz">Apellido</th>
+				<th class="alaiz">Nombre comercial</th>          
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            {% set n=1 %}
+        {% for cliente in entity %}
+        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+        
+            <tr class=" {{ linea }}">
+				<td><a href="{{ path('ofi_gestion_editarcliente',{'id':cliente.id })}}">Edita</a></td>
+				<td>{{ cliente.nombre }}</td>
+				<td>{{ cliente.apellido }}</td>
+				<td>{{ cliente.nomsocial }}</td>
+            
+            </tr>
+               {% set n=n+1 %}    
+        {% endfor %}
+        </tbody>
+        
+    </table>    
  {% endblock%}
  
  {% block footer %}

@@ -69,10 +69,17 @@ class ClienteController extends Controller
     }
 
 
-
-	public function subirAction()
+	/*
+	 * Listamos lso clientes
+	 * */
+	public function listarAction()
 	{
-	  
+	  $em = $this->getDoctrine()->getManager();
+      $entity = $em->getRepository('OfiGestionBundle:Cliente')
+				->findAll();
+
+        return $this->render('OfiGestionBundle:Cliente:listar.html.twig',
+					array('entity' => $entity));
 	}
 
 

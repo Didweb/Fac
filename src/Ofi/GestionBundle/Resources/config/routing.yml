@@ -11,6 +11,6 @@ ofi_gestion_editarcliente:
     defaults: { _controller: OfiGestionBundle:Cliente:editar }
 
 
-ofi_gestion_subircliente:
-    pattern:  /subir-cliente/
-    defaults: { _controller: OfiGestionBundle:Cliente:subir }
+ofi_gestion_listarcliente:
+    pattern:  /listado-clientes/
+    defaults: { _controller: OfiGestionBundle:Cliente:listar }
