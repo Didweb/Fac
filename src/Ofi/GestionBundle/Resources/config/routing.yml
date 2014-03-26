@@ -1,3 +1,16 @@
 ofi_gestion_homepage:
     pattern:  /
     defaults: { _controller: OfiGestionBundle:Fijas:index }
+
+ofi_gestion_crearcliente:
+    pattern:  /crear-cliente
+    defaults: { _controller: OfiGestionBundle:Cliente:crear }
+
+ofi_gestion_editarcliente:
+    pattern:  /editar-cliente/{id}
+    defaults: { _controller: OfiGestionBundle:Cliente:editar }
+
+
+ofi_gestion_subircliente:
+    pattern:  /subir-cliente/
+    defaults: { _controller: OfiGestionBundle:Cliente:subir }

@@ -1,0 +1,56 @@
+{%  extends '::forntend.html.twig' %}
+
+{% block title %}FAC - Inicio{% endblock %}
+{% block metas %}
+<meta name="description" content="Home">
+<meta name="keywords" content="FAC">
+<meta name="robots" CONTENT="noindex, nofollow">
+{% endblock%}
+
+
+ {% block stylesheets %}
+ {{ parent() }}
+ <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
+ <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/gestionbundle/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
+ {% endblock%}
+
+
+
+
+
+
+{% block cabecera %}
+{% include 'OfiGestionBundle:Fijas:sesion.html.twig' %}
+{% include 'OfiGestionBundle:Fijas:menu.html.twig' %} 
+ {% endblock%}
+ 
+ 
+ {% block body %}
+ 
+ 
+ {% for flashMessage2 in app.session.flashbag.get('cliente') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('cliente_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+ 
+ 
+ 
+ 
+ <form action="{{ path('ofi_gestion_crearcliente') }}" method="post" {{ form_enctype(form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_widget(form) }}
+         {{ form_rest(form) }}
+ </form>       
+ {% endblock%}
+ 
+ {% block footer %}
+ {% include 'OfiGestionBundle:Fijas:footer.html.twig' %} 
+ {% endblock%}
