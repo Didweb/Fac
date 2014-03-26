@@ -49,7 +49,7 @@ class Cliente
 
 
 	/**
-     * @ORM\ManyToMany(targetEntity="Telefono")
+     * @ORM\ManyToMany(targetEntity="Telefono", cascade={"all"})
      * @ORM\JoinTable(name="Cliente_telefono",
      *      joinColumns={@ORM\JoinColumn(name="cliente_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="telefono_id", referencedColumnName="id", unique=true)}
@@ -58,7 +58,7 @@ class Cliente
     private $telefonos;
 
 	/**
-     * @ORM\ManyToMany(targetEntity="Correo")
+     * @ORM\ManyToMany(targetEntity="Correo", cascade={"all"})
      * @ORM\JoinTable(name="Cliente_correos",
      *      joinColumns={@ORM\JoinColumn(name="cliente_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="correo_id", referencedColumnName="id", unique=true)}
@@ -68,7 +68,7 @@ class Cliente
 
 
     /**
-     * @ORM\OneToOne(targetEntity="DatosFacturacion")
+     * @ORM\OneToOne(targetEntity="DatosFacturacion", cascade={"all"})
      * @ORM\JoinColumn(name="datosfacturacion_id", referencedColumnName="id")
      */
     private $datosfacturacion;

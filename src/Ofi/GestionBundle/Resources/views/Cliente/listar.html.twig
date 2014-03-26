@@ -66,7 +66,10 @@
         
         
             <tr class=" {{ linea }}">
-				<td><a href="{{ path('ofi_gestion_editarcliente',{'id':cliente.id })}}">Edita</a></td>
+				<td>
+				<a href="{{ path('ofi_gestion_editarcliente',{'id':cliente.id })}}">Edita</a>
+				<a href="{{ path('ofi_gestion_eliminarcliente',{'id':cliente.id })}}">Eliminar</a>
+				</td>
 				<td>{{ cliente.nombre }}</td>
 				<td>{{ cliente.apellido }}</td>
 				<td>{{ cliente.nomsocial }}</td>
