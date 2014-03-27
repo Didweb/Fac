@@ -33,35 +33,29 @@ class CorreoController extends Controller
     }
 
 
+
   public function crearAction(Request $request,$id)
   {
 	  
-	
 	$entity  = new Correo();
     $form = $this->createForm(new CorreoType(), $entity);
     $form->bind($request);
 
     if ($form->isValid()) {
-		
 		$em = $this->getDoctrine()->getManager();
         $em->persist($entity);
         $em->flush();
 		$this->get('session')->getFlashBag()
 					->add('cliente',
 					'Se ha creado un nuevo correo para el cliente:');
-						
-        
-            
+		 
         }
 
 		
-      /* return $this->redirect($this->generateUrl(
+      return $this->redirect($this->generateUrl(
 						'ofi_gestion_editarcliente', 
 						array('id' => $id)));
-		*/				
-		return array('id' => $id);
-		
-        
+	
     }
 
 

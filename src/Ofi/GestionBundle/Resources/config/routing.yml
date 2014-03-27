@@ -24,4 +24,4 @@ ofi_gestion_eliminarcliente:
 
 ofi_gestion_crearccorreo:
     pattern:  /crear-correo/{id}
-    defaults: { _controller: OfiGestionBundle:Cliente:crear }
+    defaults: { _controller: OfiGestionBundle:Correo:crear }
