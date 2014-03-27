@@ -50,6 +50,12 @@ class Correo
     private $boletin;
 
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="correos")
+	 * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+	 */ 
+	private $cliente;
+
     /**
      * Get id
      *

@@ -43,6 +43,13 @@ class Telefono
     private $tipo;
 
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="telefonos")
+	 * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+	 */ 
+	private $cliente;
+
+
     /**
      * Get id
      *

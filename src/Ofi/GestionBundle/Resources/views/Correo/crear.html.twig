@@ -1,0 +1,37 @@
+ <div id="crear_correo">
+ <form action="{{ path('ofi_gestion_crearcliente') }}" method="post" {{ form_enctype(form_correo) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_errors(form_correo) }}
+
+			<div>
+				{{ form_label(form_correo.nombre) }}
+				{{ form_errors(form_correo.nombre) }}
+				{{ form_widget(form_correo.nombre) }}
+			</div>
+			
+			<div>
+				{{ form_label(form_correo.mail) }}
+				{{ form_errors(form_correo.mail) }}
+				{{ form_widget(form_correo.mail) }}
+			</div>
+			
+			<div>
+				{{ form_label(form_correo.cargo) }}
+				{{ form_errors(form_correo.cargo) }}
+				{{ form_widget(form_correo.cargo) }}
+			</div>		
+
+			<div>
+				{{ form_label(form_correo.boletin) }}
+				{{ form_errors(form_correo.boletin) }}
+				{{ form_widget(form_correo.boletin) }}
+			</div>	
+			
+			<div id="datos_envio">
+			
+			<button type="submit"  class="botones_verde" title="Editar Cliente" >Crear correo</button>
+			  
+		    </div>
+         {{ form_rest(form_correo) }}
+ </form> 
+ </div>

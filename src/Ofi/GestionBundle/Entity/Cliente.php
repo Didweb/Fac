@@ -49,21 +49,15 @@ class Cliente
 
 
 	/**
-     * @ORM\ManyToMany(targetEntity="Telefono", cascade={"all"})
-     * @ORM\JoinTable(name="Cliente_telefono",
-     *      joinColumns={@ORM\JoinColumn(name="cliente_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="telefono_id", referencedColumnName="id", unique=true)}
-     *      )
-     */
+	 * @ORM\OneToMany(targetEntity="Telefono", mappedBy="cliente")
+	 * 
+	 */ 
     private $telefonos;
 
 	/**
-     * @ORM\ManyToMany(targetEntity="Correo", cascade={"all"})
-     * @ORM\JoinTable(name="Cliente_correos",
-     *      joinColumns={@ORM\JoinColumn(name="cliente_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="correo_id", referencedColumnName="id", unique=true)}
-     *      )
-     */
+	 * @ORM\OneToMany(targetEntity="Correo", mappedBy="cliente")
+	 * 
+	 */ 
     private $correos;
 
 
