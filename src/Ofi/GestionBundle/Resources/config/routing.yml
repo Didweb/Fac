@@ -15,6 +15,13 @@ ofi_gestion_listarcliente:
     pattern:  /listado-clientes/
     defaults: { _controller: OfiGestionBundle:Cliente:listar }
 
+
 ofi_gestion_eliminarcliente:
     pattern:  /listado-clientes/{id}/{ok}
     defaults: { _controller: OfiGestionBundle:Cliente:eliminar }
+
+
+
+ofi_gestion_crearccorreo:
+    pattern:  /crear-correo/{id}
+    defaults: { _controller: OfiGestionBundle:Cliente:crear }

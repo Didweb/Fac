@@ -3,6 +3,7 @@
 namespace Ofi\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ofi\GestionBundle\Entity\Cliente;
 
 /**
  * Correo
@@ -65,6 +66,31 @@ class Correo
     {
         return $this->id;
     }
+
+    /**
+     * Set cliente
+     *
+     * @param integer $cliente
+     * @return cliente
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return integer 
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+
 
     /**
      * Set mail

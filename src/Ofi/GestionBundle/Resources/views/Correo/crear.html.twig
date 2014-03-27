@@ -1,5 +1,5 @@
  <div id="crear_correo">
- <form action="{{ path('ofi_gestion_crearcliente') }}" method="post" {{ form_enctype(form_correo) }}>
+ <form action="{{ path('ofi_gestion_crearccorreo',{'id': entity.cliente.id}) }}" method="post" {{ form_enctype(form_correo) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_errors(form_correo) }}
 

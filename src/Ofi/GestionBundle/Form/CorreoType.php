@@ -14,6 +14,8 @@ class CorreoType extends AbstractType
             ->add('nombre')
             ->add('cargo')
             ->add('boletin')
+            ->add('cliente', 'entity_id', array(
+            'class' => 'Ofi\GestionBundle\Entity\Cliente'))
         ;
     }
 

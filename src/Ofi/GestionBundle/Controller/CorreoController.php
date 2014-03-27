@@ -14,8 +14,29 @@ class CorreoController extends Controller
 {
 
 
-  public function crearAction(Request $request)
+
+
+    public function nuevoAction($id)
+    {
+		
+		$em = $this->getDoctrine()->getManager();
+        $entity = new Correo();
+        $idop= $em->getReference('OfiGestionBundle:Cliente', $id);
+        $entity->setCliente($idop);
+        $form   = $this->createForm(new CorreoType(), $entity);
+		
+        
+         return $this->render('OfiGestionBundle:Correo:crear.html.twig',
+					array(	'entity' => $entity,
+							'form_correo'   => $form->createView())
+					);
+    }
+
+
+  public function crearAction(Request $request,$id)
   {
+	  
+	
 	$entity  = new Correo();
     $form = $this->createForm(new CorreoType(), $entity);
     $form->bind($request);
@@ -26,23 +47,24 @@ class CorreoController extends Controller
         $em->persist($entity);
         $em->flush();
 		$this->get('session')->getFlashBag()
-						->add('cliente',
-						'Se ha creado un nuevo correo para el cliente:  ');
+					->add('cliente',
+					'Se ha creado un nuevo correo para el cliente:');
 						
-        return $this->redirect($this->generateUrl(
-						'ofi_gestion_editarcorreo', 
-						array('id' => $entity->getId())));
+        
             
         }
 
 		
-       return $this->render('OfiGestionBundle:Correo:crear.html.twig',
-					array(	'entity' => $entity,
-							'form_correo'   => $form->createView())
-					);
+      /* return $this->redirect($this->generateUrl(
+						'ofi_gestion_editarcliente', 
+						array('id' => $id)));
+		*/				
+		return array('id' => $id);
 		
         
     }
+
+
 
 
 	public function editarAction($id)

@@ -16,6 +16,7 @@ class ClienteController extends Controller
 
   public function crearAction(Request $request)
   {
+	  
 	$entity  = new Cliente();
     $form = $this->createForm(new ClienteType(), $entity);
     $form->bind($request);
