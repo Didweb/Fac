@@ -12,8 +12,8 @@ class CorreoType extends AbstractType
         $builder
             ->add('mail')
             ->add('nombre')
-            ->add('cargo')
-            ->add('boletin')
+            ->add('cargo','text',array('required'=>'false'))
+            ->add('boletin','checkbox',array('required'=>'false'))
             ->add('cliente', 'entity_id', array(
             'class' => 'Ofi\GestionBundle\Entity\Cliente'))
         ;

@@ -13,7 +13,7 @@ class ClienteType extends AbstractType
         $builder
             ->add('nombre')
             ->add('apellido')
-            ->add('nomsocial')
+            ->add('nomsocial','text',array('required'=>'false'))
         ;
     }
 

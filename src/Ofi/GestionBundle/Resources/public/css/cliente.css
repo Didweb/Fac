@@ -1,16 +1,41 @@
 h1 {text-align:left; padding:6px; font-size:17px; color:#575050;}
 
 /* -------------------------------------------------------------------
- * Listado CLientes
+ * Listado Clientes
  * -----------------------------------------------------------------*/
 
-
-#listado_clientes {width:100%; float:left; padding-left:15px; background-color:red;}
-#listado_clientes table {width:100%; background-color:red; border:1px solid red;}
-#listado_clientes {background-color:#B3A9AA; color:#ffffff; width:100%;}
+#listado_clientes h2 {color:#988C8C; font-size:15px; text-align:left;
+				margin-top:0px; padding-left:5px;} 
+#listado_clientes {width:98%; float:left; padding-left:15px;}
+#listado_clientes table {width:100%; background-color:red; }
+#listado_clientes thead {background-color:#B3A9AA; color:#ffffff; width:100%;}
 #listado_clientes tr {font-size:12px; color:#333333; }
-#listado_clientes td  {padding-top:3px;  padding-bottom:3px;}
+#listado_clientes td  {padding-top:3px;  padding-bottom:3px; text-align:left;}
 
+
+
+/* -------------------------------------------------------------------
+ * Crear Clientes
+ * -----------------------------------------------------------------*/
+div#for_crear { width:40%; margin:auto;  }
+
+div#for_crear h2 {color:#343455; font-size:15px; text-align:left;
+				padding-left:5px; margin-top:5px;}
+
+#for_crear2  {clear:both; float:left; float:left; margin-bottom:20px;
+				background-color:#D9DCE6; width:100%;
+				padding-top:15px; padding-bottom:15px;
+				border-radius: 5px 5px 5px 5px; 
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;}
+				
+#for_crear label {clear:both; float:left; width:40%; 
+					text-align:right; padding:4px; color:#343455;
+					}
+
+#for_crear input { float:left; width:50%; padding:3px;
+					margin-left:4px; color:#333333; 
+					border:1px solid #988C8C;  margin-bottom:6px;}
 
 /* -------------------------------------------------------------------
  * Caja datos generales
@@ -47,7 +72,7 @@ h1 {text-align:left; padding:6px; font-size:17px; color:#575050;}
 #caja_correo input {width:100%;}
 #crear_correo	{float:left; width:100%; }
 
-table {width:100%;}
+#lista_correos table {width:100%;}
 #lista_correos {flaot:left;}
 #lista_correos thead {background-color:#B3A9AA; color:#ffffff;}
 #lista_correos tr {font-size:12px; color:#333333; }

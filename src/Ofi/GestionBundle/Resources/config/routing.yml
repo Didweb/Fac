@@ -6,6 +6,10 @@ ofi_gestion_crearcliente:
     pattern:  /crear-cliente
     defaults: { _controller: OfiGestionBundle:Cliente:crear }
 
+ofi_gestion_nuevocliente:
+    pattern:  /nuevo-cliente
+    defaults: { _controller: OfiGestionBundle:Cliente:nuevo }
+
 ofi_gestion_editarcliente:
     pattern:  /editar-cliente/{id}
     defaults: { _controller: OfiGestionBundle:Cliente:editar }

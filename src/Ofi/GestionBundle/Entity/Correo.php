@@ -3,6 +3,7 @@
 namespace Ofi\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Ofi\GestionBundle\Entity\Cliente;
 
 /**
@@ -39,14 +40,16 @@ class Correo
     /**
      * @var string
      *
-     * @ORM\Column(name="cargo", type="string", length=255)
+     * @ORM\Column(name="cargo", type="string", length=255, nullable=true)
+     * @Assert\Null
      */
     private $cargo;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="boletin", type="boolean")
+     * @ORM\Column(name="boletin", type="boolean", nullable=true)
+     * @Assert\Null
      */
     private $boletin;
 

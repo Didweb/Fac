@@ -14,6 +14,23 @@ class ClienteController extends Controller
 {
 
 
+    public function nuevoAction()
+    {
+		
+		$em = $this->getDoctrine()->getManager();
+        $entity = new Cliente();
+        $form   = $this->createForm(new CLienteType(), $entity);
+		
+        
+         return $this->render('OfiGestionBundle:Cliente:crear.html.twig',
+					array(	'entity' => $entity,
+							'form'   => $form->createView())
+					);
+    }
+
+
+
+
   public function crearAction(Request $request)
   {
 	  

@@ -12,7 +12,7 @@
  {{ parent() }}
  <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
  <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
- <link href="{{ asset('bundles/gestionbundle/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/ofigestion/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
  {% endblock%}
 
 
@@ -40,8 +40,9 @@
         {{ flashMessage2 | raw }}
     </div>
 {% endfor %}
- 
+
  <div id="listado_clientes">
+  <h2>Listado de clientes</h2>
  <table>
         
         <thead>
@@ -66,27 +67,26 @@
             {% endif %}
         
         
-            <tr class=" {{ linea }}">
+            <tr class=" {{ linea }} ilumina">
 				<td>
 				
 
 				
-				<a href="{{ path('ofi_gestion_eliminarcliente',
-				{'id':cliente.id,'ok':'no' })}}" class="bo_borrar" 
-				title="Eliminar Cliente: 
-				{{ cliente.nombre }} {{ cliente.apellido }}"></a>
-				
+	<a href="{{ path('ofi_gestion_eliminarcliente',
+	{'id':cliente.id,'ok':'no' })}}" class="bo_borrar" 
+   title="Eliminar Cliente: {{ cliente.nombre }} {{ cliente.apellido }}"
+	></a>
+		
 				</td>
 				<td>{{ cliente.nombre }}</td>
 				<td>{{ cliente.apellido }}</td>
 				<td>{{ cliente.nomsocial }}</td>
             
 				<td>
-				<a href="{{ path('ofi_gestion_editarcliente',
-				{'id':cliente.id })}}" 
-				title="Editar cliente: 
-				{{ cliente.nombre }} {{ cliente.apellido }}" 
-				class="bo_editar"></a>
+	<a href="{{ path('ofi_gestion_editarcliente',
+	{'id':cliente.id })}}" 
+	title="Editar cliente: {{ cliente.nombre }} {{ cliente.apellido }}" 
+	class="bo_editar"></a>
 				</td>
             </tr>
                {% set n=n+1 %}    

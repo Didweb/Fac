@@ -12,7 +12,7 @@
  {{ parent() }}
  <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
  <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
- <link href="{{ asset('bundles/gestionbundle/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/ofigestion/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
  {% endblock%}
 
 
@@ -43,32 +43,36 @@
  
  
  
- 
- <form action="{{ path('ofi_gestion_crearcliente') }}" method="post" {{ form_enctype(form) }}>
-        <input type="hidden" name="_method" value="PUT" />
+ <div id="for_crear">
+ <h2>Creación de nuevo cliente</h2>
+ <form action="{{ path('ofi_gestion_crearcliente') }}" method="post" 
+				{{ form_enctype(form) }} id="for_crear2">
+        <input type="hidden" name="_method" value="POST" />
         {{ form_errors(form) }}
-        	<div>
-				{{ form_label(form.nombre) }}
+        	<div id="c_nombre">
+				{{ form_label(form.nombre,"Nombre:") }}
 				{{ form_errors(form.nombre) }}
 				{{ form_widget(form.nombre) }}
 			</div>
 			
-			<div>
-				{{ form_label(form.apellido) }}
+			<div id="c_apellido">
+				{{ form_label(form.apellido,"Apellidos: ") }}
 				{{ form_errors(form.apellido) }}
 				{{ form_widget(form.apellido) }}
 			</div>
 			
-			<div>
-				{{ form_label(form.nomsocial) }}
+			<div id="c_nomsocial">
+				{{ form_label(form.nomsocial,"Nombre Comercial:") }}
 				{{ form_errors(form.nomsocial) }}
 				{{ form_widget(form.nomsocial) }}
 			</div>	
 			<div id="datos_envio">
-			<button type="submit"  class="botones_verde" title="Editar Cliente" >Aplicar Cambios</button>
+			<button type="submit"  class="botones_verde" 
+					title="Editar Cliente" >Crear cliente nuevo</button>
 		    </div>
          {{ form_rest(form) }}
- </form>       
+ </form>  
+ </div>     
  {% endblock%}
  
  {% block footer %}

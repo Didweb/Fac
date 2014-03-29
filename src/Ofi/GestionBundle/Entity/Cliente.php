@@ -49,13 +49,13 @@ class Cliente
 
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Telefono", mappedBy="cliente")
+	 * @ORM\OneToMany(targetEntity="Telefono", mappedBy="cliente", cascade={"all"})
 	 * 
 	 */ 
     private $telefonos;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Correo", mappedBy="cliente")
+	 * @ORM\OneToMany(targetEntity="Correo", mappedBy="cliente", cascade={"all"})
 	 * 
 	 */ 
     private $correos;

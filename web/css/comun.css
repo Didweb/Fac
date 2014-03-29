@@ -18,7 +18,8 @@ footer p {font-size:11px; color:#7C8087;}
  * ----------------------------------------------------------------- */
 .par {background-color:#F5F7F8;}
 .impar {background-color:#E1E3E8;}
-
+.alaiz {text-align:left;}
+.ilumina:hover {background-color:#FDFBB0;}
 /*-------------------------------------------------------------------
  * Sesion
  * ----------------------------------------------------------------- */
