@@ -29,7 +29,7 @@ Es una aplicación web con el objetivo de trabajar con ella en could.
 
 Colaboración
 ----------------------------------
-Este proyecto esta abierto a colaboraciones y aportaciones del resto de la comunidad. Es uno de los objetivos de este proyecto el poder llegar a convertir este aplicación en un proyecto colaborativo. 
+Este proyecto esta abierto a colaboraciones y aportaciones del resto de la comunidad. Es uno de los objetivos de este proyecto el poder llegar a convertir esta aplicación en un proyecto colaborativo. 
 
 
 
