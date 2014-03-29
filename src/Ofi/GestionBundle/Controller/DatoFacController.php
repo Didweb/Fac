@@ -6,12 +6,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Ofi\GestionBundle\Entity\Correo;
-use Ofi\GestionBundle\Form\CorreoType;
+use Ofi\GestionBundle\Entity\DatosFacturacion;
+use Ofi\GestionBundle\Form\DatoFacType;
 use Ofi\GestionBundle\Entity\Cliente;
 use Ofi\GestionBundle\Form\ClienteType;
 
-class CorreoController extends Controller
+class DatoFacController extends Controller
 {
 
 
@@ -20,17 +20,26 @@ class CorreoController extends Controller
     public function nuevoAction($id)
     {
 		
+		
 		$em = $this->getDoctrine()->getManager();
-        $entity = new Correo();
+		
+		$total = $em->getRepository('OfiGestionBundle:DatosFacturacion')
+               ->contarDatosFac($id);
+	
+		
+		
+        $entity = new DatosFacturacion();
         $idop= $em->getReference('OfiGestionBundle:Cliente', $id);
         $entity->setCliente($idop);
-        $form   = $this->createForm(new CorreoType(), $entity);
+        $form   = $this->createForm(new DatoFacType(), $entity);
 		
         
-         return $this->render('OfiGestionBundle:Correo:crear.html.twig',
+         return $this->render('OfiGestionBundle:DatoFac:crear.html.twig',
 					array(	'entity' => $entity,
-							'form_correo'   => $form->createView())
+							'form_datosfac'   => $form->createView(),
+							'total'=>(int)$total[0]['total'])
 					);
+					
     }
 
 
@@ -38,8 +47,8 @@ class CorreoController extends Controller
   public function crearAction(Request $request,$id)
   {
 	  
-	$entity  = new Correo();
-    $form = $this->createForm(new CorreoType(), $entity);
+	$entity  = new DatosFacturacion();
+    $form = $this->createForm(new DatoFacType(), $entity);
     $form->bind($request);
 
     if ($form->isValid()) {
@@ -48,7 +57,7 @@ class CorreoController extends Controller
         $em->flush();
 		$this->get('session')->getFlashBag()
 					->add('cliente',
-					'Se ha creado un nuevo correo para este cliente.');
+					'Se han introduicido los datso de facturación de este cliente');
 		 
         }
 
@@ -64,10 +73,10 @@ class CorreoController extends Controller
 	public function listarAction($id)
 	{
 	  $em = $this->getDoctrine()->getManager();
-      $entity = $em->getRepository('OfiGestionBundle:Correo')
+      $entity = $em->getRepository('OfiGestionBundle:DatosFacturacion')
 				->findByCliente($id);
 
-       return $this->render('OfiGestionBundle:Correo:listar.html.twig',
+       return $this->render('OfiGestionBundle:DatoFac:listar.html.twig',
 					array('entity' => $entity));
 	}
 
@@ -83,13 +92,11 @@ class CorreoController extends Controller
 
 
 
-	/*
-	 * Eliminar
-	 * */
+
 	public function eliminarAction($id)
 	{
 	   $em 		= $this->getDoctrine()->getManager();
-       $entity 	= $em->getRepository('OfiGestionBundle:Correo')
+       $entity 	= $em->getRepository('OfiGestionBundle:DatosFacturacion')
 					 ->find($id);	
 		  		
 		$idcliente	= $entity->getCliente();
@@ -98,7 +105,7 @@ class CorreoController extends Controller
 		
 		$this->get('session')->getFlashBag()
 						->add('cliente_error',
-						'Se ha eliminado un correo de este cliente.');
+						'Se han eliminado los datos de facturación.');
 						
 		$entity = $em->getRepository('OfiGestionBundle:Cliente')
 				->find($idcliente);

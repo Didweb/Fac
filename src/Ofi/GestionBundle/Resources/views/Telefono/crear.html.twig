@@ -1,0 +1,32 @@
+ <div id="crear_telefono">
+ <form action="{{ path('ofi_gestion_crearctelefono',{'id': entity.cliente.id}) }}" method="post" {{ form_enctype(form_telefono) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_errors(form_telefono) }}
+
+			<div>
+				{{ form_label(form_telefono.nombre) }}
+				{{ form_errors(form_telefono.nombre) }}
+				{{ form_widget(form_telefono.nombre) }}
+			</div>
+			
+			<div>
+				{{ form_label(form_telefono.telefono) }}
+				{{ form_errors(form_telefono.telefono) }}
+				{{ form_widget(form_telefono.telefono) }}
+			</div>
+			
+			<div>
+				{{ form_label(form_telefono.tipo) }}
+				{{ form_errors(form_telefono.tipo) }}
+				{{ form_widget(form_telefono.tipo) }}
+			</div>		
+
+			
+			<div id="datos_envio">
+				<button type="submit"  class="botones_verde" 
+				title="Editar Cliente" >Crear Teléfono</button>
+		    </div>
+		    
+         {{ form_rest(form_telefono) }}
+ </form> 
+ </div>

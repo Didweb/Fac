@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class DatosFacturacionRepository extends EntityRepository
 {
+	
+	public function contarDatosFac($id)
+	{
+	return $this->getEntityManager()
+            ->createQuery('SELECT count(s.id) AS total FROM 
+						  OfiGestionBundle:DatosFacturacion s
+						  WHERE s.cliente = :idcliente ')
+            ->setParameter('idcliente',$id)
+            ->getResult();
+		
+	}
+	
+	
 }

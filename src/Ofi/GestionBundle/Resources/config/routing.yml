@@ -25,3 +25,24 @@ ofi_gestion_eliminarcliente:
 ofi_gestion_crearccorreo:
     pattern:  /crear-correo/{id}
     defaults: { _controller: OfiGestionBundle:Correo:crear }
+
+ofi_gestion_eliminarcorreo:
+    pattern:  /eliminar-correo/{id}
+    defaults: { _controller: OfiGestionBundle:Correo:eliminar }
+
+
+ofi_gestion_crearctelefono:
+    pattern:  /crear-telefono/{id}
+    defaults: { _controller: OfiGestionBundle:Telefono:crear }
+
+ofi_gestion_eliminartelefono:
+    pattern:  /eliminar-telefono/{id}
+    defaults: { _controller: OfiGestionBundle:Telefono:eliminar }
+
+ofi_gestion_crearcdatofac:
+    pattern:  /crear-datofac/{id}
+    defaults: { _controller: OfiGestionBundle:DatoFac:crear }
+
+ofi_gestion_eliminardatofac:
+    pattern:  /eliminar-datofac/{id}
+    defaults: { _controller: OfiGestionBundle:DatoFac:eliminar }

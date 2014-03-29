@@ -76,16 +76,18 @@
  </div>
  
  <div id="caja_correo">
-
+ {{ render(controller('OfiGestionBundle:Correo:listar',{'id': entity.id})) }} 
  {{ render(controller('OfiGestionBundle:Correo:nuevo',{'id': entity.id})) }} 
  </div>
  
   <div id="caja_telefono">
- telefono
+ {{ render(controller('OfiGestionBundle:Telefono:listar',{'id': entity.id})) }} 
+ {{ render(controller('OfiGestionBundle:Telefono:nuevo',{'id': entity.id})) }} 
  </div>
     
    <div id="caja_datos">
- datos facturacion
+ {{ render(controller('OfiGestionBundle:DatoFac:listar',{'id': entity.id})) }} 
+ {{ render(controller('OfiGestionBundle:DatoFac:nuevo',{'id': entity.id})) }} 
  </div>   
        
  {% endblock%}

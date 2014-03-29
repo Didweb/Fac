@@ -1,0 +1,44 @@
+
+<div id="lista_telefono"> 
+{% if entity|length>0 %}
+ <table>
+        
+        <thead>
+            <tr>
+                <th class="acciones">Acciones</th>
+				<th class="alaiz">Teléfono</th>
+				<th class="alaiz">Nombre</th>
+				<th class="alaiz">Tipo</th>          
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            {% set n=1 %}
+        {% for telefono in entity %}
+        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+        
+            <tr class=" {{ linea }}">
+				<td>
+				<a href="{{ path('ofi_gestion_eliminartelefono',{'id':telefono.id}) }}">Eliminar</a>
+				</td>
+				<td>{{ telefono.telefono }}</td>
+				<td>{{ telefono.nombre }}</td>
+				<td>{{ telefono.tipo }}</td>
+            
+            </tr>
+               {% set n=n+1 %}    
+        {% endfor %}
+        </tbody>
+        
+    </table>
+    {% else %}
+    Este cliente no tiene seleccioando ningún Teléfono
+    {% endif %}
+</div>        

@@ -61,11 +61,7 @@ class Cliente
     private $correos;
 
 
-    /**
-     * @ORM\OneToOne(targetEntity="DatosFacturacion", cascade={"all"})
-     * @ORM\JoinColumn(name="datosfacturacion_id", referencedColumnName="id")
-     */
-    private $datosfacturacion;
+
 
 
     public function __construct() {

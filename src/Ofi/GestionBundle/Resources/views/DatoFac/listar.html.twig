@@ -1,0 +1,21 @@
+
+<div id="lista_datofac"> 
+{% if entity|length>0 %}
+
+        {% for datofac in entity %}
+        
+				<a href="{{ path('ofi_gestion_eliminardatofac',{'id':datofac.id}) }}">Eliminar</a>
+				
+				Razón Social: {{ datofac.razonsocial }}<br />
+				Nif/Cif: {{ datofac.nif }}<br />
+				Dirección: {{ datofac.direccion }}<br />
+				Población: {{ datofac.poblacion }}<br />
+				Código Postal: {{ datofac.cp }}<br />
+            
+            
+        {% endfor %}
+       
+    {% else %}
+    Este cliente no tiene seleccioando ningún Teléfono
+    {% endif %}
+</div>        

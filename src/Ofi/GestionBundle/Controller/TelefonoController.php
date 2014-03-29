@@ -6,12 +6,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Ofi\GestionBundle\Entity\Correo;
-use Ofi\GestionBundle\Form\CorreoType;
+use Ofi\GestionBundle\Entity\Telefono;
+use Ofi\GestionBundle\Form\TelefonoType;
 use Ofi\GestionBundle\Entity\Cliente;
 use Ofi\GestionBundle\Form\ClienteType;
 
-class CorreoController extends Controller
+class TelefonoController extends Controller
 {
 
 
@@ -21,15 +21,15 @@ class CorreoController extends Controller
     {
 		
 		$em = $this->getDoctrine()->getManager();
-        $entity = new Correo();
+        $entity = new Telefono();
         $idop= $em->getReference('OfiGestionBundle:Cliente', $id);
         $entity->setCliente($idop);
-        $form   = $this->createForm(new CorreoType(), $entity);
+        $form   = $this->createForm(new TelefonoType(), $entity);
 		
         
-         return $this->render('OfiGestionBundle:Correo:crear.html.twig',
+         return $this->render('OfiGestionBundle:Telefono:crear.html.twig',
 					array(	'entity' => $entity,
-							'form_correo'   => $form->createView())
+							'form_telefono'   => $form->createView())
 					);
     }
 
@@ -38,8 +38,8 @@ class CorreoController extends Controller
   public function crearAction(Request $request,$id)
   {
 	  
-	$entity  = new Correo();
-    $form = $this->createForm(new CorreoType(), $entity);
+	$entity  = new Telefono();
+    $form = $this->createForm(new TelefonoType(), $entity);
     $form->bind($request);
 
     if ($form->isValid()) {
@@ -48,7 +48,7 @@ class CorreoController extends Controller
         $em->flush();
 		$this->get('session')->getFlashBag()
 					->add('cliente',
-					'Se ha creado un nuevo correo para este cliente.');
+					'Se ha creado un nuevo teléfono para el cliente:');
 		 
         }
 
@@ -64,10 +64,10 @@ class CorreoController extends Controller
 	public function listarAction($id)
 	{
 	  $em = $this->getDoctrine()->getManager();
-      $entity = $em->getRepository('OfiGestionBundle:Correo')
+      $entity = $em->getRepository('OfiGestionBundle:Telefono')
 				->findByCliente($id);
 
-       return $this->render('OfiGestionBundle:Correo:listar.html.twig',
+       return $this->render('OfiGestionBundle:Telefono:listar.html.twig',
 					array('entity' => $entity));
 	}
 
@@ -83,13 +83,11 @@ class CorreoController extends Controller
 
 
 
-	/*
-	 * Eliminar
-	 * */
+
 	public function eliminarAction($id)
 	{
 	   $em 		= $this->getDoctrine()->getManager();
-       $entity 	= $em->getRepository('OfiGestionBundle:Correo')
+       $entity 	= $em->getRepository('OfiGestionBundle:Telefono')
 					 ->find($id);	
 		  		
 		$idcliente	= $entity->getCliente();
@@ -98,7 +96,7 @@ class CorreoController extends Controller
 		
 		$this->get('session')->getFlashBag()
 						->add('cliente_error',
-						'Se ha eliminado un correo de este cliente.');
+						'Se ha eliminado un telefono de este cliente.');
 						
 		$entity = $em->getRepository('OfiGestionBundle:Cliente')
 				->find($idcliente);
