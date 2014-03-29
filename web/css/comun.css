@@ -57,6 +57,12 @@ aside#sesion { float:right; margin-right:10px; background-color:#F4F4D6;
 			background-repeat:no-repeat;}
 .bo_borrar:hover {opacity:1.0; filter:alpha(opacity=100);}
 
+.bo_editar {background-image:url(../images/editar.png); 
+			width:22px; height:22px; display:block; 
+			opacity:0.4; filter:alpha(opacity=40);
+			background-repeat:no-repeat;}
+.bo_editar:hover {opacity:1.0; filter:alpha(opacity=100);}
+
 
 
 .ver_ocultos {float:right; margin-top:0px; background-image: url(../images/ver_registros.png); width:29px; height:29px;

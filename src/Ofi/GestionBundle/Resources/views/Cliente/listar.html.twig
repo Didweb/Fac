@@ -41,15 +41,16 @@
     </div>
 {% endfor %}
  
- 
+ <div id="listado_clientes">
  <table>
         
         <thead>
             <tr>
-                <th class="acciones">Acciones</th>
+                <th class="acciones"></th>
 				<th class="alaiz">Nombre</th>
 				<th class="alaiz">Apellido</th>
-				<th class="alaiz">Nombre comercial</th>          
+				<th class="alaiz">Nombre comercial</th>  
+				<th class="acciones"></th>        
             </tr>
             
         </thead>
@@ -67,19 +68,33 @@
         
             <tr class=" {{ linea }}">
 				<td>
-				<a href="{{ path('ofi_gestion_editarcliente',{'id':cliente.id })}}">Edita</a>
-				<a href="{{ path('ofi_gestion_eliminarcliente',{'id':cliente.id,'ok':'no' })}}">Eliminar</a>
+				
+
+				
+				<a href="{{ path('ofi_gestion_eliminarcliente',
+				{'id':cliente.id,'ok':'no' })}}" class="bo_borrar" 
+				title="Eliminar Cliente: 
+				{{ cliente.nombre }} {{ cliente.apellido }}"></a>
+				
 				</td>
 				<td>{{ cliente.nombre }}</td>
 				<td>{{ cliente.apellido }}</td>
 				<td>{{ cliente.nomsocial }}</td>
             
+				<td>
+				<a href="{{ path('ofi_gestion_editarcliente',
+				{'id':cliente.id })}}" 
+				title="Editar cliente: 
+				{{ cliente.nombre }} {{ cliente.apellido }}" 
+				class="bo_editar"></a>
+				</td>
             </tr>
                {% set n=n+1 %}    
         {% endfor %}
         </tbody>
         
-    </table>    
+    </table> 
+  </div>     
  {% endblock%}
  
  {% block footer %}
