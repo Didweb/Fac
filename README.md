@@ -27,6 +27,17 @@ Es una aplicación web con el objetivo de trabajar con ella en could.
 - Envio de correos individualizados.
 
 
+Colaboración
+----------------------------------
+Este proyecto esta abierto a colaboraciones y aportaciones del resto de la comunidad. Es uno de los objetivos de este proyecto el poder llegar a convertir este aplicación en un proyecto colaborativo. 
+
+
+
+Instalación y configuración
+----------------------------------
+Actualmente no esta finalizada y no es funcional, cuando este en una versión beta pondre la forma de configurar y descargar.
+
+
 Licencia
 ----------------------------------
 Esta aplicación esta basada en Symfony2 y conserva sus licencias MIT / BSD
