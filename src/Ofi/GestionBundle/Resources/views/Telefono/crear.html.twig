@@ -3,20 +3,20 @@
         <input type="hidden" name="_method" value="PUT" />
         {{ form_errors(form_telefono) }}
 
-			<div>
-				{{ form_label(form_telefono.nombre) }}
+			<div id="c_telefono_nombre">
+				{{ form_label(form_telefono.nombre,"Nombre:") }}
 				{{ form_errors(form_telefono.nombre) }}
 				{{ form_widget(form_telefono.nombre) }}
 			</div>
 			
-			<div>
-				{{ form_label(form_telefono.telefono) }}
+			<div id="c_telefono_telefono">
+				{{ form_label(form_telefono.telefono,"Teléfono:") }}
 				{{ form_errors(form_telefono.telefono) }}
 				{{ form_widget(form_telefono.telefono) }}
 			</div>
 			
-			<div>
-				{{ form_label(form_telefono.tipo) }}
+			<div id="c_telefono_tipo">
+				{{ form_label(form_telefono.tipo,"Cargo:") }}
 				{{ form_errors(form_telefono.tipo) }}
 				{{ form_widget(form_telefono.tipo) }}
 			</div>		

@@ -1,11 +1,115 @@
-#caja_general	{float:left; width:25%; background-color:#ffff00;}
+h1 {text-align:left; padding:6px; font-size:17px; color:#575050;}
 
-#caja_telefono	{float:left; width:29%;  background-color:green;}
-#caja_datos		{float:left; width:29%;  background-color:#ffff00;}
+/* -------------------------------------------------------------------
+ * Caja datos generales
+ * -----------------------------------------------------------------*/
+#caja_general	{float:left; width:25%; font-size:12px;}
+#caja_general h2 {color:#988C8C; font-size:15px; text-align:left;
+				margin-top:0px; padding-left:5px;} 
+#caja_general label {clear:both; float:left; width:100%; 
+					text-align:left; padding:4px; color:#988C8C;
+					}
+
+#caja_general input {clear:both; float:left; width:90%; padding:3px;
+					margin-left:4px; color:#333333; 
+					border:1px solid #988C8C;  margin-bottom:6px;}
+					
+#datos_envio	{clear:both; float:left; width:100%; margin-top:5px;}
+
+#caja_telefono	{float:left; width:100%; margin-left:10px;}
+#caja_datos		{float:left; width:29%;  background-color:#ffffff;}
 
 
 /* -------------------------------------------------------------------
  * Crear Correo
  * -----------------------------------------------------------------*/
-#caja_correo	{float:left; width:25%;  background-color:#ffffcc;}
-#crear_correo		{float:left; width:29%; }
+#caja_correo h2 {color:·#988C8C; font-size:15px; text-align:left;
+				margin-top:0px;} 
+#caja_correo	{float:left; width:35%;  margin-right:5px; 
+				min-height:175px; font-size:12px; color:#988C8C;
+				border-left:1px solid #E3E3E3; padding-left:10px;}
+#caja_correo label {float:left;}
+#caja_correo input {width:100%;}
+#crear_correo	{float:left; width:100%; }
+
+table {width:100%;}
+#lista_correos {flaot:left;}
+#lista_correos thead {background-color:#B3A9AA; color:#ffffff;}
+#lista_correos tr {font-size:12px; color:#333333; }
+#lista_correos td  {padding-top:3px;  padding-bottom:3px;}
+
+#lista_correos   .accion {padding-left:6px; }
+
+#targetCorreo{  float:left; background-color:#DFDBD7; display:none; 
+				margin-top:10px; background-color:#F4F4ED; padding:4px;
+				border-radius: 5px 5px 5px 5px; padding-bottom:15px;
+				padding-top:15px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;
+				}
+#form_correo {float:left; width:100%; display:block; }
+#c_correo_nombre 	{float:left; width:30%;  margin-right:8px; margin-left:6px;}
+
+#c_correo_mail 		{float:left; width:35%; margin-right:8px;}
+#c_correo_cargo 	{float:left; width:20%; margin-right:8px;}
+#c_correo_boletin 	{float:left; width:5%; margin-right:8px;}
+
+
+
+/* -------------------------------------------------------------------
+ * Crear Telefono
+ * -----------------------------------------------------------------*/
+#caja_telefono h2 {color:·#988C8C; font-size:15px; text-align:left; margin-top:0px;} 
+#caja_telefono	{float:left; width:35%;  margin-right:5px; 
+				min-height:175px; font-size:12px; color:#988C8C;
+				border-left:1px solid #E3E3E3; padding-left:10px;}
+#caja_telefono label {float:left;}
+#caja_telefono input {width:100%;}
+
+#caja_telefono table {width:100%;}
+#lista_telefonos {flaot:left;}
+#lista_telefonos thead {background-color:#B3A9AA; color:#ffffff;}
+#lista_telefonos tr {font-size:12px; color:#333333; }
+#lista_telefonos td  {padding-top:3px;  padding-bottom:3px;}
+
+#lista_telefonos   .accion {padding-left:6px; }
+
+#targetTelefono{  float:left; background-color:#DFDBD7; display:none; 
+				margin-top:10px; background-color:#F4F4ED; padding:4px;
+				border-radius: 5px 5px 5px 5px; padding-bottom:15px;
+				padding-top:15px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;
+				}
+#form_correo {float:left; width:100%; display:block; }
+#c_correo_nombre 	{float:left; width:30%;  margin-right:8px; margin-left:6px;}
+
+#c_telefono_nombre 		{float:left; width:35%; margin-right:8px;}
+#c_telefono_telefono 	{float:left; width:35%; margin-right:8px;}
+#c_telefono_tipo 	{float:left; width:20%; margin-right:8px;}
+
+/* -------------------------------------------------------------------
+ * Datos Facturacion
+ * -----------------------------------------------------------------*/
+#caja_datos {position:absolute; width:22%; min-height:210px; 
+			display:none;}
+#caja_datos h2 {color:#988C8C; font-size:15px; text-align:left;
+				margin-top:0px; padding-left:5px;} 
+.ver_DF	{float:left; text-align:left; font-size:12px; width:100%; 
+		margin-top:-15px;color:#0D93A4; margin-right:10px; 
+		padding-left:10px; text-decoration:underline; cursor:pointer; 
+		margin-bottom:5px;}
+.ver_DF:hover {color:#333333;}
+
+#eli_DF	{float:left; padding-right:10px; text-align:right; width:100%;}
+#eli_DF a {float:right;}
+
+
+#caja_datos label {float:left; padding-right:5px; width:35%; 
+					text-align:right; color:#988C8C;}
+#caja_datos input {float:left; margin-left:4px; width:50%; 
+					margin-bottom:8px; color:#988C8C;}
+
+.etiqueta	{width:150px;  margin-bottom:9px;}
+.dato	{text-align:left; padding-left:5px; font-weight:bold; 
+		margin-bottom:9px; color:#988C8C;}

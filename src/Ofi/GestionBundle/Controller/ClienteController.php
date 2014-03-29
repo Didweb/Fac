@@ -46,10 +46,11 @@ class ClienteController extends Controller
     }
 
 
-	public function editarAction($id)
+	public function editarAction(Request $request,$id)
     {
         $em = $this->getDoctrine()->getManager();
-
+		
+		
         $entity = $em->getRepository('OfiGestionBundle:Cliente')
 						->find($id);
 
@@ -58,18 +59,42 @@ class ClienteController extends Controller
             'Entidad no encontrada [editarAction.ClienteController].'
             );
         }
+        
 
         $editForm = $this->createForm(new ClienteType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+		
+        
+        return $this->render('OfiGestionBundle:Cliente:editar.html.twig',
+			array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView()
+        ));
+    }
 
+
+    public function actualizarAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('OfiGestionBundle:Cliente')->find($id);
+		$editForm = $this->createForm(new ClienteType(), $entity);
+        $deleteForm = $this->createDeleteForm($id);
+		$editForm->bind($request);
+		
+		$em->persist($entity);
+        $em->flush();
+
+		
+        
         return $this->render('OfiGestionBundle:Cliente:editar.html.twig',
 			array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
+            ));
+     }       
 
 	/*
 	 * Listamos los clientes

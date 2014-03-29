@@ -1,11 +1,10 @@
-
-<div id="lista_telefono"> 
+<div id="lista_telefonos">
 {% if entity|length>0 %}
  <table>
         
         <thead>
             <tr>
-                <th class="acciones">Acciones</th>
+                <th class="acciones"></th>
 				<th class="alaiz">Teléfono</th>
 				<th class="alaiz">Nombre</th>
 				<th class="alaiz">Tipo</th>          
@@ -25,8 +24,10 @@
         
         
             <tr class=" {{ linea }}">
-				<td>
-				<a href="{{ path('ofi_gestion_eliminartelefono',{'id':telefono.id}) }}">Eliminar</a>
+				<td class="accion">
+				<a href="{{ path('ofi_gestion_eliminartelefono',
+				{'id':telefono.id}) }}" class="bo_borrar" 
+				title="Eliminar el Tel: {{ telefono.telefono }}"></a>
 				</td>
 				<td>{{ telefono.telefono }}</td>
 				<td>{{ telefono.nombre }}</td>
@@ -39,6 +40,7 @@
         
     </table>
     {% else %}
-    Este cliente no tiene seleccioando ningún Teléfono
+    Este cliente no tiene asignado ningún Teléfono
     {% endif %}
-</div>        
+        
+</div>

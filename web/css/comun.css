@@ -13,6 +13,11 @@ div#contenidos {float:left; width:100%; background-color:#ffffff;}
 footer {float:left; width:100%; background-color:#E6E6E6;}
 footer p {font-size:11px; color:#7C8087;}
 
+/*-------------------------------------------------------------------
+ * Tablas
+ * ----------------------------------------------------------------- */
+.par {background-color:#F5F7F8;}
+.impar {background-color:#E1E3E8;}
 
 /*-------------------------------------------------------------------
  * Sesion
@@ -25,3 +30,35 @@ aside#sesion { float:right; margin-right:10px; background-color:#F4F4D6;
 			-moz-border-radius: 5px 5px 5px 5px;
 			-webkit-border-radius: 5px 5px 5px 5px;
 			}
+
+/*-------------------------------------------------------------------
+ * Alertas Flash
+ * ----------------------------------------------------------------- */
+.flash_ok {float:center; position:absolute; z-index:15; margin-left:100%; 
+			margin-right:auto;  top:10px;
+			background-color:#D3E7C9; padding:15px;
+			border-radius: 5px 5px 5px 5px;
+			-moz-border-radius: 5px 5px 5px 5px;
+			-webkit-border-radius: 5px 5px 5px 5px;
+			}
+.flash_error {float:center; position:absolute; z-index:15; margin-left:60%; 
+			margin-right:auto;  top:10px;
+			background-color:#E7D6C9; padding:15px;
+			border-radius: 5px 5px 5px 5px;
+			-moz-border-radius: 5px 5px 5px 5px;
+			-webkit-border-radius: 5px 5px 5px 5px;
+			}
+/*-------------------------------------------------------------------
+ * Botones
+ * ----------------------------------------------------------------- */
+.bo_borrar {background-image:url(../images/borrar.png); 
+			width:22px; height:22px; display:block; 
+			opacity:0.4; filter:alpha(opacity=40);
+			background-repeat:no-repeat;}
+.bo_borrar:hover {opacity:1.0; filter:alpha(opacity=100);}
+
+
+
+.ver_ocultos {float:right; margin-top:0px; background-image: url(../images/ver_registros.png); width:29px; height:29px;
+		display:block; background-repeat:no-repeat; opacity: 0.6; cursor:pointer; background-size:26px;}
+.ver_ocultos:hover {opacity: 1.0;}	

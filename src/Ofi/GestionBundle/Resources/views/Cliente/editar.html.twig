@@ -10,6 +10,7 @@
 
  {% block stylesheets %}
  {{ parent() }}
+ <script src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
  <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
  <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
  <link href="{{ asset('bundles/ofigestion/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
@@ -42,52 +43,83 @@
 {% endfor %}
  
  <h1>{{ entity.nombre }} {{ entity.apellido }}</h1>
- 
+ 	 <div id="accionaDF"  class="ver_DF"
+								title="Ver/Editar datos de facturación">
+								Datos facturación / Generales</div>
  <div id="caja_general">
- <form action="{{ path('ofi_gestion_crearcliente') }}" method="post" {{ form_enctype(edit_form) }}>
-        <input type="hidden" name="_method" value="PUT" />
-        {{ form_errors(edit_form) }}
+ <h2>Datos Generales</h2>
+ <form action="{{ path('ofi_gestion_actualizarcliente',
+				{'id':entity.id}) }}" 
+				method="post" {{ form_enctype(edit_form) }}>
+				
+	<input type="hidden" name="_method" value="PUT" />
+	{{ form_errors(edit_form) }}
 
-			<div>
-				{{ form_label(edit_form.nombre) }}
-				{{ form_errors(edit_form.nombre) }}
-				{{ form_widget(edit_form.nombre) }}
-			</div>
-			
-			<div>
-				{{ form_label(edit_form.apellido) }}
-				{{ form_errors(edit_form.apellido) }}
-				{{ form_widget(edit_form.apellido) }}
-			</div>
-			
-			<div>
-				{{ form_label(edit_form.nomsocial) }}
-				{{ form_errors(edit_form.nomsocial) }}
-				{{ form_widget(edit_form.nomsocial) }}
-			</div>		
-			
-			<div id="datos_envio">
-			
-			<button type="submit"  class="botones_verde" title="Editar Cliente" >Aplicar Cambios</button>
-			  
-		    </div>
-         {{ form_rest(edit_form) }}
+		<div id="c_nombre">
+			{{ form_label(edit_form.nombre,"Nombre:") }}
+			{{ form_errors(edit_form.nombre) }}
+			{{ form_widget(edit_form.nombre) }}
+		</div>
+		
+		<div id="c_apellido">
+			{{ form_label(edit_form.apellido,"Apellidos:") }}
+			{{ form_errors(edit_form.apellido) }}
+			{{ form_widget(edit_form.apellido) }}
+		</div>
+		
+		<div id="c_nomsocial">
+			{{ form_label(edit_form.nomsocial,"Nombre comercial:") }}
+			{{ form_errors(edit_form.nomsocial) }}
+			{{ form_widget(edit_form.nomsocial) }}
+		</div>		
+		
+		<div id="datos_envio">
+		
+		<button type="submit"  class="botones_verde" 
+		title="Editar Cliente" >Aplicar Cambios</button>
+		  
+		</div>
+	 {{ form_rest(edit_form) }}
  </form> 
  </div>
  
+ 
+ 
  <div id="caja_correo">
- {{ render(controller('OfiGestionBundle:Correo:listar',{'id': entity.id})) }} 
- {{ render(controller('OfiGestionBundle:Correo:nuevo',{'id': entity.id})) }} 
+ <h2>Correos:</h2>
+	{{ render(controller('OfiGestionBundle:Correo:listar',
+						{'id': entity.id})) }} 
+	<div id="accionaCorreo" class="ver_ocultos" 
+						title="Insertar más correos" ></div>
+						
+	<div id="targetCorreo">
+	{{ render(controller('OfiGestionBundle:Correo:nuevo',
+							{'id': entity.id})) }} 
+	</div>
  </div>
  
+ 
+ 
   <div id="caja_telefono">
- {{ render(controller('OfiGestionBundle:Telefono:listar',{'id': entity.id})) }} 
- {{ render(controller('OfiGestionBundle:Telefono:nuevo',{'id': entity.id})) }} 
+   <h2>Teléfonos:</h2>
+	 {{ render(controller('OfiGestionBundle:Telefono:listar',
+								{'id': entity.id})) }}
+	 <div id="accionaTelefono" class="ver_ocultos" 
+								title="Insertar más teléfonos" ></div> 
+	 <div id="targetTelefono">				
+	 {{ render(controller('OfiGestionBundle:Telefono:nuevo',
+								{'id': entity.id})) }} 
+	 </div>
  </div>
     
-   <div id="caja_datos">
- {{ render(controller('OfiGestionBundle:DatoFac:listar',{'id': entity.id})) }} 
- {{ render(controller('OfiGestionBundle:DatoFac:nuevo',{'id': entity.id})) }} 
+
+    
+  <div id="caja_datos">
+  <h2>Datos Facturación</h2>	
+	 {{ render(controller('OfiGestionBundle:DatoFac:listar',
+								{'id': entity.id})) }} 
+	 {{ render(controller('OfiGestionBundle:DatoFac:nuevo',
+								{'id': entity.id})) }} 
  </div>   
        
  {% endblock%}
@@ -95,3 +127,175 @@
  {% block footer %}
  {% include 'OfiGestionBundle:Fijas:footer.html.twig' %} 
  {% endblock%}
+ 
+ 
+ 
+ {% block javascripts %}
+<script>
+    $ (document) .ready(function(){
+
+		
+		$ ("#accionaCorreo") .click(function () {
+
+				$ ("#targetCorreo") .each(function() {
+
+					displaying  = $(this).css("display");
+
+					if(displaying == "block") {
+
+					$(this).fadeOut('slow',function() {
+
+					$(this).css("displaying","none");
+
+					});
+
+					} else {
+
+					$(this).fadeIn('slow',function() {
+
+					$(this).css("display","block");
+
+					});
+
+					}
+				
+				});
+
+			});
+
+		});		
+
+    $ (document) .ready(function(){
+
+		
+		$ ("#accionaDF") .click(function () {
+
+				$ ("#caja_datos") .each(function() {
+
+					displaying  = $(this).css("display");
+
+					if(displaying == "block") {
+
+					$(this).fadeOut('slow',function() {
+
+					$(this).css("displaying","none");
+
+					});
+
+					} else {
+
+					$(this).fadeIn('slow',function() {
+
+					$(this).css("display","block");
+
+					});
+
+					}
+				
+				});
+
+			});
+
+		});	
+
+    $ (document) .ready(function(){
+		$ ("#accionaDF2") .click(function () {
+
+				$ ("#caja_datos_activado") .each(function() {
+
+					displaying  = $(this).css("display");
+
+					if(displaying == "none") {
+
+					$(this).fadeOut('slow',function() {
+
+					$(this).css("displaying","block");
+
+					});
+
+					} else {
+
+					$(this).fadeIn('slow',function() {
+
+					$(this).css("display","none");
+
+					});
+
+					}
+				
+				});
+
+			});
+
+		});	
+
+		
+    $ (document) .ready(function(){
+
+		
+		$ ("#accionaTelefono") .click(function () {
+
+				$ ("#targetTelefono") .each(function() {
+
+					displaying  = $(this).css("display");
+
+					if(displaying == "block") {
+
+					$(this).fadeOut('slow',function() {
+
+					$(this).css("displaying","none");
+
+					});
+
+					} else {
+
+					$(this).fadeIn('slow',function() {
+
+					$(this).css("display","block");
+
+					});
+
+					}
+				
+				});
+
+			});
+
+		});	
+		
+
+    $ (document) .ready(function(){
+
+		
+		$ ("#accionaDF") .click(function () {
+
+				$ ("#targetDF") .each(function() {
+
+					displaying  = $(this).css("display");
+
+					if(displaying == "block") {
+
+					$(this).fadeOut('slow',function() {
+
+					$(this).css("displaying","none");
+
+					});
+
+					} else {
+
+					$(this).fadeIn('slow',function() {
+
+					$(this).css("display","block");
+
+					});
+
+					}
+				
+				});
+
+			});
+
+		});			
+					
+</script>
+{% endblock%}

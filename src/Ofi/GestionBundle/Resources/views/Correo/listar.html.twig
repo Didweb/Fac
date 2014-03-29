@@ -5,7 +5,7 @@
         
         <thead>
             <tr>
-                <th class="acciones">Acciones</th>
+                <th class="acciones"></th>
 				<th class="alaiz">E-mail</th>
 				<th class="alaiz">Nombre</th>
 				<th class="alaiz">Cargo</th> 
@@ -26,13 +26,21 @@
         
         
             <tr class=" {{ linea }}">
-				<td>
-				<a href="{{ path('ofi_gestion_eliminarcorreo',{'id':correo.id}) }}">Eliminar</a>
+				<td class="accion">
+				<a href="{{ path('ofi_gestion_eliminarcorreo',
+				{'id':correo.id}) }}" class="bo_borrar" 
+				title="Eliminar E-mail: {{ correo.mail }}"></a>
 				</td>
 				<td>{{ correo.mail }}</td>
 				<td>{{ correo.nombre }}</td>
 				<td>{{ correo.cargo }}</td>
-				<td>{{ correo.boletin }}</td>
+				<td>
+				{% if correo.boletin==1 %}
+				<img src="{{ asset('bundles/ofigestion/images/luz_verde.png') }}" alt="Acepta Boletín" />
+				{% elseif correo.boletin==0 %}
+				<img src="{{ asset('bundles/ofigestion/images/luz_gris.png') }}" alt="No Acepta Boletín" />
+				{% endif %}
+				</td>
             
             </tr>
                {% set n=n+1 %}    
@@ -41,6 +49,6 @@
         
     </table>
     {% else %}
-    Este cliente no tiene seleccioando ningún e-mail
+   A este cliente no se le ha asignado ningún correo.
     {% endif %}
 </div>        

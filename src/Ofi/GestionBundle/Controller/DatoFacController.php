@@ -98,8 +98,12 @@ class DatoFacController extends Controller
 	   $em 		= $this->getDoctrine()->getManager();
        $entity 	= $em->getRepository('OfiGestionBundle:DatosFacturacion')
 					 ->find($id);	
-		  		
-		$idcliente	= $entity->getCliente();
+		  		if (!$entity) {
+            throw $this->createNotFoundException(
+            'Entidad no encontrada [eliminarAction.DatoFacController].'
+            );
+        }
+		$idcliente	= $entity->getCliente()->getId();
 		$em->remove($entity);
         $em->flush();
 		

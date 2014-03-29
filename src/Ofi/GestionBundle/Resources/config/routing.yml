@@ -11,6 +11,10 @@ ofi_gestion_editarcliente:
     defaults: { _controller: OfiGestionBundle:Cliente:editar }
 
 
+ofi_gestion_actualizarcliente:
+    pattern:  /actualizar-cliente/{id}
+    defaults: { _controller: OfiGestionBundle:Cliente:actualizar }
+
 ofi_gestion_listarcliente:
     pattern:  /listado-clientes/
     defaults: { _controller: OfiGestionBundle:Cliente:listar }

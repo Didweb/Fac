@@ -1,28 +1,28 @@
  <div id="crear_correo">
- <form action="{{ path('ofi_gestion_crearccorreo',{'id': entity.cliente.id}) }}" method="post" {{ form_enctype(form_correo) }}>
+ <form id="form_correo" action="{{ path('ofi_gestion_crearccorreo',{'id': entity.cliente.id}) }}" method="post" {{ form_enctype(form_correo) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_errors(form_correo) }}
 
-			<div>
-				{{ form_label(form_correo.nombre) }}
+			<div id="c_correo_nombre">
+				{{ form_label(form_correo.nombre,"Nombre:") }}
 				{{ form_errors(form_correo.nombre) }}
 				{{ form_widget(form_correo.nombre) }}
 			</div>
 			
-			<div>
-				{{ form_label(form_correo.mail) }}
+			<div id="c_correo_mail">
+				{{ form_label(form_correo.mail,"E-Mail:") }}
 				{{ form_errors(form_correo.mail) }}
 				{{ form_widget(form_correo.mail) }}
 			</div>
 			
-			<div>
-				{{ form_label(form_correo.cargo) }}
+			<div id="c_correo_cargo">
+				{{ form_label(form_correo.cargo,"Cargo:") }}
 				{{ form_errors(form_correo.cargo) }}
 				{{ form_widget(form_correo.cargo) }}
 			</div>		
 
-			<div>
-				{{ form_label(form_correo.boletin) }}
+			<div id="c_correo_boletin">
+				{{ form_label(form_correo.boletin,"Boletín") }}
 				{{ form_errors(form_correo.boletin) }}
 				{{ form_widget(form_correo.boletin) }}
 			</div>	

@@ -4,18 +4,30 @@
 
         {% for datofac in entity %}
         
-				<a href="{{ path('ofi_gestion_eliminardatofac',{'id':datofac.id}) }}">Eliminar</a>
 				
-				Razón Social: {{ datofac.razonsocial }}<br />
-				Nif/Cif: {{ datofac.nif }}<br />
-				Dirección: {{ datofac.direccion }}<br />
-				Población: {{ datofac.poblacion }}<br />
-				Código Postal: {{ datofac.cp }}<br />
+			
+				<label class="etiqueta">Razón Social:</label> 
+				<div class="dato">{{ datofac.razonsocial }}</div>
+				
+				<label class="etiqueta">Nif/Cif:</label> 
+				<div class="dato">{{ datofac.nif }}</div>
+				
+				<label class="etiqueta">Dirección:</label> 
+				<div class="dato">{{ datofac.direccion }}</div>
+				
+				<label class="etiqueta">Población:</label> 
+				<div class="dato">{{ datofac.poblacion }}</div>
+				
+				<label class="etiqueta">Código Postal:</label> 
+				<div class="dato">{{ datofac.cp }}</div>
             
-            
+            <div id="eli_DF">
+			<a href="{{ path('ofi_gestion_eliminardatofac',
+				{'id':datofac.id}) }}" class="bo_borrar" 
+				title="Eliminar Datos Facturación"></a>
+			</div>	
         {% endfor %}
        
-    {% else %}
-    Este cliente no tiene seleccioando ningún Teléfono
+    
     {% endif %}
 </div>        
