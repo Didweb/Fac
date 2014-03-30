@@ -137,7 +137,7 @@ class EmpresaController extends Controller
 		$paginator  = $this->get('knp_paginator');
 		$pagination = $paginator->paginate(
         $query, $this->get('request')
-					 ->query->get('page', 1) /*page number*/,3 /*limit per page*/
+					 ->query->get('page', 1) /*page number*/,30 /*limit per page*/
 		);
 
 

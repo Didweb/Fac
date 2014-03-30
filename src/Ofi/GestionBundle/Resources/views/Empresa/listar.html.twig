@@ -93,9 +93,28 @@
 	></a>
 		
 				</td>
-				<td>{{ empresa.nombre }}</td>
-				<td>{{ empresa.apellido }}</td>
-				<td>{{ empresa.nomsocial }}</td>
+				
+				<td>
+				<a href="{{ path('ofi_gestion_editarempresa',
+	{'id':empresa.id })}}" 
+	title="Editar/Ver empresa: {{ empresa.nombre }} {{ empresa.apellido }}" 
+	class="bo_editar_txt">
+				{{ empresa.nombre }}</a></td>
+				
+				<td>
+				<a href="{{ path('ofi_gestion_editarempresa',
+	{'id':empresa.id })}}" 
+	title="Editar/Ver empresa: {{ empresa.nombre }} {{ empresa.apellido }}" 
+	class="bo_editar_txt">
+				{{ empresa.apellido }}</a></td>
+				
+				<td>
+				<a href="{{ path('ofi_gestion_editarempresa',
+	{'id':empresa.id })}}" 
+	title="Editar/Ver empresa: {{ empresa.nombre }} {{ empresa.apellido }}" 
+	class="bo_editar_txt">
+				{{ empresa.nomsocial }}</a></td>
+				
 				<td>{% if empresa.tipo==1 %}
 				<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" title="Cliente" />
 				{% elseif empresa.tipo==0 %}
