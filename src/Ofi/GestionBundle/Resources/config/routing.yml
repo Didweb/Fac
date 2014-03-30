@@ -20,7 +20,7 @@ ofi_gestion_actualizarempresa:
     defaults: { _controller: OfiGestionBundle:Empresa:actualizar }
 
 ofi_gestion_listarempresa:
-    pattern:  /listado-empresas/
+    pattern:  /listado-empresas/{filtro}
     defaults: { _controller: OfiGestionBundle:Empresa:listar }
 
 

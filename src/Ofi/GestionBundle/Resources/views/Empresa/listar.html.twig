@@ -42,15 +42,30 @@
 {% endfor %}
 
  <div id="listado_clientes">
-  <h2>Listado de empresas</h2>
- <table>
+ {% set elfiltro="" %}
+ {% if filtro==2 %}
+	{% set elfiltro="Todas clientes / proveedores" %}
+ {% elseif filtro==1 %}
+	{% set elfiltro="Clientes" %}
+ {% elseif filtro==0 %}
+	{% set elfiltro="Proveedores" %}
+ {% endif %}	
+  <h2>Listado de empresas: <span class="color_oscuro">{{ elfiltro }}</span></h2>
+	<div class="count">
+    Total empresas: <span class="color_oscuro_medio">{{ pagination.getTotalItemCount }}</span>
+	</div>
+    <div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+	</div>
+<table>
         
         <thead>
             <tr>
                 <th class="acciones"></th>
-				<th class="alaiz">Nombre</th>
-				<th class="alaiz">Apellido</th>
-				<th class="alaiz">Nombre comercial</th>  
+				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'e.nombre') }}Nombre</th>
+				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'e.apellido') }}Apellido</th>
+				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'e.nomsocial') }}Nombre comercial</th> 
+				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'e.tipo') }}Tipo</th>  
 				<th class="acciones"></th>        
             </tr>
             
@@ -58,7 +73,7 @@
         
         <tbody>
             {% set n=1 %}
-        {% for empresa in entity %}
+        {% for empresa in pagination %}
         
 			{% if n is divisibleby(2)  %}
 				{% set linea="impar" %} 
@@ -81,6 +96,12 @@
 				<td>{{ empresa.nombre }}</td>
 				<td>{{ empresa.apellido }}</td>
 				<td>{{ empresa.nomsocial }}</td>
+				<td>{% if empresa.tipo==1 %}
+				<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" title="Cliente" />
+				{% elseif empresa.tipo==0 %}
+				<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor" title="Proveedor" />
+				{% endif %}
+				</td>
             
 				<td>
 	<a href="{{ path('ofi_gestion_editarempresa',
@@ -94,6 +115,9 @@
         </tbody>
         
     </table> 
+    <div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+	</div>
   </div>     
  {% endblock%}
  

@@ -42,7 +42,13 @@
     </div>
 {% endfor %}
  
- <h1>{{ entity.nombre }} {{ entity.apellido }}</h1>
+ <h1>
+ {% if tipo==1 %}
+				<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" title="Cliente" />
+				{% elseif tipo==0 %}
+				<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor" title="Proveedor" />
+				{% endif %}
+   {{ entity.nombre }} {{ entity.apellido }}</h1>
  	 <div id="accionaDF"  class="ver_DF"
 								title="Ver/Editar datos de facturación">
 								Datos facturación / Generales</div>

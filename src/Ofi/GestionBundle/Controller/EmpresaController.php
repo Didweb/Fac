@@ -86,7 +86,8 @@ class EmpresaController extends Controller
 			array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
+            'delete_form' => $deleteForm->createView(),
+            'tipo'		  => $entity->getTipo()	
         ));
     }
 
@@ -110,20 +111,41 @@ class EmpresaController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'tipo'		  => $entity->getTipo()	
             ));
      }       
 
 	/*
 	 * Listamos los empresas
 	 * */
-	public function listarAction()
+	public function listarAction($filtro)
 	{
 	  $em = $this->getDoctrine()->getManager();
+	  
+	  if($filtro==2){
       $entity = $em->getRepository('OfiGestionBundle:Empresa')
-				->findAll();
+				   ->findAll();
+		$dql   = "SELECT e FROM OfiGestionBundle:Empresa e";
+		$query = $em->createQuery($dql);	
+				   
+		}elseif($filtro==1 || $filtro==0){
+		$query = $em->getRepository('OfiGestionBundle:Empresa')
+					 ->ListaEmpresasFiltro($filtro);
+			
+			}		
+		
+		$paginator  = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+        $query, $this->get('request')
+					 ->query->get('page', 1) /*page number*/,3 /*limit per page*/
+		);
+
 
        return $this->render('OfiGestionBundle:Empresa:listar.html.twig',
-					array('entity' => $entity));
+					array(//'entity' => $entity,
+						  'pagination' => $pagination,	
+						  'filtro' => $filtro	
+							));
 	}
 
 

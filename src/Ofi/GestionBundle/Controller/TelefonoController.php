@@ -107,7 +107,8 @@ class TelefonoController extends Controller
 			array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),					
+            'delete_form' => $deleteForm->createView(),
+            'tipo'		  => $entity->getTipo()						
         ));
 			
 				
