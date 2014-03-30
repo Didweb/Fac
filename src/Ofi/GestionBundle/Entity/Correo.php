@@ -4,7 +4,7 @@ namespace Ofi\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Ofi\GestionBundle\Entity\Cliente;
+use Ofi\GestionBundle\Entity\Empresa;
 
 /**
  * Correo
@@ -41,7 +41,7 @@ class Correo
      * @var string
      *
      * @ORM\Column(name="cargo", type="string", length=255, nullable=true)
-     * @Assert\Null
+     * 
      */
     private $cargo;
 
@@ -49,16 +49,16 @@ class Correo
      * @var boolean
      *
      * @ORM\Column(name="boletin", type="boolean", nullable=true)
-     * @Assert\Null
+     * 
      */
     private $boletin;
 
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="correos")
-	 * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+	 * @ORM\ManyToOne(targetEntity="Empresa", inversedBy="correos")
+	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
 	 */ 
-	private $cliente;
+	private $empresa;
 
     /**
      * Get id
@@ -71,26 +71,26 @@ class Correo
     }
 
     /**
-     * Set cliente
+     * Set empresa
      *
-     * @param integer $cliente
-     * @return cliente
+     * @param integer $empresa
+     * @return empresa
      */
-    public function setCliente($cliente)
+    public function setEmpresa($empresa)
     {
-        $this->cliente = $cliente;
+        $this->empresa = $empresa;
 
         return $this;
     }
 
     /**
-     * Get cliente
+     * Get empresa
      *
      * @return integer 
      */
-    public function getCliente()
+    public function getEmpresa()
     {
-        return $this->cliente;
+        return $this->empresa;
     }
 
 

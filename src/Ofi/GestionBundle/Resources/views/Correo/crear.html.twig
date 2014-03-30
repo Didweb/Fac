@@ -1,5 +1,5 @@
  <div id="crear_correo">
- <form id="form_correo" action="{{ path('ofi_gestion_crearccorreo',{'id': entity.cliente.id}) }}" method="post" {{ form_enctype(form_correo) }}>
+ <form id="form_correo" action="{{ path('ofi_gestion_crearccorreo',{'id': entity.empresa.id}) }}" method="post" {{ form_enctype(form_correo) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_errors(form_correo) }}
 
@@ -29,7 +29,7 @@
 			
 			<div id="datos_envio">
 			
-			<button type="submit"  class="botones_verde" title="Editar Cliente" >Crear correo</button>
+			<button type="submit"  class="botones_verde" title="Editar Correo" >Crear correo</button>
 			  
 		    </div>
          {{ form_rest(form_correo) }}

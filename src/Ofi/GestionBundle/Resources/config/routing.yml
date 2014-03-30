@@ -2,31 +2,31 @@ ofi_gestion_homepage:
     pattern:  /
     defaults: { _controller: OfiGestionBundle:Fijas:index }
 
-ofi_gestion_crearcliente:
-    pattern:  /crear-cliente
-    defaults: { _controller: OfiGestionBundle:Cliente:crear }
+ofi_gestion_crearempresa:
+    pattern:  /crear-empresa
+    defaults: { _controller: OfiGestionBundle:Empresa:crear }
 
-ofi_gestion_nuevocliente:
-    pattern:  /nuevo-cliente
-    defaults: { _controller: OfiGestionBundle:Cliente:nuevo }
+ofi_gestion_nuevoempresa:
+    pattern:  /nuevo-empresa
+    defaults: { _controller: OfiGestionBundle:Empresa:nuevo }
 
-ofi_gestion_editarcliente:
-    pattern:  /editar-cliente/{id}
-    defaults: { _controller: OfiGestionBundle:Cliente:editar }
-
-
-ofi_gestion_actualizarcliente:
-    pattern:  /actualizar-cliente/{id}
-    defaults: { _controller: OfiGestionBundle:Cliente:actualizar }
-
-ofi_gestion_listarcliente:
-    pattern:  /listado-clientes/
-    defaults: { _controller: OfiGestionBundle:Cliente:listar }
+ofi_gestion_editarempresa:
+    pattern:  /editar-empresa/{id}
+    defaults: { _controller: OfiGestionBundle:Empresa:editar }
 
 
-ofi_gestion_eliminarcliente:
-    pattern:  /listado-clientes/{id}/{ok}
-    defaults: { _controller: OfiGestionBundle:Cliente:eliminar }
+ofi_gestion_actualizarempresa:
+    pattern:  /actualizar-empresa/{id}
+    defaults: { _controller: OfiGestionBundle:Empresa:actualizar }
+
+ofi_gestion_listarempresa:
+    pattern:  /listado-empresas/
+    defaults: { _controller: OfiGestionBundle:Empresa:listar }
+
+
+ofi_gestion_eliminarempresa:
+    pattern:  /listado-empresas/{id}/{ok}
+    defaults: { _controller: OfiGestionBundle:Empresa:eliminar }
 
 
 

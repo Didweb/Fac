@@ -12,7 +12,7 @@
  {{ parent() }}
  <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
  <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
- <link href="{{ asset('bundles/ofigestion/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
  {% endblock%}
 
 
@@ -29,13 +29,13 @@
  {% block body %}
  
  
- {% for flashMessage2 in app.session.flashbag.get('cliente') %}
+ {% for flashMessage2 in app.session.flashbag.get('empresa') %}
     <div class="flash_ok">
         {{ flashMessage2 | raw }}
     </div>
 {% endfor %}
 
-{% for flashMessage2 in app.session.flashbag.get('cliente_error') %}
+{% for flashMessage2 in app.session.flashbag.get('empresa_error') %}
     <div class="flash_error">
         {{ flashMessage2 | raw }}
     </div>
@@ -44,8 +44,8 @@
  
  
  <div id="for_crear">
- <h2>Creación de nuevo cliente</h2>
- <form action="{{ path('ofi_gestion_crearcliente') }}" method="post" 
+ <h2>Creación de nueva empresa</h2>
+ <form action="{{ path('ofi_gestion_crearempresa') }}" method="post" 
 				{{ form_enctype(form) }} id="for_crear2">
         <input type="hidden" name="_method" value="POST" />
         {{ form_errors(form) }}
@@ -66,9 +66,16 @@
 				{{ form_errors(form.nomsocial) }}
 				{{ form_widget(form.nomsocial) }}
 			</div>	
+			
+			<div id="c_tipo">
+				{{ form_label(form.tipo,"Tipo empresa:") }}
+				{{ form_errors(form.tipo) }}
+				{{ form_widget(form.tipo) }}
+			</div>	
+			
 			<div id="datos_envio">
 			<button type="submit"  class="botones_verde" 
-					title="Editar Cliente" >Crear cliente nuevo</button>
+					title="Editar empresa" >Crear empresa nueva</button>
 		    </div>
          {{ form_rest(form) }}
  </form>  

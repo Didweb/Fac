@@ -8,8 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Ofi\GestionBundle\Entity\DatosFacturacion;
 use Ofi\GestionBundle\Form\DatoFacType;
-use Ofi\GestionBundle\Entity\Cliente;
-use Ofi\GestionBundle\Form\ClienteType;
+use Ofi\GestionBundle\Entity\Empresa;
+use Ofi\GestionBundle\Form\EmpresaType;
 
 class DatoFacController extends Controller
 {
@@ -29,8 +29,8 @@ class DatoFacController extends Controller
 		
 		
         $entity = new DatosFacturacion();
-        $idop= $em->getReference('OfiGestionBundle:Cliente', $id);
-        $entity->setCliente($idop);
+        $idop= $em->getReference('OfiGestionBundle:Empresa', $id);
+        $entity->setEmpresa($idop);
         $form   = $this->createForm(new DatoFacType(), $entity);
 		
         
@@ -56,14 +56,14 @@ class DatoFacController extends Controller
         $em->persist($entity);
         $em->flush();
 		$this->get('session')->getFlashBag()
-					->add('cliente',
-					'Se han introduicido los datso de facturación de este cliente');
+					->add('empresa',
+					'Se han introduicido los datso de facturación de este empresa');
 		 
         }
 
 		
       return $this->redirect($this->generateUrl(
-						'ofi_gestion_editarcliente', 
+						'ofi_gestion_editarempresa', 
 						array('id' => $id)));
 	
     }
@@ -74,7 +74,7 @@ class DatoFacController extends Controller
 	{
 	  $em = $this->getDoctrine()->getManager();
       $entity = $em->getRepository('OfiGestionBundle:DatosFacturacion')
-				->findByCliente($id);
+				->findByEmpresa($id);
 
        return $this->render('OfiGestionBundle:DatoFac:listar.html.twig',
 					array('entity' => $entity));
@@ -103,20 +103,20 @@ class DatoFacController extends Controller
             'Entidad no encontrada [eliminarAction.DatoFacController].'
             );
         }
-		$idcliente	= $entity->getCliente()->getId();
+		$idempresa	= $entity->getEmpresa()->getId();
 		$em->remove($entity);
         $em->flush();
 		
 		$this->get('session')->getFlashBag()
-						->add('cliente_error',
+						->add('empresa_error',
 						'Se han eliminado los datos de facturación.');
 						
-		$entity = $em->getRepository('OfiGestionBundle:Cliente')
-				->find($idcliente);
-		$editForm = $this->createForm(new ClienteType(), $entity);
+		$entity = $em->getRepository('OfiGestionBundle:Empresa')
+				->find($idempresa);
+		$editForm = $this->createForm(new EmpresaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OfiGestionBundle:Cliente:editar.html.twig',
+        return $this->render('OfiGestionBundle:Empresa:editar.html.twig',
 			array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),

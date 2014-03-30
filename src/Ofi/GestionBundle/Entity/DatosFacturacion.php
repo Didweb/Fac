@@ -57,32 +57,32 @@ class DatosFacturacion
     private $cp;
 
     /**
-     * @ORM\OneToOne(targetEntity="Cliente")
-     * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Empresa")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
      */
-    private $cliente;
+    private $empresa;
 
     /**
-     * Set cliente
+     * Set empresa
      *
-     * @param integer $cliente
+     * @param integer $empresa
      * @return DatosFacturacion
      */
-    public function setCliente($cliente)
+    public function setEmpresa($empresa)
     {
-        $this->cliente = $cliente;
+        $this->empresa = $empresa;
 
         return $this;
     }
 
     /**
-     * Get cliente
+     * Get empresa
      *
      * @return integer 
      */
-    public function getCliente()
+    public function getEmpresa()
     {
-        return $this->cliente;
+        return $this->empresa;
     }
 
 

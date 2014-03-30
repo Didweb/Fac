@@ -1,21 +1,30 @@
 <nav id="menu_principal">
 	{% set a=app.request.uri|split('/') %}
-	{% set selcliente	='' %}
+	{% set selempresa	='' %}
 		{% for datos in a %}
-			{% if datos=='cliente' %}
-				{% set selcliente='sele' %}
+			{% if datos=='empresa' %}
+				{% set selempresa='sele' %}
 			{% endif %}
 		{% endfor %}	
 <ul class="mi-menu">
   
   <li><a href="{{ path('ofi_gestion_homepage')}}">inicio</a></li>
+  
   <li>
-    <a href="#">Clientes</a>
+    <a href="#">Empresas</a>
     <ul>
-      <li><a href="{{ path('ofi_gestion_listarcliente') }}">Listado</a></li>
-      <li><a href="{{ path('ofi_gestion_nuevocliente') }}">Crear</a></li>
+      <li><a href="{{ path('ofi_gestion_listarempresa') }}">Listado</a></li>
+      <li><a href="{{ path('ofi_gestion_nuevoempresa') }}">Crear</a></li>
     </ul>
   </li>
+
+ <li>
+	<a href="#">Facturas</a>
+     <ul>
+      <li><a href="">Listado</a></li>
+      <li><a href="">Crear</a></li>
+    </ul>
+ </li>
 
 </ul>
 </nav>

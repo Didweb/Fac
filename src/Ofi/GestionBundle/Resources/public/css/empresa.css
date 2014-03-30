@@ -37,6 +37,10 @@ div#for_crear h2 {color:#343455; font-size:15px; text-align:left;
 					margin-left:4px; color:#333333; 
 					border:1px solid #988C8C;  margin-bottom:6px;}
 
+#for_crear select { float:left; width:52%; padding:3px;
+					margin-left:4px; color:#333333; 
+					border:1px solid #988C8C;  margin-bottom:6px;}
+
 /* -------------------------------------------------------------------
  * Caja datos generales
  * -----------------------------------------------------------------*/
@@ -50,7 +54,11 @@ div#for_crear h2 {color:#343455; font-size:15px; text-align:left;
 #caja_general input {clear:both; float:left; width:90%; padding:3px;
 					margin-left:4px; color:#333333; 
 					border:1px solid #988C8C;  margin-bottom:6px;}
-					
+
+#caja_general select {clear:both; float:left; width:90%; padding:3px;
+					margin-left:4px; color:#333333; 
+					border:1px solid #988C8C;  margin-bottom:6px;}
+				
 #datos_envio	{clear:both; float:left; width:100%; margin-top:5px;}
 
 #caja_telefono	{float:left; width:100%; margin-left:10px;}
@@ -131,7 +139,7 @@ div#for_crear h2 {color:#343455; font-size:15px; text-align:left;
 /* -------------------------------------------------------------------
  * Datos Facturacion
  * -----------------------------------------------------------------*/
-#caja_datos {position:absolute; width:22%; min-height:210px; 
+#caja_datos {position:absolute; width:22%; min-height:265px; 
 			display:none;}
 #caja_datos h2 {color:#988C8C; font-size:15px; text-align:left;
 				margin-top:0px; padding-left:5px;} 

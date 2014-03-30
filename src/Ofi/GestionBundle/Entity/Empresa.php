@@ -10,12 +10,12 @@ use Ofi\GestionBundle\Entity\Correo;
 use Ofi\GestionBundle\Entity\DatosFacturacion;
 
 /**
- * Cliente
+ * Empresa
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ofi\GestionBundle\Entity\ClienteRepository")
+ * @ORM\Entity(repositoryClass="Ofi\GestionBundle\Entity\EmpresaRepository")
  */
-class Cliente
+class Empresa
 {
     /**
      * @var integer
@@ -47,15 +47,21 @@ class Cliente
      */
     private $nomsocial;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tipo", type="boolean")
+     */
+    private $tipo;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Telefono", mappedBy="cliente", cascade={"all"})
+	 * @ORM\OneToMany(targetEntity="Telefono", mappedBy="empresa", cascade={"all"})
 	 * 
 	 */ 
     private $telefonos;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Correo", mappedBy="cliente", cascade={"all"})
+	 * @ORM\OneToMany(targetEntity="Correo", mappedBy="empresa", cascade={"all"})
 	 * 
 	 */ 
     private $correos;
@@ -201,4 +207,28 @@ class Cliente
     {
         return $this->nomsocial;
     }
+
+    /**
+     * Set tipo
+     *
+     * @param string $tipo
+     * @return Cliente
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
 }

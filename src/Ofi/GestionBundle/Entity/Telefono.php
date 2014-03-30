@@ -44,10 +44,10 @@ class Telefono
 
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="telefonos")
-	 * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+	 * @ORM\ManyToOne(targetEntity="Empresa", inversedBy="telefonos")
+	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
 	 */ 
-	private $cliente;
+	private $empresa;
 
 
     /**
@@ -62,26 +62,26 @@ class Telefono
 
 
     /**
-     * Set cliente
+     * Set empresa
      *
      * @param integer $cliente
-     * @return cliente
+     * @return empresa
      */
-    public function setCliente($cliente)
+    public function setEmpresa($empresa)
     {
-        $this->cliente = $cliente;
+        $this->empresa = $empresa;
 
         return $this;
     }
 
     /**
-     * Get cliente
+     * Get empresa
      *
      * @return integer 
      */
-    public function getCliente()
+    public function getEmpresa()
     {
-        return $this->cliente;
+        return $this->empresa;
     }
 
     /**

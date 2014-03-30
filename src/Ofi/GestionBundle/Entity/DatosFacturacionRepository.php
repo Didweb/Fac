@@ -18,8 +18,8 @@ class DatosFacturacionRepository extends EntityRepository
 	return $this->getEntityManager()
             ->createQuery('SELECT count(s.id) AS total FROM 
 						  OfiGestionBundle:DatosFacturacion s
-						  WHERE s.cliente = :idcliente ')
-            ->setParameter('idcliente',$id)
+						  WHERE s.empresa = :idempresa ')
+            ->setParameter('idempresa',$id)
             ->getResult();
 		
 	}

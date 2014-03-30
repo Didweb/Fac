@@ -13,6 +13,11 @@ div#contenidos {float:left; width:100%; background-color:#ffffff;}
 footer {float:left; width:100%; background-color:#E6E6E6;}
 footer p {font-size:11px; color:#7C8087;}
 
+.redondeo {	border-radius: 5px 5px 5px 5px;
+			-moz-border-radius: 5px 5px 5px 5px;
+			-webkit-border-radius: 5px 5px 5px 5px;}
+
+
 /*-------------------------------------------------------------------
  * Tablas
  * ----------------------------------------------------------------- */
@@ -68,4 +73,21 @@ aside#sesion { float:right; margin-right:10px; background-color:#F4F4D6;
 
 .ver_ocultos {float:right; margin-top:0px; background-image: url(../images/ver_registros.png); width:29px; height:29px;
 		display:block; background-repeat:no-repeat; opacity: 0.6; cursor:pointer; background-size:26px;}
-.ver_ocultos:hover {opacity: 1.0;}	
+.ver_ocultos:hover {opacity: 1.0;}
+	
+/*-------------------------------------------------------------------
+ * Dialogo pregunta
+ * ----------------------------------------------------------------- */
+#pregunta {width:40%; background-color:#F6E1AB; margin:auto;
+			margin-bottom:15px; padding:10px;
+			}
+
+nav#respuesta  { width:100%; margin-top:15px; margin-bottom:15px;}
+.siquiero		{text-align:right; font-weight:bold; font-size:16px; 
+				color:#BF1609; margin-top:5px; margin-bottom:5px; }
+.siquiero:hover {color:#49110D;}
+
+.noquiero		{ text-align:left; font-weight:bold; font-size:16px; 
+				width:50%; margin-right:40%;
+				color:#11911C; margin-top:5px; margin-bottom:5px;}
+.noquiero:hover {color:#0E4A13;}

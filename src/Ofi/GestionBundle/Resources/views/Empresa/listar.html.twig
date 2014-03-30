@@ -12,7 +12,7 @@
  {{ parent() }}
  <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
  <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
- <link href="{{ asset('bundles/ofigestion/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
  {% endblock%}
 
 
@@ -29,20 +29,20 @@
  {% block body %}
  
  
- {% for flashMessage2 in app.session.flashbag.get('cliente') %}
+ {% for flashMessage2 in app.session.flashbag.get('empresa') %}
     <div class="flash_ok">
         {{ flashMessage2 | raw }}
     </div>
 {% endfor %}
 
-{% for flashMessage2 in app.session.flashbag.get('cliente_error') %}
+{% for flashMessage2 in app.session.flashbag.get('empresa_error') %}
     <div class="flash_error">
         {{ flashMessage2 | raw }}
     </div>
 {% endfor %}
 
  <div id="listado_clientes">
-  <h2>Listado de clientes</h2>
+  <h2>Listado de empresas</h2>
  <table>
         
         <thead>
@@ -58,7 +58,7 @@
         
         <tbody>
             {% set n=1 %}
-        {% for cliente in entity %}
+        {% for empresa in entity %}
         
 			{% if n is divisibleby(2)  %}
 				{% set linea="impar" %} 
@@ -72,20 +72,20 @@
 				
 
 				
-	<a href="{{ path('ofi_gestion_eliminarcliente',
-	{'id':cliente.id,'ok':'no' })}}" class="bo_borrar" 
-   title="Eliminar Cliente: {{ cliente.nombre }} {{ cliente.apellido }}"
+	<a href="{{ path('ofi_gestion_eliminarempresa',
+	{'id':empresa.id,'ok':'no' })}}" class="bo_borrar" 
+   title="Eliminar empresa: {{ empresa.nombre }} {{ empresa.apellido }}"
 	></a>
 		
 				</td>
-				<td>{{ cliente.nombre }}</td>
-				<td>{{ cliente.apellido }}</td>
-				<td>{{ cliente.nomsocial }}</td>
+				<td>{{ empresa.nombre }}</td>
+				<td>{{ empresa.apellido }}</td>
+				<td>{{ empresa.nomsocial }}</td>
             
 				<td>
-	<a href="{{ path('ofi_gestion_editarcliente',
-	{'id':cliente.id })}}" 
-	title="Editar cliente: {{ cliente.nombre }} {{ cliente.apellido }}" 
+	<a href="{{ path('ofi_gestion_editarempresa',
+	{'id':empresa.id })}}" 
+	title="Editar empresa: {{ empresa.nombre }} {{ empresa.apellido }}" 
 	class="bo_editar"></a>
 				</td>
             </tr>

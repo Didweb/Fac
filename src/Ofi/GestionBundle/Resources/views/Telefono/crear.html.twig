@@ -1,5 +1,5 @@
  <div id="crear_telefono">
- <form action="{{ path('ofi_gestion_crearctelefono',{'id': entity.cliente.id}) }}" method="post" {{ form_enctype(form_telefono) }}>
+ <form action="{{ path('ofi_gestion_crearctelefono',{'id': entity.empresa.id}) }}" method="post" {{ form_enctype(form_telefono) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_errors(form_telefono) }}
 
@@ -24,7 +24,7 @@
 			
 			<div id="datos_envio">
 				<button type="submit"  class="botones_verde" 
-				title="Editar Cliente" >Crear Teléfono</button>
+				title="Editar Teléfono" >Crear Teléfono</button>
 		    </div>
 		    
          {{ form_rest(form_telefono) }}

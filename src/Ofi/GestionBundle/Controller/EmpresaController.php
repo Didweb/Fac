@@ -6,11 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Ofi\GestionBundle\Entity\Cliente;
-use Ofi\GestionBundle\Form\ClienteType;
+use Ofi\GestionBundle\Entity\Empresa;
+use Ofi\GestionBundle\Form\EmpresaType;
 
 
-class ClienteController extends Controller
+class EmpresaController extends Controller
 {
 
 
@@ -18,11 +18,11 @@ class ClienteController extends Controller
     {
 		
 		$em = $this->getDoctrine()->getManager();
-        $entity = new Cliente();
-        $form   = $this->createForm(new CLienteType(), $entity);
+        $entity = new Empresa();
+        $form   = $this->createForm(new EmpresaType(), $entity);
 		
         
-         return $this->render('OfiGestionBundle:Cliente:crear.html.twig',
+         return $this->render('OfiGestionBundle:Empresa:crear.html.twig',
 					array(	'entity' => $entity,
 							'form'   => $form->createView())
 					);
@@ -34,8 +34,8 @@ class ClienteController extends Controller
   public function crearAction(Request $request)
   {
 	  
-	$entity  = new Cliente();
-    $form = $this->createForm(new ClienteType(), $entity);
+	$entity  = new Empresa();
+    $form = $this->createForm(new EmpresaType(), $entity);
     $form->bind($request);
 
     if ($form->isValid()) {
@@ -44,17 +44,17 @@ class ClienteController extends Controller
         $em->persist($entity);
         $em->flush();
 		$this->get('session')->getFlashBag()
-						->add('cliente',
-						'Se ha creado un nuevo cliente en el sistema');
+						->add('empresa',
+						'Se ha creado un nuevo empresa en el sistema');
 						
         return $this->redirect($this->generateUrl(
-						'ofi_gestion_editarcliente', 
+						'ofi_gestion_editarempresa', 
 						array('id' => $entity->getId())));
             
         }
 
 		
-       return $this->render('OfiGestionBundle:Cliente:crear.html.twig',
+       return $this->render('OfiGestionBundle:Empresa:crear.html.twig',
 					array(	'entity' => $entity,
 							'form'   => $form->createView())
 					);
@@ -68,21 +68,21 @@ class ClienteController extends Controller
         $em = $this->getDoctrine()->getManager();
 		
 		
-        $entity = $em->getRepository('OfiGestionBundle:Cliente')
+        $entity = $em->getRepository('OfiGestionBundle:Empresa')
 						->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException(
-            'Entidad no encontrada [editarAction.ClienteController].'
+            'Entidad no encontrada [editarAction.EmpresaController].'
             );
         }
         
 
-        $editForm = $this->createForm(new ClienteType(), $entity);
+        $editForm = $this->createForm(new EmpresaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 		
         
-        return $this->render('OfiGestionBundle:Cliente:editar.html.twig',
+        return $this->render('OfiGestionBundle:Empresa:editar.html.twig',
 			array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -95,8 +95,8 @@ class ClienteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OfiGestionBundle:Cliente')->find($id);
-		$editForm = $this->createForm(new ClienteType(), $entity);
+        $entity = $em->getRepository('OfiGestionBundle:Empresa')->find($id);
+		$editForm = $this->createForm(new EmpresaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 		$editForm->bind($request);
 		
@@ -105,7 +105,7 @@ class ClienteController extends Controller
 
 		
         
-        return $this->render('OfiGestionBundle:Cliente:editar.html.twig',
+        return $this->render('OfiGestionBundle:Empresa:editar.html.twig',
 			array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -114,15 +114,15 @@ class ClienteController extends Controller
      }       
 
 	/*
-	 * Listamos los clientes
+	 * Listamos los empresas
 	 * */
 	public function listarAction()
 	{
 	  $em = $this->getDoctrine()->getManager();
-      $entity = $em->getRepository('OfiGestionBundle:Cliente')
+      $entity = $em->getRepository('OfiGestionBundle:Empresa')
 				->findAll();
 
-       return $this->render('OfiGestionBundle:Cliente:listar.html.twig',
+       return $this->render('OfiGestionBundle:Empresa:listar.html.twig',
 					array('entity' => $entity));
 	}
 
@@ -144,13 +144,13 @@ class ClienteController extends Controller
 	public function eliminarAction($id,$ok)
 	{
 	   $em = $this->getDoctrine()->getManager();
-      $entity = $em->getRepository('OfiGestionBundle:Cliente')
+      $entity = $em->getRepository('OfiGestionBundle:Empresa')
 						->find($id);	
 		
 	  if($ok=='no'){
 		  
 		 return $this->render(
-					'OfiGestionBundle:Cliente:eliminar.html.twig',
+					'OfiGestionBundle:Empresa:eliminar.html.twig',
 					array('entity' => $entity,'ok'=>'no'));
 		  
 		  }elseif($ok=='si'){
@@ -162,15 +162,15 @@ class ClienteController extends Controller
         $em->flush();
 		
 		$this->get('session')->getFlashBag()
-						->add('cliente_error',
-						'Se ha eliminado el cliente:<br /> '.
+						->add('empresa_error',
+						'Se ha eliminado el empresa:<br /> '.
 						$nombreeliminado.'.');
 						
-		$entity = $em->getRepository('OfiGestionBundle:Cliente')
+		$entity = $em->getRepository('OfiGestionBundle:Empresa')
 				->findAll();	
 							
         return $this->render(
-						'OfiGestionBundle:Cliente:listar.html.twig',
+						'OfiGestionBundle:Empresa:listar.html.twig',
 						array('entity' => $entity));
 			
 			}		

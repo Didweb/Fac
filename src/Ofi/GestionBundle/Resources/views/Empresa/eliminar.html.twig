@@ -12,7 +12,7 @@
  {{ parent() }}
  <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
  <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
- <link href="{{ asset('bundles/gestionbundle/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/gestionbundle/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
  {% endblock%}
 
 
@@ -29,26 +29,38 @@
  {% block body %}
  
  
- {% for flashMessage2 in app.session.flashbag.get('cliente') %}
+ {% for flashMessage2 in app.session.flashbag.get('empresa') %}
     <div class="flash_ok">
         {{ flashMessage2 | raw }}
     </div>
 {% endfor %}
 
-{% for flashMessage2 in app.session.flashbag.get('cliente_error') %}
+{% for flashMessage2 in app.session.flashbag.get('empresa_error') %}
     <div class="flash_error">
         {{ flashMessage2 | raw }}
     </div>
 {% endfor %}
  
  {% if ok=='no' %}
- 
- Estas seguro de que quieres eliminar este registro.
- ¿Quieres eliminar este registro?
- <a href="{{ path('ofi_gestion_eliminarcliente',{'id':entity.id,'ok':'si'}) }}">Sí, quiero eliminarlo</a>
- <br />
- <a href="{{ path('ofi_gestion_listarcliente') }}">No, quiero conservarlo</a>
- 
+ <aside id="pregunta" class="redondeo">
+	Estas seguro de que quieres eliminar este empresa...<br />
+	<b>{{ entity.nombre }} {{ entity.apellido }}</b> <br />
+	 ¿Quieres eliminarlo?
+	<nav id="respuesta">
+	
+	 <a href="{{ path('ofi_gestion_listarempresa') }}" 
+	title="No quiero que se elimine este empresa" class="noquiero">
+	No quiero eliminarlo</a>
+
+	 <a href="{{ path('ofi_gestion_eliminarempresa',
+	 {'id':entity.id,'ok':'si'}) }}" 
+	 title="Sí, quiero eliminar este empresa " class="siquiero"
+	 >Sí, quiero eliminarlo</a>
+	 
+
+	 </nav>
+	
+ </aside>
  {% endif %}
  
  

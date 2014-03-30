@@ -13,8 +13,8 @@ class TelefonoType extends AbstractType
             ->add('telefono')
             ->add('nombre')
             ->add('tipo','text',array('required'=>'false'))
-            ->add('cliente', 'entity_id', array(
-            'class' => 'Ofi\GestionBundle\Entity\Cliente'))
+            ->add('empresa', 'entity_id', array(
+            'class' => 'Ofi\GestionBundle\Entity\Empresa'))
         ;
     }
 

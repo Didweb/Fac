@@ -8,8 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Ofi\GestionBundle\Entity\Correo;
 use Ofi\GestionBundle\Form\CorreoType;
-use Ofi\GestionBundle\Entity\Cliente;
-use Ofi\GestionBundle\Form\ClienteType;
+use Ofi\GestionBundle\Entity\Empresa;
+use Ofi\GestionBundle\Form\EmpresaType;
 
 class CorreoController extends Controller
 {
@@ -22,8 +22,8 @@ class CorreoController extends Controller
 		
 		$em = $this->getDoctrine()->getManager();
         $entity = new Correo();
-        $idop= $em->getReference('OfiGestionBundle:Cliente', $id);
-        $entity->setCliente($idop);
+        $idop= $em->getReference('OfiGestionBundle:Empresa', $id);
+        $entity->setEmpresa($idop);
         $form   = $this->createForm(new CorreoType(), $entity);
 		
         
@@ -42,19 +42,26 @@ class CorreoController extends Controller
     $form = $this->createForm(new CorreoType(), $entity);
     $form->bind($request);
 
+	
+
+
     if ($form->isValid()) {
 		$em = $this->getDoctrine()->getManager();
         $em->persist($entity);
         $em->flush();
 		$this->get('session')->getFlashBag()
-					->add('cliente',
-					'Se ha creado un nuevo correo para este cliente.');
+					->add('empresa',
+					'Se ha creado un nuevo correo para esta empresa.');
 		 
-        }
+        }else{
+			$this->get('session')->getFlashBag()
+					->add('empresa_error',
+					'<b>Error</b>:  No se ha añadido el correo.'.$entity->getNombre().' / '.$entity->getMail().'<br />'.$entity->getBoletin().'<br />'.$entity->getCargo());
+			}
 
 		
       return $this->redirect($this->generateUrl(
-						'ofi_gestion_editarcliente', 
+						'ofi_gestion_editarempresa', 
 						array('id' => $id)));
 	
     }
@@ -65,7 +72,7 @@ class CorreoController extends Controller
 	{
 	  $em = $this->getDoctrine()->getManager();
       $entity = $em->getRepository('OfiGestionBundle:Correo')
-				->findByCliente($id);
+				->findByEmpresa($id);
 
        return $this->render('OfiGestionBundle:Correo:listar.html.twig',
 					array('entity' => $entity));
@@ -92,20 +99,20 @@ class CorreoController extends Controller
        $entity 	= $em->getRepository('OfiGestionBundle:Correo')
 					 ->find($id);	
 		  		
-		$idcliente	= $entity->getCliente();
+		$idempresa	= $entity->getEmpresa();
 		$em->remove($entity);
         $em->flush();
 		
 		$this->get('session')->getFlashBag()
-						->add('cliente_error',
-						'Se ha eliminado un correo de este cliente.');
+						->add('empresa_error',
+						'Se ha eliminado un correo de este empresa.');
 						
-		$entity = $em->getRepository('OfiGestionBundle:Cliente')
-				->find($idcliente);
-		$editForm = $this->createForm(new ClienteType(), $entity);
+		$entity = $em->getRepository('OfiGestionBundle:Empresa')
+				->find($idempresa);
+		$editForm = $this->createForm(new EmpresaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OfiGestionBundle:Cliente:editar.html.twig',
+        return $this->render('OfiGestionBundle:Empresa:editar.html.twig',
 			array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),

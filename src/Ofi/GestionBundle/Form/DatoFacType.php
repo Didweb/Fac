@@ -15,8 +15,8 @@ class DatoFacType extends AbstractType
             ->add('direccion')
             ->add('poblacion')
             ->add('cp')
-            ->add('cliente', 'entity_id', array(
-            'class' => 'Ofi\GestionBundle\Entity\Cliente'))
+            ->add('empresa', 'entity_id', array(
+            'class' => 'Ofi\GestionBundle\Entity\Empresa'))
         ;
     }
 
