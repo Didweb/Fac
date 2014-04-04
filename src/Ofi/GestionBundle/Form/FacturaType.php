@@ -10,7 +10,12 @@ class FacturaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fecha')
+            ->add('fecha', 'date', array(
+					'invalid_message'            => 'Fecha incompleta.',
+					'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),
+				   'required' => false,
+				   'widget'   => 'single_text',
+					'format' => 'ddMMyyyy'))
             ->add('nfactura')
             ->add('empresa')
             
