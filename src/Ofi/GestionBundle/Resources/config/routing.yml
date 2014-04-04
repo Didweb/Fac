@@ -54,3 +54,17 @@ ofi_gestion_crearcdatofac:
 ofi_gestion_eliminardatofac:
     pattern:  /eliminar-datofac/{id}
     defaults: { _controller: OfiGestionBundle:DatoFac:eliminar }
+
+
+ofi_gestion_crearfactura:
+    pattern:  /crear-factura
+    defaults: { _controller: OfiGestionBundle:Factura:crear }
+    
+    
+ofi_gestion_nuevafactura:
+    pattern:  /nueva-factura
+    defaults: { _controller: OfiGestionBundle:Factura:nuevo }    
+
+ofi_gestion_editarfactura:
+    pattern:  /editar-factura/{id}
+    defaults: { _controller: OfiGestionBundle:Factura:editar }

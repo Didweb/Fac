@@ -45,6 +45,14 @@ class Factura
     private $tipofactura;
 
 	/**
+	 * @ORM\ManyToOne(targetEntity="Empresa", inversedBy="facturas")
+	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+	 */ 
+	 private $empresa;
+
+
+
+	/**
 	 * @ORM\OneToMany(targetEntity="FacturaDetalle", mappedBy="factura")
 	 * 
 	 */ 
@@ -87,6 +95,31 @@ class Factura
     {
         return $this->fecha;
     }
+
+
+    /**
+     * Set empresa
+     *
+     * @param string $nfactura
+     * @return Factura
+     */
+    public function setEmpresa($empresa)
+    {
+        $this->empresa = $empresa;
+
+        return $this;
+    }
+
+    /**
+     * Get empresa
+     *
+     * @return string 
+     */
+    public function getEmpresa()
+    {
+        return $this->empresa;
+    }
+
 
     /**
      * Set nfactura

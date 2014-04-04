@@ -66,6 +66,13 @@ class Empresa
 	 */ 
     private $correos;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Factura", mappedBy="empresa")
+	 * 
+	 */ 
+	 protected $facturas;
+	 
+
 
 
 
@@ -73,6 +80,7 @@ class Empresa
     public function __construct() {
         $this->telefonos 	= new ArrayCollection();
         $this->correos 		= new ArrayCollection();
+        $this->facturas 	= new ArrayCollection();
     }
 
 
@@ -230,5 +238,9 @@ class Empresa
     {
         return $this->tipo;
     }
-
+    
+	public function __toString()
+	{
+		return $this->nomsocial;	
+	}  
 }
