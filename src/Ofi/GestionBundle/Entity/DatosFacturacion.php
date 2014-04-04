@@ -63,6 +63,13 @@ class DatosFacturacion
     private $empresa;
 
     /**
+     * @ORM\OneToOne(targetEntity="AdminConfig")
+     * @ORM\JoinColumn(name="miempresa_id", referencedColumnName="id")
+     */
+    private $miempresa;
+
+
+    /**
      * Set empresa
      *
      * @param integer $empresa
@@ -80,11 +87,33 @@ class DatosFacturacion
      *
      * @return integer 
      */
+    public function getMiempresa()
+    {
+        return $this->miempresa;
+    }
+
+    /**
+     * Set empresa
+     *
+     * @param integer $empresa
+     * @return DatosFacturacion
+     */
+    public function setMiempresa($miempresa)
+    {
+        $this->miempresa = $miempresa;
+
+        return $this;
+    }
+
+    /**
+     * Get empresa
+     *
+     * @return integer 
+     */
     public function getEmpresa()
     {
         return $this->empresa;
     }
-
 
     /**
      * Get id

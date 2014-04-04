@@ -24,5 +24,14 @@ class DatosFacturacionRepository extends EntityRepository
 		
 	}
 	
-	
+	public function contarDatosFacAdmin($id)
+	{
+	return $this->getEntityManager()
+            ->createQuery('SELECT count(s.id) AS total FROM 
+						  OfiGestionBundle:DatosFacturacion s
+						  WHERE s.miempresa = :idempresa ')
+            ->setParameter('idempresa',$id)
+            ->getResult();
+		
+	}
 }

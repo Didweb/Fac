@@ -51,9 +51,18 @@ ofi_gestion_crearcdatofac:
     pattern:  /crear-datofac/{id}
     defaults: { _controller: OfiGestionBundle:DatoFac:crear }
 
+
+ofi_gestion_crearcdatofacAdmin:
+    pattern:  /crear-datofacAdmin/{id}
+    defaults: { _controller: OfiGestionBundle:DatoFac:crearAdmin }
+
 ofi_gestion_eliminardatofac:
     pattern:  /eliminar-datofac/{id}
     defaults: { _controller: OfiGestionBundle:DatoFac:eliminar }
+
+ofi_gestion_eliminardatofacAdmin:
+    pattern:  /eliminar-datofacAdmin/{id}
+    defaults: { _controller: OfiGestionBundle:DatoFac:eliminarAdmin }
 
 
 ofi_gestion_crearfactura:
@@ -68,3 +77,12 @@ ofi_gestion_nuevafactura:
 ofi_gestion_editarfactura:
     pattern:  /editar-factura/{id}
     defaults: { _controller: OfiGestionBundle:Factura:editar }
+
+
+ofi_gestion_editarAdminConfig:
+    pattern:  /editar-configuracion/{id}
+    defaults: { _controller: OfiGestionBundle:AdminConfig:editar }
+
+ofi_gestion_updateAdminConfig:
+    pattern:  /editar-configuracion/{id}
+    defaults: { _controller: OfiGestionBundle:AdminConfig:update }

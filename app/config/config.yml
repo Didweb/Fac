@@ -2,7 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: "@OfiGestionBundle/Resources/config/services.yml" }
-
+parameters:
+    formatoFactura: NNNN/AAAA  
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }

@@ -8,7 +8,16 @@
 		{% endfor %}	
 <ul class="mi-menu">
   
-  <li><a href="{{ path('ofi_gestion_homepage')}}">inicio</a></li>
+  <li><a href="{{ path('ofi_gestion_nuevafactura') }}">inicio</a></li>
+  
+   <li>
+	<a href="#">Admin</a>
+     <ul>
+      <li><a href="{{ path('ofi_gestion_editarAdminConfig',{'id':1})}}">Configurar</a></li>
+    </ul>
+ </li>
+  
+  
   
   <li>
     <a href="#">Empresas</a>
@@ -20,6 +29,8 @@
     </ul>
   </li>
 
+
+
  <li>
 	<a href="#">Facturas</a>
      <ul>
@@ -27,6 +38,8 @@
       <li><a href="{{ path('ofi_gestion_nuevafactura') }}">Crear</a></li>
     </ul>
  </li>
+
+
 
 </ul>
 </nav>

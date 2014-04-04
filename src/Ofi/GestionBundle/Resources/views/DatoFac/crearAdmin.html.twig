@@ -1,0 +1,45 @@
+ <div id="crear_datosfac">
+{% if total==0 %}
+ <form action="{{ path('ofi_gestion_crearcdatofacAdmin',{'id': entity.miempresa.id,'crearDF':'si'}) }}" method="post" {{ form_enctype(form_datosfac) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_errors(form_datosfac) }}
+
+			<div>
+				{{ form_label(form_datosfac.razonsocial,"Razón social:") }}
+				{{ form_errors(form_datosfac.razonsocial) }}
+				{{ form_widget(form_datosfac.razonsocial) }}
+			</div>
+			
+			<div>
+				{{ form_label(form_datosfac.nif,"NIF / CIF:") }}
+				{{ form_errors(form_datosfac.nif) }}
+				{{ form_widget(form_datosfac.nif) }}
+			</div>
+			
+			<div>
+				{{ form_label(form_datosfac.direccion,"Direción:") }}
+				{{ form_errors(form_datosfac.direccion) }}
+				{{ form_widget(form_datosfac.direccion) }}
+			</div>		
+
+			<div>
+				{{ form_label(form_datosfac.poblacion,"Población:") }}
+				{{ form_errors(form_datosfac.poblacion) }}
+				{{ form_widget(form_datosfac.poblacion) }}
+			</div>	
+			
+			<div>
+				{{ form_label(form_datosfac.cp,"Código Postal:") }}
+				{{ form_errors(form_datosfac.cp) }}
+				{{ form_widget(form_datosfac.cp) }}
+			</div>				
+			
+			<div id="datos_envio">
+				<button type="submit"  class="botones_verde" 
+				title="Editar datos de facturación" >Crear Datos de Facturación</button>
+		    </div>
+		    
+         {{ form_rest(form_datosfac) }}
+ </form> 
+ {% endif %}
+ </div>

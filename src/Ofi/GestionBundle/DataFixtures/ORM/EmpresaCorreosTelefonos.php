@@ -16,8 +16,6 @@ class Clientes implements FixtureInterface
     {
         for ($i=0; $i<10; $i++) {
             $cliente 	= new Empresa();
-            $correo 	= new Correo();
-            $telefono 	= new Telefono();
 
             $cliente->setNombre('Empresa '.$i);
             $cliente->setApellido('Apellido '.$i);
