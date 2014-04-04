@@ -3,11 +3,13 @@
 namespace Ofi\NumFacBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Ofi\GestionBundle\Entity\AdminConfig;
 
 class NumFacController extends Controller
 {
 	private $formato;
-	private $ultimoN = 8;
+	private $ultimoN;
 	private $formatoD;
 	private $tipos;
 	
@@ -22,14 +24,25 @@ class NumFacController extends Controller
 		return $this->formato;
 	}
 	
-	public function setUltimoN($ultimoN)
-	{
-		return $this->ultimoN = $ultimoN;	
+	public function setUltimoN()
+	{	
+		$em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('OfiGestionBundle:AdminConfig')->find(1);
+        if (!$entity) {
+            throw $this->createNotFoundException('Entidad no encontrada NumFac Controller -> setUltimoN.');
+			}
+		$nfac = $entity->getNumerofactura();
+		$entity->setNumerofactura($nfac+1);
+		$em->persist($entity);
+		$em->flush();
+		
+		return $this->ultimoN = $nfac;	
+		
 	}
 	
 	public function getUltimoN()
 	{
-		return $this->ultimoN;
+		return $this->ultimoN = $this->setUltimoN();
 	}
 	
 	public function setFormatoD()
@@ -78,7 +91,7 @@ class NumFacController extends Controller
 
 	public function getTipoN($posiciones)
 	{
-		return  str_pad( $this->getUltimoN()+1, 
+		return  str_pad( $this->setUltimoN(), 
 						 $posiciones, 
 						 "0", STR_PAD_LEFT);					
 	}
