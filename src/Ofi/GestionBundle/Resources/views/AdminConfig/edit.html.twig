@@ -24,6 +24,21 @@
  {% endblock%}
 
  {% block body %}
+ 
+  {% for flashMessage2 in app.session.flashbag.get('config') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('config_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+ 
+ 
+ 
     <h1>Admin Configuración</h1>
  	 <div id="accionaDF"  class="ver_DF"
 								title="Ver/Editar datos de facturación">

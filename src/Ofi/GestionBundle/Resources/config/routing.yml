@@ -84,5 +84,5 @@ ofi_gestion_editarAdminConfig:
     defaults: { _controller: OfiGestionBundle:AdminConfig:editar }
 
 ofi_gestion_updateAdminConfig:
-    pattern:  /editar-configuracion/{id}
+    pattern:  /actualizar-config/{id}
     defaults: { _controller: OfiGestionBundle:AdminConfig:update }

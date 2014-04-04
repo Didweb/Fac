@@ -108,7 +108,7 @@ class DatoFacController extends Controller
         $em->persist($entity);
         $em->flush();
 		$this->get('session')->getFlashBag()
-					->add('empresa',
+					->add('config',
 					'Se han introduicido los datos de facturación de este empresa');
 		 
         }
@@ -208,7 +208,7 @@ class DatoFacController extends Controller
         $em->flush();
 		
 		$this->get('session')->getFlashBag()
-						->add('empresa_error',
+						->add('config_error',
 						'Se han eliminado los datos de facturación.');
 						
 		$entity = $em->getRepository('OfiGestionBundle:AdminConfig')

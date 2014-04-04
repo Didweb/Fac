@@ -51,25 +51,28 @@ class AdminConfigController extends Controller
 
     public function updateAction(Request $request, $id)
     {
+		
          $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OfiGestionBundle:AdminConfig')->find($id);
                 if (!$entity) {
-            throw $this->createNotFoundException('Entidad n encontrada AdminCOnfig en update.');
+            throw $this->createNotFoundException('Entidad no encontrada AdminConfig en update.');
         }
+        
 		$editForm = $this->createForm(new AdminConfigType(), $entity);
 		$editForm->bind($request);
 		
 		$em->persist($entity);
         $em->flush();
-
+		$this->get('session')->getFlashBag()
+						->add('config',
+						'Se han actualizado los datos.');
 		
         
         return $this->render('OfiGestionBundle:AdminConfig:edit.html.twig',
 			array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'tipo'		  => $entity->getTipo()	
+            'edit_form'   => $editForm->createView()
             ));
     }
    
