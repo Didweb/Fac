@@ -1,0 +1,7 @@
+parameters:
+#    ofi_num_fac.example.class: Ofi\NumFacBundle\Example
+
+services:
+#    ofi_num_fac.example:
+#        class: %ofi_num_fac.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

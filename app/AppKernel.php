@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Ofi\GestionBundle\OfiGestionBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Ofi\NumFacBundle\OfiNumFacBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,3 +1,7 @@
+ofi_num_fac:
+    resource: "@OfiNumFacBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ofi_gestion:
     resource: "@OfiGestionBundle/Resources/config/routing.yml"
     prefix:   /
