@@ -47,6 +47,14 @@ class Empresa
      */
     private $nomsocial;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mayordetalle", type="string", length=1)
+     */
+    private $mayordetalle;
+
     /**
      * @var boolean
      *
@@ -132,6 +140,30 @@ class Empresa
         return $this;
     }
 
+
+
+    /**
+     * Get mayordetalle
+     *
+     * @return integer 
+     */
+    public function getMayordetalle()
+    {
+        return $this->mayordetalle;
+    }
+
+    /**
+     * Set mayordetalle
+     *
+     * @param string $mayordetalle
+     * @return Cliente
+     */
+    public function setMayordetalle($mayordetalle)
+    {
+        $this->mayordetalle = $mayordetalle;
+
+        return $this;
+    }
 
 
     /**

@@ -66,6 +66,7 @@
 				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'e.apellido') }}Apellido</th>
 				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'e.nomsocial') }}Nombre comercial</th> 
 				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'e.tipo') }}Tipo</th>  
+				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'e.mayordetalle') }}Mayor/Detalle</th> 
 				<th class="acciones"></th>        
             </tr>
             
@@ -121,7 +122,14 @@
 				<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor" title="Proveedor" />
 				{% endif %}
 				</td>
-            
+
+				<td>{% if empresa.mayordetalle=='m' %}
+				<img src="{{ asset('images/mayor.png') }}" alt="Icono Mayor" title="Mayor" />
+				{% elseif empresa.mayordetalle=='d' %}
+				<img src="{{ asset('images/detalle.png') }}" alt="Icono Detalle" title="Detalle" />
+				{% endif %}
+				</td>
+				            
 				<td>
 	<a href="{{ path('ofi_gestion_editarempresa',
 	{'id':empresa.id })}}" 

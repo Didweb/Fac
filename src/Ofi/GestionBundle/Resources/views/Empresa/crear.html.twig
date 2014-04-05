@@ -73,6 +73,13 @@
 				{{ form_widget(form.tipo) }}
 			</div>	
 			
+			<div id="c_tipo">
+				{{ form_label(form.mayordetalle,"Mayor / Detalle:") }}
+				{{ form_errors(form.mayordetalle) }}
+				{{ form_widget(form.mayordetalle) }}
+			</div>	
+			
+			
 			<div id="datos_envio">
 			<button type="submit"  class="botones_verde" 
 					title="Crear empresa" >Crear empresa nueva</button>

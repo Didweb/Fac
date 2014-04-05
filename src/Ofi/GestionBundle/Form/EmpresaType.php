@@ -15,6 +15,11 @@ class EmpresaType extends AbstractType
             ->add('apellido')
             ->add('nomsocial','text',array('required'=>'false'))
             ->add('tipo','choice',array('choices' => array('1' => 'Cliente', '0' => 'Proveedor')))
+            ->add('mayordetalle', 'choice', array(
+					'choices'   => array(
+									'm' => 'Mayor', 
+									'd' => 'Detalle'),
+					'required'  => true))				
         ;
     }
 
