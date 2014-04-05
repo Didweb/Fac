@@ -1,6 +1,5 @@
 parameters:
 #    ofi_gestion.example.class: Ofi\GestionBundle\Example
-
 services:
 #    ofi_gestion.example:
 #        class: %ofi_gestion.example.class%

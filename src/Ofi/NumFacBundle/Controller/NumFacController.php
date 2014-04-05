@@ -6,17 +6,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Ofi\GestionBundle\Entity\AdminConfig;
 
+
+
 class NumFacController extends Controller
 {
 	private $formato;
 	private $ultimoN;
 	private $formatoD;
-	private $tipos;
-	
-	
-	public function setFormato()
+
+
+	public function setFormato($formato)
 	{
-		return $this->formato = $this->container->getParameter('formatoFactura');
+		$this->formato = $formato;
+		return $this->formato;
+		
 	}
 	
 	public function getFormato()
@@ -26,17 +29,16 @@ class NumFacController extends Controller
 	
 	public function setUltimoN()
 	{	
-		$em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('OfiGestionBundle:AdminConfig')->find(1);
+		$em = $GLOBALS['kernel']->getContainer()->get('doctrine')->getEntityManager();
+        $entity = $em->getRepository('OfiGestionBundle:AdminConfig')->find('1');
         if (!$entity) {
             throw $this->createNotFoundException('Entidad no encontrada NumFac Controller -> setUltimoN.');
 			}
 		$nfac = $entity->getNumerofactura();
-		$entity->setNumerofactura($nfac+1);
 		$em->persist($entity);
 		$em->flush();
 		
-		return $this->ultimoN = $nfac;	
+		return $nfac;	
 		
 	}
 	
@@ -44,32 +46,41 @@ class NumFacController extends Controller
 	{
 		return $this->ultimoN = $this->setUltimoN();
 	}
-	
+
+
 	public function setFormatoD()
 	{
+		
 		$montamos = array();
-		$this->formatoD = $this->formato;
-		foreach (count_chars($this->formatoD, 1) as $i => $val) {
-				
-				$pos = strpos($this->formatoD,  chr($i));
-
-				if(chr($i)=='A'){
-					$res = $this->getTipoA($val);
-					}elseif(chr($i)=='N'){
+		$separamos = str_split($this->formato);
+		$res = array_count_values($separamos);
+		foreach($res as $nom=>$val){
+			$pos = strpos($this->formato,$nom);
+			
+				if($nom=='A'){
+					$res =  $this->getTipoA($val);
+				}elseif($nom=='N'){
 					$res = $this->getTipoN($val);	
-					}else{
-					$res = chr($i);	
-					}	
-				
-				$montamos[$pos+1] = $res;
+				}else{
+					$res = $nom;	
 				}
-			ksort($montamos);	
-			return $this->formatoD = implode("", $montamos);
+			$montamos[$pos+1] = $res;
+			}
+			
+			ksort($montamos);
+			$res = 	implode("", $montamos);
+			$this->formatoD = $res;
+		
+			return $this->formatoD;
 		
 	}
+
+
 	
-	public function getFormatoD()
-	{
+	public function getFormatoD($formato)
+	{	
+		$this->setFormato($formato);
+		$this->setFormatoD();
 		return $this->formatoD;
 	}	
 
@@ -91,17 +102,17 @@ class NumFacController extends Controller
 
 	public function getTipoN($posiciones)
 	{
-		return  str_pad( $this->setUltimoN(), 
+		$res = str_pad( $this->getUltimoN(), 
 						 $posiciones, 
-						 "0", STR_PAD_LEFT);					
+						 "0", STR_PAD_LEFT); 
+		return  $res;					
 	}
 
 
 	
 	public function indexAction()
 	{
-		$this->setFormato();
-		$this->setFormatoD();
+		$this->setFormato(15);
 		
 		
 	    return $this->render('OfiNumFacBundle:NumFac:index.html.twig',

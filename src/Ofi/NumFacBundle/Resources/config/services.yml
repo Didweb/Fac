@@ -1,7 +1,8 @@
 parameters:
-#    ofi_num_fac.example.class: Ofi\NumFacBundle\Example
+    NumF.formatoFactura:  NNNNN/AAAA 
+
 
 services:
-#    ofi_num_fac.example:
-#        class: %ofi_num_fac.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    NumF:
+        class: Ofi\NumFacBundle\Controller\NumFacController
+        arguments: [%NumF.formatoFactura%]

@@ -5,8 +5,18 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class FacturaType extends AbstractType
+
+
+class FacturaType extends AbstractType 
 {
+	private $nf;
+	
+	public function __construct($nf)
+	{
+		$this->nf = $nf;
+	}
+	
+	
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -16,7 +26,7 @@ class FacturaType extends AbstractType
 				   'required' => false,
 				   'widget'   => 'single_text',
 					'format' => 'ddMMyyyy'))
-            ->add('nfactura')
+            ->add('nfactura','text',array('data'=>$this->nf))
             ->add('empresa')
             
         ;

@@ -6,26 +6,32 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+
 use Ofi\GestionBundle\Entity\Factura;
 use Ofi\GestionBundle\Form\FacturaType;
 
 class FacturaController extends Controller
 {
 
-
+	
 
 
     public function nuevoAction()
     {
+		$numf = $this->get('NumF');
+		$formato = $this->container->getParameter('NumF.formatoFactura');
+		$nf = $numf->getFormatoD($formato);
+        
 		
 		$em = $this->getDoctrine()->getManager();
         $entity = new Factura();
-        $form   = $this->createForm(new FacturaType(), $entity);
+        $form   = $this->createForm(new FacturaType($nf), $entity);
 		
         
          return $this->render('OfiGestionBundle:Factura:crear.html.twig',
 					array(	'entity' => $entity,
-							'form_factura'   => $form->createView())
+							'form_factura'   => $form->createView()
+							)
 					);
     }
 
