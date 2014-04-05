@@ -123,8 +123,7 @@ class EmpresaController extends Controller
 	  $em = $this->getDoctrine()->getManager();
 	  
 	  if($filtro==2){
-      $entity = $em->getRepository('OfiGestionBundle:Empresa')
-				   ->findAll();
+     
 		$dql   = "SELECT e FROM OfiGestionBundle:Empresa e";
 		$query = $em->createQuery($dql);	
 				   
@@ -137,13 +136,12 @@ class EmpresaController extends Controller
 		$paginator  = $this->get('knp_paginator');
 		$pagination = $paginator->paginate(
         $query, $this->get('request')
-					 ->query->get('page', 1) /*page number*/,30 /*limit per page*/
+					 ->query->get('page', 1) ,30 
 		);
 
 
        return $this->render('OfiGestionBundle:Empresa:listar.html.twig',
-					array(//'entity' => $entity,
-						  'pagination' => $pagination,	
+					array('pagination' => $pagination,	
 						  'filtro' => $filtro	
 							));
 	}

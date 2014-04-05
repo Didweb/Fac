@@ -7,14 +7,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 
-class FacturaType extends AbstractType 
+class FacturaEditaType extends AbstractType 
 {
-	private $nf;
 	
-	public function __construct($nf)
-	{
-		$this->nf = $nf;
-	}
 	
 	
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -26,7 +21,7 @@ class FacturaType extends AbstractType
 				   'required' => false,
 				   'widget'   => 'single_text',
 					'format' => 'ddMMyyyy'))
-            ->add('nfactura','text',array('data'=>$this->nf))
+            ->add('nfactura')
             ->add('empresa')
             ->add('tipofactura', 'choice', array(
 					'choices'   => array('1' => '... para un cliente ...', '0' => '... de un proveedor ...'),

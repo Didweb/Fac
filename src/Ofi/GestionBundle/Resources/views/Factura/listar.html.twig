@@ -1,0 +1,111 @@
+{%  extends '::forntend.html.twig' %}
+
+{% block title %}FAC - Listar facturas{% endblock %}
+{% block metas %}
+<meta name="description" content="Home">
+<meta name="keywords" content="FAC">
+<meta name="robots" CONTENT="noindex, nofollow">
+{% endblock%}
+
+
+ {% block stylesheets %}
+ {{ parent() }}
+ <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
+ <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
+ {% endblock%}
+
+
+
+
+
+
+{% block cabecera %}
+{% include 'OfiGestionBundle:Fijas:sesion.html.twig' %}
+{% include 'OfiGestionBundle:Fijas:menu.html.twig' %} 
+ {% endblock%}
+ 
+ 
+ {% block body %}
+ 
+ 
+ {% for flashMessage2 in app.session.flashbag.get('empresa') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('empresa_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+ <div id="listado_clientes">
+	
+  <h2>Listado de facturas</h2>
+	<div class="count">
+    Total facturas: <span class="color_oscuro_medio">{{ pagination.getTotalItemCount }}</span>
+	</div>
+    <div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+	</div>
+<table>
+        
+        <thead>
+            <tr>
+               
+				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'f.fecha') }}Fecha</th>
+				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'f.nfactura') }}Número Factura</th>
+				<th class="alaiz">{{ knp_pagination_sortable(pagination, 'Ordenar', 'f.empresa') }}Empresa</th>
+				<th class="acciones"></th>        
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            {% set n=1 %}
+        {% for factura in pagination %}
+        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+        
+            <tr class=" {{ linea }} ilumina">
+				<td>
+				{{ factura.fecha|date('d-m-Y')}}
+				</td>
+				
+				<td>
+				{{ factura.nfactura }}</td>
+				
+				<td>
+				{{ factura.empresa }}
+				</td>
+				
+				
+            
+				<td>
+	<a href="{{ path('ofi_gestion_editarfactura',
+	{'id':factura.id })}}" 
+	title="Editar Factura: {{ factura.nfactura }}" 
+	class="bo_editar"></a>
+				</td>
+            </tr>
+               {% set n=n+1 %}    
+        {% endfor %}
+        </tbody>
+        
+    </table> 
+    <div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+	</div>
+  </div>     
+ {% endblock%}
+ 
+ {% block footer %}
+ {% include 'OfiGestionBundle:Fijas:footer.html.twig' %} 
+ {% endblock%}

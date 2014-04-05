@@ -9,23 +9,31 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Ofi\GestionBundle\Entity\Factura;
 use Ofi\GestionBundle\Form\FacturaType;
+use Ofi\GestionBundle\Form\FacturaEditaType;
 
 class FacturaController extends Controller
 {
-
 	
+	private $nf;
 
+
+
+	public function getNf()
+	{
+		$numf = $this->get('NumF');		
+		$formato = $this->container->getParameter('NumF.formatoFactura');	
+		$nf = $numf->getFormatoD($formato);
+		return $this->nf=$nf;
+		
+	}
 
     public function nuevoAction()
     {
-		$numf = $this->get('NumF');
-		$formato = $this->container->getParameter('NumF.formatoFactura');
-		$nf = $numf->getFormatoD($formato);
-        
+		
 		
 		$em = $this->getDoctrine()->getManager();
         $entity = new Factura();
-        $form   = $this->createForm(new FacturaType($nf), $entity);
+        $form   = $this->createForm(new FacturaType($this->getNf()), $entity);
 		
         
          return $this->render('OfiGestionBundle:Factura:crear.html.twig',
@@ -40,8 +48,11 @@ class FacturaController extends Controller
   public function crearAction(Request $request)
   {
 	  
+	  	$this->numf = $this->get('NumF');
+		$nf = $this->numf->getFormatoD($this->getNf());
+	  
 	$entity  = new Factura();
-    $form = $this->createForm(new FacturaType(), $entity);
+    $form = $this->createForm(new FacturaType($nf), $entity);
     $form->bind($request);
 
 	
@@ -56,6 +67,17 @@ class FacturaController extends Controller
 		$this->get('session')->getFlashBag()
 					->add('factura',
 					'Se ha creado una nueva factura.');
+		
+		$entityNF = $em->getRepository('OfiGestionBundle:AdminConfig')
+						->find(1);
+		$ulNF = $entityNF->getNumerofactura();				
+		$entityNF->setNumerofactura($ulNF+1);
+		$em->persist($entityNF);
+		$em->flush();
+		
+		return $this->redirect($this->generateUrl(
+						'ofi_gestion_editarfactura', 
+						array('id' => $entity->getId())));
 		 
         }else{
 			$this->get('session')->getFlashBag()
@@ -64,22 +86,29 @@ class FacturaController extends Controller
 			}
 
 		
-      return $this->redirect($this->generateUrl(
-						'ofi_gestion_editarfactura', 
-						array('id' => $entity->getId())));
+       return $this->render('OfiGestionBundle:Factura:crear.html.twig',
+					array(	'entity' => $entity,
+							'form_factura'   => $form->createView())
+					);
 	
     }
 
 
 
-	public function listarAction($id)
+	public function listarAction()
 	{
 	  $em = $this->getDoctrine()->getManager();
-      $entity = $em->getRepository('OfiGestionBundle:Correo')
-				->findByEmpresa($id);
+      $dql   = "SELECT f FROM OfiGestionBundle:Factura f";
+	  $query = $em->createQuery($dql);
 
-       return $this->render('OfiGestionBundle:Correo:listar.html.twig',
-					array('entity' => $entity));
+		$paginator  = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+        $query, $this->get('request')
+					 ->query->get('page', 1) ,30 
+		);
+
+       return $this->render('OfiGestionBundle:Factura:listar.html.twig',
+					array('pagination' => $pagination));
 	}
 
 
@@ -131,10 +160,10 @@ class FacturaController extends Controller
 	public function editarAction(Request $request,$id)
     {
         $em = $this->getDoctrine()->getManager();
-		
-		
         $entity = $em->getRepository('OfiGestionBundle:Factura')
 						->find($id);
+
+
 
         if (!$entity) {
             throw $this->createNotFoundException(
@@ -142,11 +171,14 @@ class FacturaController extends Controller
             );
         }
         
-
-        $editForm = $this->createForm(new FacturaType(), $entity);
+        $editForm = $this->createForm(new FacturaEditaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+		$editForm->bind($request);
 		
-        
+		if ($editForm->isValid()) {
+        $em->persist($entity);
+        $em->flush();		
+			}
         return $this->render('OfiGestionBundle:Factura:editar.html.twig',
 			array(
             'entity'      => $entity,

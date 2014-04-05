@@ -46,7 +46,7 @@
  
  <div id="caja_general">
  <h2>Datos Generales</h2>
- <form action="{{ path('ofi_gestion_actualizarempresa',
+ <form action="{{ path('ofi_gestion_editarfactura',
 				{'id':entity.id}) }}" 
 				method="post" {{ form_enctype(edit_form) }}>
 				
@@ -72,7 +72,10 @@
 		</div>		
 
 		<div>
-			{{ entity.tipofactura }}
+			
+			{{ form_label(edit_form.tipofactura,"Tipo:") }}
+			{{ form_errors(edit_form.tipofactura) }}
+			{{ form_widget(edit_form.tipofactura) }}
 		</div>			
 		<div id="datos_envio">
 		

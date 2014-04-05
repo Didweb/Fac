@@ -68,6 +68,10 @@ ofi_gestion_eliminardatofacAdmin:
 ofi_gestion_crearfactura:
     pattern:  /crear-factura
     defaults: { _controller: OfiGestionBundle:Factura:crear }
+
+ofi_gestion_listarfactura:
+    pattern:  /listar-factura
+    defaults: { _controller: OfiGestionBundle:Factura:listar }
     
     
 ofi_gestion_nuevafactura:
