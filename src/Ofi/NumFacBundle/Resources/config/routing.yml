@@ -1,3 +1,1 @@
-ofi_num_fac_homepage:
-    pattern:  /numfac
-    defaults: { _controller: OfiNumFacBundle:NumFac:index }
+
