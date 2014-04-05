@@ -16,16 +16,21 @@ class FacturaEditaType extends AbstractType
     {
         $builder
             ->add('fecha', 'date', array(
-					'invalid_message'            => 'Fecha incompleta.',
-					'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),
+					'invalid_message' => 'Fecha incompleta.',
+					'empty_value' => array(
+										'year' => 'Año', 
+										'month' => 'Mes', 
+										'day' => 'Día'),
 				   'required' => false,
 				   'widget'   => 'single_text',
 					'format' => 'ddMMyyyy'))
             ->add('nfactura')
             ->add('empresa')
             ->add('tipofactura', 'choice', array(
-					'choices'   => array('1' => '... para un cliente ...', '0' => '... de un proveedor ...'),
-					'required'  => true));
+					'choices'   => array(
+									'1' => '... para un cliente ...', 
+									'0' => '... de un proveedor ...'),
+					'required'  => true))
             
         ;
     }
@@ -39,6 +44,6 @@ class FacturaEditaType extends AbstractType
 
     public function getName()
     {
-        return 'ofi_gestionbundle_facturatype';
+        return 'ofi_gestionbundle_facturaeditatype';
     }
 }

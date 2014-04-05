@@ -55,8 +55,6 @@ class FacturaController extends Controller
     $form = $this->createForm(new FacturaType($nf), $entity);
     $form->bind($request);
 
-	
-
 
     if ($form->isValid()) {
 		$em = $this->getDoctrine()->getManager();
@@ -164,7 +162,6 @@ class FacturaController extends Controller
 						->find($id);
 
 
-
         if (!$entity) {
             throw $this->createNotFoundException(
             'Entidad no encontrada [editarAction.FacturaController].'
@@ -173,12 +170,7 @@ class FacturaController extends Controller
         
         $editForm = $this->createForm(new FacturaEditaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-		$editForm->bind($request);
 		
-		if ($editForm->isValid()) {
-        $em->persist($entity);
-        $em->flush();		
-			}
         return $this->render('OfiGestionBundle:Factura:editar.html.twig',
 			array(
             'entity'      => $entity,
@@ -186,5 +178,29 @@ class FacturaController extends Controller
             'delete_form' => $deleteForm->createView()
         ));
     }
+
+
+    public function actualizarAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('OfiGestionBundle:Factura')->find($id);
+		$editForm = $this->createForm(new FacturaEditaType(), $entity);
+        $deleteForm = $this->createDeleteForm($id);
+		$editForm->bind($request);
+		
+		$em->persist($entity);
+        $em->flush();
+
+		
+        
+        return $this->render('OfiGestionBundle:Factura:editar.html.twig',
+			array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView()	
+            ));
+     }    
+
 
 }

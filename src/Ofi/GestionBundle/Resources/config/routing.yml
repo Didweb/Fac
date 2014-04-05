@@ -82,6 +82,10 @@ ofi_gestion_editarfactura:
     pattern:  /editar-factura/{id}
     defaults: { _controller: OfiGestionBundle:Factura:editar }
 
+ofi_gestion_actualizafactura:
+    pattern:  /actualiza-factura/{id}
+    defaults: { _controller: OfiGestionBundle:Factura:actualizar }
+
 
 ofi_gestion_editarAdminConfig:
     pattern:  /editar-configuracion/{id}
