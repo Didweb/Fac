@@ -3,6 +3,9 @@
 namespace Ofi\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Ofi\GestionBundle\Entity\Presupuesto;
 
 /**
  * Proyecto
@@ -50,6 +53,25 @@ class Proyecto
     private $fechafinal;
 
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Empresa", inversedBy="proyectos")
+	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+	 */ 
+	private $empresa;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Presupuesto", mappedBy="proyecto", cascade={"all"})
+	 * 
+	 */ 
+    private $presupuestos;
+
+
+    public function __construct() {
+        $this->presupuestos 	= new ArrayCollection();
+
+    }
+
+
     /**
      * Get id
      *
@@ -59,6 +81,30 @@ class Proyecto
     {
         return $this->id;
     }
+
+    /**
+     * Set empresa
+     *
+     * @param integer $empresa
+     * @return empresa
+     */
+    public function setEmpresa($empresa)
+    {
+        $this->empresa = $empresa;
+
+        return $this;
+    }
+
+    /**
+     * Get empresa
+     *
+     * @return integer 
+     */
+    public function getEmpresa()
+    {
+        return $this->empresa;
+    }
+
 
     /**
      * Set nombre

@@ -5,6 +5,8 @@ namespace Ofi\GestionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ofi\GestionBundle\Entity\Detalle;
+use Ofi\GestionBundle\Entity\Presupuesto;
 
 /**
  * Factura
@@ -50,17 +52,24 @@ class Factura
 	 */ 
 	 private $empresa;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Detalle", mappedBy="factura", cascade={"all"})
+	 * 
+	 */ 
+    private $detalles;
 
 
 	/**
-	 * @ORM\OneToMany(targetEntity="FacturaDetalle", mappedBy="factura")
+	 * @ORM\OneToMany(targetEntity="Presupuesto", mappedBy="factura", cascade={"all"})
 	 * 
 	 */ 
-	 protected $detalles;
+    private $presupuestos;
+    
 	 
 	public function __construct()
 	{
 		$this->detalles = new ArrayCollection();
+		$this->presupuestos = new ArrayCollection();
 	}
 
     /**

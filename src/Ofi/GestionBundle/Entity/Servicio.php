@@ -3,7 +3,9 @@
 namespace Ofi\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Ofi\GestionBundle\Entity\Detalle;
 /**
  * Servicio
  *
@@ -42,6 +44,16 @@ class Servicio
      */
     private $precio;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Detalle", mappedBy="servicio", cascade={"all"})
+	 * 
+	 */ 
+    private $detalles;
+
+    public function __construct() {
+        $this->detalles 	= new ArrayCollection();
+
+    }
 
     /**
      * Get id

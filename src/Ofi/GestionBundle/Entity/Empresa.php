@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Ofi\GestionBundle\Entity\Telefono;
 use Ofi\GestionBundle\Entity\Correo;
 use Ofi\GestionBundle\Entity\DatosFacturacion;
+use Ofi\GestionBundle\Entity\Proyecto;
 
 /**
  * Empresa
@@ -75,6 +76,13 @@ class Empresa
     private $correos;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="empresa", cascade={"all"})
+	 * 
+	 */ 
+    private $proyectos;
+
+
+	/**
 	 * @ORM\OneToMany(targetEntity="Factura", mappedBy="empresa")
 	 * 
 	 */ 
@@ -89,6 +97,7 @@ class Empresa
         $this->telefonos 	= new ArrayCollection();
         $this->correos 		= new ArrayCollection();
         $this->facturas 	= new ArrayCollection();
+        $this->proyectos 	= new ArrayCollection();
     }
 
 

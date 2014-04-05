@@ -3,14 +3,16 @@
 namespace Ofi\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Ofi\GestionBundle\Entity\Presupuesto;
 
 /**
- * Detalles
+ * Detalle
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Ofi\GestionBundle\Entity\DetallesRepository")
  */
-class Detalles
+class Detalle
 {
     /**
      * @var integer
@@ -35,6 +37,24 @@ class Detalles
      */
     private $precio;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Presupuesto", inversedBy="detalles")
+	 * @ORM\JoinColumn(name="presupuesto_id", referencedColumnName="id")
+	 */ 
+	private $presupuesto;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Factura", inversedBy="detalles")
+	 * @ORM\JoinColumn(name="factura_id", referencedColumnName="id")
+	 */ 
+	private $factura;
+	
+	/**
+	 * @ORM\ManyToOne(targetEntity="Servicio", inversedBy="detalles")
+	 * @ORM\JoinColumn(name="servicio_id", referencedColumnName="id")
+	 */ 
+	private $servicio;	
+	
 
     /**
      * Get id

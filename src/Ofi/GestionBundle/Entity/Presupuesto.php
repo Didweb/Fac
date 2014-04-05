@@ -3,6 +3,9 @@
 namespace Ofi\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Ofi\GestionBundle\Entity\Detalle;
 
 /**
  * Presupuesto
@@ -35,6 +38,29 @@ class Presupuesto
      */
     private $fecha;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="presupuestos")
+	 * @ORM\JoinColumn(name="proyecto_id", referencedColumnName="id")
+	 */ 
+	private $proyecto;
+
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Factura", inversedBy="presupuestos")
+	 * @ORM\JoinColumn(name="factura_id", referencedColumnName="id")
+	 */ 
+	private $factura;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Detalle", mappedBy="presupuesto", cascade={"all"})
+	 * 
+	 */ 
+    private $detalles;
+
+    public function __construct() {
+        $this->detalles 	= new ArrayCollection();
+
+    }
 
     /**
      * Get id
