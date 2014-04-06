@@ -37,7 +37,7 @@
 				
 				<td>
 				<a href="{{ path('ofi_gestion_editarproyecto',
-	{'id':proyecto.id })}}" 
+	{'idproyecto':proyecto.id })}}" 
 	title="Editar/Ver proyecto: {{ proyecto.nombre }}" 
 	class="bo_editar_txt">
 				{{ proyecto.nombre }}</a></td>
@@ -49,7 +49,7 @@
 				<td>{{ proyecto.fechafinal|date('d-m-Y') }}</td>
 				<td>
 	<a href="{{ path('ofi_gestion_editarproyecto',
-	{'id':proyecto.id })}}" 
+	{'idproyecto':proyecto.id })}}" 
 	title="Editar proyecto: {{ proyecto.nombre }}" 
 	class="bo_editar"></a>
 				</td>

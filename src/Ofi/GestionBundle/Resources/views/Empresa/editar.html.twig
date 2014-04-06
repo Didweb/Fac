@@ -117,7 +117,7 @@
 	<div id="accionaCorreo" class="ver_ocultos" 
 						title="Insertar más correos" ></div>
 						
-	<div id="targetCorreo">
+	<div id="targetCorreo" class="caudro_form">
 	{{ render(controller('OfiGestionBundle:Correo:nuevo',
 							{'id': entity.id})) }} 
 	</div>
@@ -131,7 +131,7 @@
 								{'id': entity.id})) }}
 	 <div id="accionaTelefono" class="ver_ocultos" 
 								title="Insertar más teléfonos" ></div> 
-	 <div id="targetTelefono">				
+	 <div id="targetTelefono" class="caudro_form">				
 	 {{ render(controller('OfiGestionBundle:Telefono:nuevo',
 								{'id': entity.id})) }} 
 	 </div>
@@ -157,7 +157,7 @@
  <h2>Proyectos</h2>
 	 <div id="accionaProyectos" class="ver_ocultos" 
 								title="Insertar un proyecto" ></div>  
- 	 <div id="targetProyectos">				
+ 	 <div id="targetProyectos" class="caudro_form">				
 	 {{ render(controller('OfiGestionBundle:Proyecto:nuevo',
 								{'idempresa': entity.id})) }} 
 	 </div>
