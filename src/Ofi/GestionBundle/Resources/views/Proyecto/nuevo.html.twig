@@ -1,0 +1,44 @@
+ <div id="crear_proyecto">
+ <form id="form_correo" 
+		action="{{ path('ofi_gestion_crearproyecto',
+					{'id': entity.empresa.id}) }}" 
+					method="post" {{ form_enctype(form_proyecto) }}>
+					
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_errors(form_proyecto) }}
+
+			<div id="c_correo_nombre">
+				{{ form_label(form_proyecto.nombre,
+														"Nombre:") }}
+				{{ form_errors(form_proyecto.nombre) }}
+				{{ form_widget(form_proyecto.nombre) }}
+			</div>
+			
+			<div id="c_correo_mail">
+				{{ form_label(form_proyecto.descripcion,
+													"Descripción:") }}
+				{{ form_errors(form_proyecto.descripcion) }}
+				{{ form_widget(form_proyecto.descripcion) }}
+			</div>
+			
+			<div id="c_correo_cargo">
+				{{ form_label(form_proyecto.fechainicio,
+										"Fecha inicio (DDMMAAAA):") }}
+				{{ form_errors(form_proyecto.fechainicio) }}
+				{{ form_widget(form_proyecto.fechainicio) }}
+			</div>		
+
+			<div id="c_correo_boletin">
+				{{ form_label(form_proyecto.fechafinal,
+										"Fecha final (DDMMAAAA):") }}
+				{{ form_errors(form_proyecto.fechafinal) }}
+				{{ form_widget(form_proyecto.fechafinal) }}
+			</div>	
+			
+			<div id="datos_envio">
+			<button type="submit"  class="botones_verde" 
+						title="Editar Correo" >Crear proyecto</button>
+		    </div>
+         {{ form_rest(form_proyecto) }}
+ </form> 
+ </div>

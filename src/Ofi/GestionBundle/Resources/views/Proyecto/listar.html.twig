@@ -1,0 +1,61 @@
+<table>
+        
+        <thead>
+            <tr>
+                <th class="acciones"></th>
+				<th class="alaiz">Nombre</th>
+				<th class="alaiz">Descripción</th>
+				<th class="alaiz">Fecha Inicio</th> 
+				<th class="alaiz">Fecha final</th>  
+				<th class="acciones"></th>        
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            {% set n=1 %}
+        {% for proyecto in entity %}
+        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+        
+            <tr class=" {{ linea }} ilumina">
+				<td>
+				
+
+				
+	<a href="{{ path('ofi_gestion_eliminarproyecto',
+	{'idproyecto':proyecto.id,'ok':'no' })}}" class="bo_borrar" 
+   title="Eliminar proyecto: {{ proyecto.nombre }}"
+	></a>
+		
+				</td>
+				
+				<td>
+				<a href="{{ path('ofi_gestion_editarproyecto',
+	{'id':proyecto.id })}}" 
+	title="Editar/Ver proyecto: {{ proyecto.nombre }}" 
+	class="bo_editar_txt">
+				{{ proyecto.nombre }}</a></td>
+				
+				<td>{{ proyecto.descripcion }}</td>
+				
+				<td>{{ proyecto.fechainicio|date('d-m-Y') }}</td>
+				
+				<td>{{ proyecto.fechafinal|date('d-m-Y') }}</td>
+				<td>
+	<a href="{{ path('ofi_gestion_editarproyecto',
+	{'id':proyecto.id })}}" 
+	title="Editar proyecto: {{ proyecto.nombre }}" 
+	class="bo_editar"></a>
+				</td>
+            </tr>
+               {% set n=n+1 %}    
+        {% endfor %}
+        </tbody>
+        
+    </table> 

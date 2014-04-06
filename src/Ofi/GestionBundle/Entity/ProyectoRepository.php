@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProyectoRepository extends EntityRepository
 {
+	
+	public function ListaProyectosEmpresa($idempresa)
+	{
+	return $this->getEntityManager()
+            ->createQuery('SELECT p FROM 
+						  OfiGestionBundle:Proyecto p
+						  WHERE p.empresa = :idempresa 
+						  ORDER BY p.fechainicio DESC')
+            ->setParameter('idempresa',$idempresa)
+            ->getResult();
+		
+	}
+	
 }

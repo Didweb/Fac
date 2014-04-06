@@ -94,3 +94,16 @@ ofi_gestion_editarAdminConfig:
 ofi_gestion_updateAdminConfig:
     pattern:  /actualizar-config/{id}
     defaults: { _controller: OfiGestionBundle:AdminConfig:update }
+
+
+ofi_gestion_crearproyecto:
+    pattern:  /crear-proyecto/{id}
+    defaults: { _controller: OfiGestionBundle:Proyecto:crear }
+
+ofi_gestion_eliminarproyecto:
+    pattern:  /eliminar-proyecto/{idproyecto}/{ok}
+    defaults: { _controller: OfiGestionBundle:Proyecto:eliminar }
+    
+ofi_gestion_editarproyecto:
+    pattern:  /editar-proyecto/{idproyecto}
+    defaults: { _controller: OfiGestionBundle:Proyecto:editar }    

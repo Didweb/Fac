@@ -5,45 +5,39 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-
-
-class FacturaType extends AbstractType 
+class ProyectoType extends AbstractType
 {
-	private $nf;
-	
-	public function __construct($nf)
-	{
-		$this->nf = $nf;
-	}
-	
-	
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fecha', 'date', array(
+            ->add('nombre')
+            ->add('descripcion')
+            ->add('fechainicio', 'date', array(
 					'invalid_message'            => 'Error en la fecha.',
 					'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),
 				   'required' => false,
 				   'widget'   => 'single_text',
 					'format' => 'ddMMyyyy'))
-            ->add('nfactura','text',array('data'=>$this->nf))
-            ->add('empresa')
-            ->add('tipofactura', 'choice', array(
-					'choices'   => array('1' => '... para un cliente ...', '0' => '... de un proveedor ...'),
-					'required'  => true));
-            
+            ->add('fechafinal', 'date', array(
+					'invalid_message'            => 'Error en la fecha.',
+					'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),
+				   'required' => false,
+				   'widget'   => 'single_text',
+					'format' => 'ddMMyyyy'))
+            ->add('empresa', 'entity_id', array(
+            'class' => 'Ofi\GestionBundle\Entity\Empresa'))
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ofi\GestionBundle\Entity\Factura'
+            'data_class' => 'Ofi\GestionBundle\Entity\Proyecto'
         ));
     }
 
     public function getName()
     {
-        return 'ofi_gestionbundle_facturatype';
+        return 'ofi_gestionbundle_proyectotype';
     }
 }

@@ -99,8 +99,15 @@
 		</div>
 	 {{ form_rest(edit_form) }}
  </form> 
+ 
+  <div id="estadisticas">
+ <h2>Datos Estadísticos</h2>
+ hola datos
  </div>
  
+ </div>
+ 
+
  
  
  <div id="caja_correo">
@@ -140,6 +147,33 @@
 								{'id': entity.id})) }} 
  </div>   
        
+       
+
+       
+       
+{% if entity.tipo==1 %}       
+       
+ <div id="proyectos">
+ <h2>Proyectos</h2>
+	 <div id="accionaProyectos" class="ver_ocultos" 
+								title="Insertar un proyecto" ></div>  
+ 	 <div id="targetProyectos">				
+	 {{ render(controller('OfiGestionBundle:Proyecto:nuevo',
+								{'idempresa': entity.id})) }} 
+	 </div>
+ 
+ {{ render(controller('OfiGestionBundle:Proyecto:listar',
+								{'idempresa': entity.id})) }} 
+ </div>  
+     
+ {% endif %}     
+  
+  
+  
+
+  
+  
+       
  {% endblock%}
  
  {% block footer %}
@@ -148,8 +182,46 @@
  
  
  
+ 
+ 
  {% block javascripts %}
 <script>
+
+    $ (document) .ready(function(){
+
+		
+		$ ("#accionaProyectos") .click(function () {
+
+				$ ("#targetProyectos") .each(function() {
+
+					displaying  = $(this).css("display");
+
+					if(displaying == "block") {
+
+					$(this).fadeOut('slow',function() {
+
+					$(this).css("displaying","none");
+
+					});
+
+					} else {
+
+					$(this).fadeIn('slow',function() {
+
+					$(this).css("display","block");
+
+					});
+
+					}
+				
+				});
+
+			});
+
+		});	
+
+
+
     $ (document) .ready(function(){
 
 		
