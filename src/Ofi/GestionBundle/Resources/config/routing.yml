@@ -72,6 +72,32 @@ ofi_gestion_crearfactura:
 ofi_gestion_listarfactura:
     pattern:  /listar-factura
     defaults: { _controller: OfiGestionBundle:Factura:listar }
+
+
+ofi_gestion_crearservicio:
+    pattern:  /crear-servicio
+    defaults: { _controller: OfiGestionBundle:Servicio:nuevo }
+
+ofi_gestion_crearnuevoservicio:
+    pattern:  /crearnuevo-servicio
+    defaults: { _controller: OfiGestionBundle:Servicio:crear }
+
+ofi_gestion_editarservicio:
+    pattern:  /editar-servicio/{idservicio}
+    defaults: { _controller: OfiGestionBundle:Servicio:editar }
+
+
+ofi_gestion_actualizarservicio:
+    pattern:  /actualizar-servicio/{idservicio}
+    defaults: { _controller: OfiGestionBundle:Servicio:actualizar }
+
+ofi_gestion_eliminarservicio:
+    pattern:  /eliminar-servicio/{idservicio}
+    defaults: { _controller: OfiGestionBundle:Servicio:eliminar }
+
+ofi_gestion_listarservicio:
+    pattern:  /listar-servicios
+    defaults: { _controller: OfiGestionBundle:Servicio:listar }
     
     
 ofi_gestion_nuevafactura:

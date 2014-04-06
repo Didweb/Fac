@@ -7,35 +7,35 @@
         <input type="hidden" name="_method" value="PUT" />
         {{ form_errors(form_proyecto) }}
 
-			<div id="c_correo_nombre">
+			<div id="c_pro_nombre">
 				{{ form_label(form_proyecto.nombre,
 														"Nombre:") }}
 				{{ form_errors(form_proyecto.nombre) }}
 				{{ form_widget(form_proyecto.nombre) }}
 			</div>
 			
-			<div id="c_correo_mail">
+			<div id="c_pro_des">
 				{{ form_label(form_proyecto.descripcion,
 													"Descripción:") }}
 				{{ form_errors(form_proyecto.descripcion) }}
 				{{ form_widget(form_proyecto.descripcion) }}
 			</div>
 			
-			<div id="c_correo_cargo">
+			<div id="c_pro_finicio">
 				{{ form_label(form_proyecto.fechainicio,
 										"Fecha inicio (DDMMAAAA):") }}
 				{{ form_errors(form_proyecto.fechainicio) }}
 				{{ form_widget(form_proyecto.fechainicio) }}
 			</div>		
 
-			<div id="c_correo_boletin">
+			<div id="c_pro_ffinal">
 				{{ form_label(form_proyecto.fechafinal,
 										"Fecha final (DDMMAAAA):") }}
 				{{ form_errors(form_proyecto.fechafinal) }}
 				{{ form_widget(form_proyecto.fechafinal) }}
 			</div>	
 			
-			<div id="datos_envio">
+			<div id="datos_envio_pro">
 			<button type="submit"  class="botones_verde" 
 						title="Editar Correo" >Crear proyecto</button>
 		    </div>
