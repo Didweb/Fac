@@ -119,7 +119,7 @@ class PresupuestoController extends Controller
        $entity 	= $em->getRepository('OfiGestionBundle:Detalle')
 					 ->find($id);	
 		  		
-		$idpresupuesto	= $entity->getPresupuesto();
+		$idpresupuesto = $entity->getPresupuesto()->getId();
 		$em->remove($entity);
         $em->flush();
 		
@@ -127,12 +127,15 @@ class PresupuestoController extends Controller
 						->add('presupuesto_error',
 						'Se ha eliminado un detalle del presupuesto.');
 						
-		$entityPre 	= $em->getRepository('OfiGestionBundle:Presupuesto')
-					 ->find($idpresupuesto);
+	  $entity = new Detalle();	
+	  $em = $this->getDoctrine()->getManager();
+      $idpro= $em->getReference('OfiGestionBundle:Presupuesto', $idpresupuesto);
+	  $entity->setPresupuesto($idpro);						
+	  $form   = $this->createForm(new DetallePresupuestoType(), $entity);	
 
       return $this->render('OfiGestionBundle:Presupuesto:editar.html.twig',
-			array('entity' => $entityPre,
-				  'form_detallepre'   => $form->createView()));
+					array('entity' => $entity,
+						  'form_detallepre'   => $form->createView()));
 			
 				
 	}
