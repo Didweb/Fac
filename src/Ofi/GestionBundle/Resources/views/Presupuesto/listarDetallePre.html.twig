@@ -2,8 +2,9 @@
         
         <thead>
             <tr>
-               <th class="alaiz">Nombre</th>
-				<th class="alaiz">Fecha</th>
+               <th class="alaiz">Descripcion</th>
+				<th class="alaiz">Servicio</th>
+				<th class="alaiz">Precio</th>
 				<th class="acciones"></th>        
             </tr>
             
@@ -23,11 +24,15 @@
             <tr class=" {{ linea }} ilumina">
 				
 				<td>
-				{{ presupuesto.nombre }}
+				{{ presupuesto.descripcion }}
+				</td>
+
+				<td>
+				{{ presupuesto.servicio }}
 				</td>
 				
 				<td>
-				{{ presupuesto.fecha|date('d-m-Y')}}
+				{{ presupuesto.precio }}
 				</td>
 				
 
@@ -35,10 +40,9 @@
 				
             
 				<td>
-	<a href="{{ path('ofi_gestion_editarpresupuesto',
-	{'idpresupuesto':presupuesto.id })}}" 
-	title="Editar presupuesto: {{ presupuesto.id }}" 
-	class="bo_editar"></a>
+				<a href="{{ path('ofi_gestion_eliminardetallepre',
+				{'id':presupuesto.presupuesto.id}) }}" class="bo_borrar" 
+				title="Eliminar detalle del presupuesto: {{ presupuesto.presupuesto.nombre }}"></a>
 				</td>
             </tr>
                {% set n=n+1 %}    

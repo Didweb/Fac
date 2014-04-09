@@ -54,6 +54,11 @@ ofi_gestion_eliminartelefono:
     pattern:  /eliminar-telefono/{id}
     defaults: { _controller: OfiGestionBundle:Telefono:eliminar }
 
+
+ofi_gestion_eliminardetallepre:
+    pattern:  /eliminar-detalle-pre/{id}
+    defaults: { _controller: OfiGestionBundle:Presupuesto:eliminarDetalle }
+
 ofi_gestion_crearcdatofac:
     pattern:  /crear-datofac/{id}
     defaults: { _controller: OfiGestionBundle:DatoFac:crear }
@@ -92,6 +97,8 @@ ofi_gestion_crearnuevoservicio:
 ofi_gestion_editarservicio:
     pattern:  /editar-servicio/{idservicio}
     defaults: { _controller: OfiGestionBundle:Servicio:editar }
+
+
 
 
 ofi_gestion_actualizarservicio:
@@ -143,4 +150,10 @@ ofi_gestion_editarproyecto:
         
 ofi_gestion_creardetallepresupuesto:
     pattern:  /crear-detallepresupuesto/{idpresupuesto}/{idproyecto}
-    defaults: { _controller: OfiGestionBundle:Proyecto:creardetalle }
+    defaults: { _controller: OfiGestionBundle:Presupuesto:creardetalle }
+
+
+
+ofi_gestion_editarpresupuesto:
+    pattern:  /editar-presupuesto/{idpresupuesto}
+    defaults: { _controller: OfiGestionBundle:Presupuesto:editar }

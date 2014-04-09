@@ -10,7 +10,7 @@ use Ofi\GestionBundle\Entity\Presupuesto;
  * Detalle
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ofi\GestionBundle\Entity\DetallesRepository")
+ * @ORM\Entity
  */
 class Detalle
 {

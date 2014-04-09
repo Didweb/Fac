@@ -29,6 +29,17 @@ class PresupuestoController extends Controller
 	}
 	
 
+	public function listadoDetallePreAction($idpresupuesto)
+	{
+	  $em = $this->getDoctrine()->getManager();
+      $entity = $em->getRepository('OfiGestionBundle:Detalle')
+						->findByPresupuesto($idpresupuesto);	
+
+       return $this->render('OfiGestionBundle:Presupuesto:listarDetallePre.html.twig',
+					array('entity' => $entity));
+		
+	}
+
 
 	public function nuevoAction($idproyecto)
 	{
@@ -99,5 +110,66 @@ class PresupuestoController extends Controller
 						  'form_detallepre'   => $form->createView()));
 		
 	}
+
+
+
+	public function eliminarDetalleAction($id)
+	{
+	   $em 		= $this->getDoctrine()->getManager();
+       $entity 	= $em->getRepository('OfiGestionBundle:Detalle')
+					 ->find($id);	
+		  		
+		$idpresupuesto	= $entity->getPresupuesto();
+		$em->remove($entity);
+        $em->flush();
+		
+		$this->get('session')->getFlashBag()
+						->add('presupuesto_error',
+						'Se ha eliminado un detalle del presupuesto.');
+						
+		$entityPre 	= $em->getRepository('OfiGestionBundle:Presupuesto')
+					 ->find($idpresupuesto);
+
+      return $this->render('OfiGestionBundle:Presupuesto:editar.html.twig',
+			array('entity' => $entityPre,
+				  'form_detallepre'   => $form->createView()));
+			
+				
+	}
+
+
+	public function creardetalleAction(Request $request)
+	{
+	$entity  = new Detalle();
+    $form = $this->createForm(new DetallePresupuestoType(), $entity);
+    $form->bind($request);
+
+    if ($form->isValid()) {
+		$em = $this->getDoctrine()->getManager();
+		
+        $em->persist($entity);
+        $em->flush();
+        $idpresupuesto 	= $entity->getId();
+        $idproyecto 	= $entity->getPresupuesto()->getProyecto()->getId();
+		$this->get('session')->getFlashBag()
+					->add('presupuesto',
+					'Se ha creado un nuevo detalle  para este presupuesto.');
+		 
+		
+		 
+        }else{
+			$this->get('session')->getFlashBag()
+					->add('presupuesto_error',
+					'<b>Error</b>:  No se ha añadido el detalle del presupuesto.');
+			}
+
+
+       return $this->render('OfiGestionBundle:Presupuesto:editar.html.twig',
+					array('entity' => $entity,
+						  'form_detallepre'   => $form->createView()));
+		
+	}
+
+
 	
 }	
