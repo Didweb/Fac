@@ -1,0 +1,38 @@
+Esto es editar presupuesto
+
+
+ <div id="crear_correo">
+ <h3>{{ entity.presupuesto.nombre }}</h3>
+ 
+ <form id="form_correo" action="{{ path('ofi_gestion_creardetallepresupuesto',{'idpresupuesto': entity.presupuesto.id,'editpre':'si','idproyecto':entity.presupuesto.id}) }}" method="post" {{ form_enctype(form_detallepre) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_errors(form_detallepre) }}
+
+
+			<div id="c_correo_mail">
+				{{ form_label(form_detallepre.servicio,"Servicio:") }}
+				{{ form_errors(form_detallepre.servicio) }}
+				{{ form_widget(form_detallepre.servicio) }}
+			</div>
+
+			<div id="c_correo_nombre">
+				{{ form_label(form_detallepre.descripcion,"Descripción:") }}
+				{{ form_errors(form_detallepre.descripcion) }}
+				{{ form_widget(form_detallepre.descripcion) }}
+			</div>
+			
+			<div id="c_correo_mail">
+				{{ form_label(form_detallepre.precio,"Precio:") }}
+				{{ form_errors(form_detallepre.precio) }}
+				{{ form_widget(form_detallepre.precio) }}
+			</div>
+			
+
+			<div id="datos_envio">
+			<button type="submit"  
+			class="botones_verde" title="Editar Correo" >
+								Añadir detalle</button>
+		    </div>
+         {{ form_rest(form_detallepre) }}
+ </form> 
+ </div>

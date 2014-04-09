@@ -1,0 +1,45 @@
+<table>
+        
+        <thead>
+            <tr>
+               <th class="alaiz">Nombre</th>
+				<th class="alaiz">Fecha</th>
+				<th class="acciones"></th>        
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            {% set n=1 %}
+        {% for presupuesto in entity %}
+        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+        
+            <tr class=" {{ linea }} ilumina">
+				
+				<td>
+				{{ presupuesto.nombre }}
+				</td>
+				
+				<td>
+				{{ presupuesto.fecha|date('d-m-Y')}}
+				</td>
+				
+
+				
+				
+            
+				<td>
+xx
+				</td>
+            </tr>
+               {% set n=n+1 %}    
+        {% endfor %}
+        </tbody>
+        
+    </table> 

@@ -28,6 +28,13 @@ ofi_gestion_eliminarempresa:
     pattern:  /listado-empresas/{id}/{ok}
     defaults: { _controller: OfiGestionBundle:Empresa:eliminar }
 
+ofi_gestion_crearpresupuesto:
+    pattern:  /crear-presupuesto/{id}
+    defaults: { _controller: OfiGestionBundle:Presupuesto:crear }
+
+ofi_gestion_editarpresupuesto:
+    pattern:  /editar-presupuesto/{idpresupuesto}
+    defaults: { _controller: OfiGestionBundle:Presupuesto:editar }
 
 
 ofi_gestion_crearccorreo:
@@ -132,4 +139,8 @@ ofi_gestion_eliminarproyecto:
     
 ofi_gestion_editarproyecto:
     pattern:  /editar-proyecto/{idproyecto}
-    defaults: { _controller: OfiGestionBundle:Proyecto:editar }    
+    defaults: { _controller: OfiGestionBundle:Proyecto:editar }
+        
+ofi_gestion_creardetallepresupuesto:
+    pattern:  /crear-detallepresupuesto/{idpresupuesto}/{idproyecto}
+    defaults: { _controller: OfiGestionBundle:Proyecto:creardetalle }

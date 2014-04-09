@@ -133,4 +133,9 @@ class Servicio
     {
         return $this->precio;
     }
+
+	public function __toString()
+	{
+		return $this->nombre;	
+	}  
 }

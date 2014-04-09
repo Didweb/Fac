@@ -117,4 +117,29 @@ class Presupuesto
     {
         return $this->fecha;
     }
+    
+     /**
+     * Set proyecto
+     *
+     * @param \DateTime $proyecto
+     * @return Presupuesto
+     */
+    public function setProyecto($proyecto)
+    {
+        $this->proyecto = $proyecto;
+
+        return $this;
+    }
+
+    /**
+     * Get proyecto
+     *
+     * @return \DateTime 
+     */
+    public function getProyecto()
+    {
+        return $this->proyecto;
+    }
+    
+    
 }

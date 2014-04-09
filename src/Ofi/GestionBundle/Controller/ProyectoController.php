@@ -106,10 +106,16 @@ class ProyectoController extends Controller
 
 
 
-	public function editarAction($idproyecto)
+	public function editarAction($idproyecto,$editpre = "no")
 	{
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('OfiGestionBundle:Proyecto')
+						->find($idproyecto);		
+		
 	return $this->render('OfiGestionBundle:Proyecto:editar.html.twig',
-					array('id'=>$idproyecto)
+					array(	'entity'	=> $entity,
+							'id'		=> $idproyecto,
+							'editpre'	=> $editpre)
 					);	
 	}	
 

@@ -111,4 +111,52 @@ class Detalle
     {
         return $this->precio;
     }
+
+    /**
+     * Set presupuesto
+     *
+     * @param float $presupuesto
+     * @return Detalles
+     */
+    public function setPresupuesto($presupuesto)
+    {
+        $this->presupuesto = $presupuesto;
+
+        return $this;
+    }
+
+    /**
+     * Get presupuesto
+     *
+     * @return float 
+     */
+    public function getPresupuesto()
+    {
+        return $this->presupuesto;
+    }
+    
+    /**
+     * Set servicio
+     *
+     * @param float $servicio
+     * @return Detalles
+     */
+    public function setServicio($servicio)
+    {
+        $this->servicio = $servicio;
+
+        return $this;
+    }
+
+    /**
+     * Get servicio
+     *
+     * @return float 
+     */
+    public function getServicio()
+    {
+        return $this->servicio;
+    }
+    
+    
 }

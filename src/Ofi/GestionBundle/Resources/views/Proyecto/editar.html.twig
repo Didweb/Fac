@@ -1,1 +1,86 @@
-Esto es editar proyecto
+{%  extends '::forntend.html.twig' %}
+
+{% block title %}FAC - Editar Empresa{% endblock %}
+{% block metas %}
+<meta name="description" content="Home">
+<meta name="keywords" content="FAC">
+<meta name="robots" CONTENT="noindex, nofollow">
+{% endblock%}
+
+
+ {% block stylesheets %}
+ {{ parent() }}
+ <script src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
+  <script src="{{ asset('js/mostrar_divs.js') }}"></script>
+ <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
+ <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
+  <link href="{{ asset('bundles/ofigestion/css/proyecto.css') }}" rel="stylesheet" type="text/css" /> 
+ {% endblock%}
+
+
+
+
+
+
+{% block cabecera %}
+{% include 'OfiGestionBundle:Fijas:sesion.html.twig' %}
+{% include 'OfiGestionBundle:Fijas:menu.html.twig' %} 
+ {% endblock%}
+ 
+ 
+ {% block body %}
+ 
+ 
+ {% for flashMessage2 in app.session.flashbag.get('proyecto') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('proyecto_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+ 
+ <h1><span class="color_claro">Proyecto:</span> {{ entity.nombre }}</h1>
+ <a href="{{ path('ofi_gestion_editarempresa',{'id':entity.empresa.id }) }}" title="volver a ficha de empresa: {{ entity.empresa }}" class="ver_DF">{{ entity.empresa }}</a>
+<section id="res_proyecto">
+	<h2>Presupuestos</h2>
+	
+		<div id="accionaPre" class="ver_ocultos" 
+				title="Insertar más preupuetos a este proyecto" ></div>
+						
+		<div id="targetPre" class="caudro_form">
+		{{ render(controller('OfiGestionBundle:Presupuesto:nuevo',
+							{'idproyecto': entity.id})) }} 
+		</div>
+	
+		{% if editpre == 'si' %}
+		{{ render(controller('OfiGestionBundle:Presupuesto:detallenuevo',
+							{'id': entity.id})) }} 
+		{% endif %}
+		
+	
+	
+		{{ render(controller('OfiGestionBundle:Presupuesto:listadoPro',
+							{'idproyecto': entity.id })) }} 
+							
+	<h2>Facturas</h2>
+		{{ render(controller('OfiGestionBundle:Factura:listadoPro',
+							{'idproyecto': entity.id })) }} 
+</section>  
+  
+  
+  
+
+  
+  
+       
+ {% endblock%}
+ 
+ {% block footer %}
+ {% include 'OfiGestionBundle:Fijas:footer.html.twig' %} 
+ {% endblock%}
+ 

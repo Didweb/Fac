@@ -1,3 +1,36 @@
+  $ (document) .ready(function(){
+
+		
+		$ ("#accionaPre") .click(function () {
+
+				$ ("#targetPre") .each(function() {
+
+					displaying  = $(this).css("display");
+
+					if(displaying == "block") {
+
+					$(this).fadeOut('slow',function() {
+
+					$(this).css("displaying","none");
+
+					});
+
+					} else {
+
+					$(this).fadeIn('slow',function() {
+
+					$(this).css("display","block");
+
+					});
+
+					}
+				
+				});
+
+			});
+
+		});	
+ 
  $ (document) .ready(function(){
 
 		

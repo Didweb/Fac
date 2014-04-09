@@ -111,6 +111,18 @@ class FacturaController extends Controller
 
 
 
+	public function listadoProAction($idproyecto)
+	{
+	  $em = $this->getDoctrine()->getManager();
+      $entity = $em->getRepository('OfiGestionBundle:Factura')
+						->findByEmpresa($idproyecto);	
+
+       return $this->render('OfiGestionBundle:Factura:listarPro.html.twig',
+					array('entity' => $entity));
+	}
+
+
+
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))

@@ -1,0 +1,50 @@
+<table>
+        
+        <thead>
+            <tr>
+               
+				<th class="alaiz">Fecha</th>
+				<th class="alaiz">Número Factura</th>
+				<th class="alaiz">Empresa</th>
+				<th class="acciones"></th>        
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            {% set n=1 %}
+        {% for factura in entity %}
+        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+        
+            <tr class=" {{ linea }} ilumina">
+				<td>
+				{{ factura.fecha|date('d-m-Y')}}
+				</td>
+				
+				<td>
+				{{ factura.nfactura }}</td>
+				
+				<td>
+				{{ factura.empresa }}
+				</td>
+				
+				
+            
+				<td>
+	<a href="{{ path('ofi_gestion_editarfactura',
+	{'id':factura.id })}}" 
+	title="Editar Factura: {{ factura.nfactura }}" 
+	class="bo_editar"></a>
+				</td>
+            </tr>
+               {% set n=n+1 %}    
+        {% endfor %}
+        </tbody>
+        
+    </table> 
