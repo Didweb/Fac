@@ -67,7 +67,11 @@
 				{{ form_widget(form_servicio.precio) }}
 			</div>	
 
-
+			<div>
+				{{ form_label(form_servicio.caduca,"Caduca (nº de días):") }}
+				{{ form_errors(form_servicio.caduca) }}
+				{{ form_widget(form_servicio.caduca) }}
+			</div>	
 			
 
 			<div id="datos_envio">

@@ -70,7 +70,13 @@
 			{{ form_widget(edit_form.precio) }}
 		</div>		
 	
-				
+		<div id="c_nomsocial">
+			{{ form_label(edit_form.caduca,"Caduca (nº de días):") }}
+			{{ form_errors(edit_form.caduca) }}
+			{{ form_widget(edit_form.caduca) }}
+		</div>		
+	
+					
 		<div id="datos_envio">
 		
 		<button type="submit"  class="botones_verde" 

@@ -31,6 +31,13 @@ class Servicio
     private $nombre;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="caduca", type="string", length=255)
+     */
+    private $caduca;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="descripcion", type="string", length=255)
@@ -86,6 +93,30 @@ class Servicio
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+
+    /**
+     * Set caduca
+     *
+     * @param string $caduca
+     * @return Servicio
+     */
+    public function setCaduca($caduca)
+    {
+        $this->caduca = $caduca;
+
+        return $this;
+    }
+
+    /**
+     * Get caduca
+     *
+     * @return string 
+     */
+    public function getCaduca()
+    {
+        return $this->caduca;
     }
 
     /**

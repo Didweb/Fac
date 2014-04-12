@@ -22,6 +22,7 @@ class PresupuestoType extends AbstractType
 				   'widget'   => 'single_text',
 					'format' => 'ddMMyyyy'))
             ->add('nombre')
+            ->add('texto')
             ->add('proyecto', 'entity_id', array(
             'class' => 'Ofi\GestionBundle\Entity\Proyecto'))
 

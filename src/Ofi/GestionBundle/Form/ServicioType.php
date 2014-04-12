@@ -13,6 +13,7 @@ class ServicioType extends AbstractType
             ->add('nombre')
             ->add('descripcion','textarea')
             ->add('precio')
+            ->add('caduca')
         ;
     }
 

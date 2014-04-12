@@ -32,6 +32,13 @@ class Presupuesto
     private $nombre;
 
     /**
+     * @var text
+     *
+     * @ORM\Column(name="texto", type="text")
+     */
+    private $texto;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="date")
@@ -94,6 +101,31 @@ class Presupuesto
     {
         return $this->nombre;
     }
+
+
+    /**
+     * Set texto
+     *
+     * @param text $texto
+     * @return Presupuesto
+     */
+    public function setTexto($texto)
+    {
+        $this->texto = $texto;
+
+        return $this;
+    }
+
+    /**
+     * Get texto
+     *
+     * @return text 
+     */
+    public function getTexto()
+    {
+        return $this->texto;
+    }
+
 
     /**
      * Set fecha
