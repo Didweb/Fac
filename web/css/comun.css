@@ -59,6 +59,19 @@ aside#sesion { float:right; margin-right:10px; background-color:#F4F4D6;
 /*-------------------------------------------------------------------
  * Botones
  * ----------------------------------------------------------------- */
+ 
+.retorno { background-image:url(../images/anterior.png); position:left; 
+			background-repeat:no-repeat; padding-left:25px; padding-bottom:5px;
+			color:#085D7F; text-decoration:none;
+			} 
+.retorno:hover {color:#4A95B3; text-decoration:underline;}	
+
+		
+ .vovler { width:22px; height:22px; 
+		display:block;
+		background-image:url(../images/volver.png);}
+ 
+ 
 .bo_borrar {background-image:url(../images/borrar.png); 
 			width:22px; height:22px; display:block; 
 			opacity:0.4; filter:alpha(opacity=40);
@@ -75,8 +88,11 @@ aside#sesion { float:right; margin-right:10px; background-color:#F4F4D6;
 .bo_editar_txt:hover {text-decoration:underline;  color:#363C46;}
 
 
-.ver_ocultos {float:right; margin-top:0px; background-image: url(../images/ver_registros.png); width:29px; height:29px;
-		display:block; background-repeat:no-repeat; opacity: 0.6; cursor:pointer; background-size:26px;}
+.ver_ocultos {float:right; margin-top:0px; 
+		background-image: url(../images/ver_registros.png); 
+		width:29px; height:29px; display:block; 
+		background-repeat:no-repeat; opacity: 0.6; 
+		cursor:pointer; background-size:26px;}
 .ver_ocultos:hover {opacity: 1.0;}
 	
 /*-------------------------------------------------------------------

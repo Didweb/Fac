@@ -1,4 +1,6 @@
 section#res_proyecto {clear:both; float:left; text-align:left; 
-		padding:15px;}
+		padding:15px; width:90%;}
 
-section#res_proyecto h2 {font-size:16px; color:#cccccc;}
+section#res_proyecto h2 {float:left; font-size:16px; color:#cccccc;}
+
+.listado_en_presu {clear:both; float:left; width:100%;}

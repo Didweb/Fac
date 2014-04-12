@@ -30,11 +30,28 @@
  
  {% block body %}
 
- <h1>{{ entity.presupuesto.nombre }}  </h1>
- <a href="{{ path('ofi_gestion_editarempresa',{'id':entity.presupuesto.proyecto.empresa.id }) }}" title="volver a ficha de empresa: {{ entity.presupuesto.proyecto.empresa.nombre }}" class="ver_DF">{{ entity.presupuesto.proyecto.empresa.nombre }}</a>
+ <h1>
+ 	<a href="{{ path('ofi_gestion_editarempresa',
+					{'id':entity.presupuesto.proyecto.empresa.id }) }}" 
+				title="volver a ficha de empresa: {{ entity.presupuesto.proyecto.empresa }}" 
+				class="vovler"></a>
+  {% if entity.presupuesto.proyecto.empresa.tipo==1 %}
+	<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" 
+													title="Cliente" />
+  {% elseif tipo==0 %}
+	<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor" 
+													title="Proveedor" />
+  {% endif %}
+ 
+ 
+ {{ entity.presupuesto.proyecto.empresa.nombre }} {{ entity.presupuesto.proyecto.empresa.apellido }} 
+  <br />
+  <a class="retorno" href="{{ path('ofi_gestion_editarproyecto',
+	{'idproyecto':entity.presupuesto.proyecto.id })}}" title="Volver a el Proyecto">{{ entity.presupuesto.proyecto.nombre }}</a> /  
+ {{ entity.presupuesto.nombre }}  </h1>
 <section id="res_proyecto">
 
- <div id="crear_correo">
+
 
  
  <form id="form_correo" action="{{ path('ofi_gestion_creardetallepresupuesto',{'idpresupuesto': entity.presupuesto.id,'editpre':'si','idproyecto':entity.presupuesto.id}) }}" method="post" {{ form_enctype(form_detallepre) }}>

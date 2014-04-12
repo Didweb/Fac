@@ -1,0 +1,87 @@
+{%  extends '::forntend.html.twig' %}
+
+{% block title %}FAC - Inicio{% endblock %}
+{% block metas %}
+<meta name="description" content="Home">
+<meta name="keywords" content="FAC">
+<meta name="robots" CONTENT="noindex, nofollow">
+{% endblock%}
+
+
+ {% block stylesheets %}
+ {{ parent() }}
+ <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
+ <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/gestionbundle/css/cliente.css') }}" rel="stylesheet" type="text/css" /> 
+ {% endblock%}
+
+
+
+
+
+
+{% block cabecera %}
+{% include 'OfiGestionBundle:Fijas:sesion.html.twig' %}
+{% include 'OfiGestionBundle:Fijas:menu.html.twig' %} 
+ {% endblock%}
+ 
+ 
+ {% block body %}
+ 
+ 
+ {% for flashMessage2 in app.session.flashbag.get('cliente') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('cliente_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+ 
+ 
+ <table>
+        
+        <thead>
+            <tr>
+                <th class="acciones">Acciones</th>
+				<th class="alaiz">Nombre</th>
+				<th class="alaiz">Apellido</th>
+				<th class="alaiz">Nombre comercial</th>          
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            {% set n=1 %}
+        {% for cliente in entity %}
+        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+        
+            <tr class=" {{ linea }}">
+				<td>
+				<a href="{{ path('ofi_gestion_editarcliente',{'id':cliente.id })}}">Edita</a>
+				<a href="{{ path('ofi_gestion_eliminarcliente',{'id':cliente.id,'ok':'no' })}}">Eliminar</a>
+				</td>
+				<td>{{ cliente.nombre }}</td>
+				<td>{{ cliente.apellido }}</td>
+				<td>{{ cliente.nomsocial }}</td>
+            
+            </tr>
+               {% set n=n+1 %}    
+        {% endfor %}
+        </tbody>
+        
+    </table>    
+ {% endblock%}
+ 
+ {% block footer %}
+ {% include 'OfiGestionBundle:Fijas:footer.html.twig' %} 
+ {% endblock%}
