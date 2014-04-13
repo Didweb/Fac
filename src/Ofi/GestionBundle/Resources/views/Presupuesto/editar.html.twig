@@ -75,7 +75,7 @@ Introducir los detalles del presupuesto
 	<h2>Introducir detalles para el presupuesto...</h2>
 	<div id="accionaDetalle" class="ver_ocultos" 
 								title="Insertar más detalles al presupuesto" ></div> 
-	<div id="targetDetalle" class="caudro_form">	
+	<div id="targetDetalle" class="caudro_form explica">	
 	 <form id="form_correo"   action="{{ path('ofi_gestion_creardetallepresupuesto',{'idpresupuesto': entity.presupuesto.id,'editpre':'si','idproyecto':entity.presupuesto.id}) }}" method="post" {{ form_enctype(form_detallepre) }}>
 			<input type="hidden" name="_method" value="PUT" />
 			{{ form_errors(form_detallepre) }}

@@ -6,7 +6,7 @@ section#res_proyecto h2 {float:left; font-size:16px; color:#cccccc;}
 .listado_en_presu {clear:both; float:left; width:100%;}
 
 .explica	{clear:both; float:left; width:100%; color:#969F9F; 
-			font-size:12px; margin-top:0px; margin-bottom:1%;}
+			font-size:12px; margin-top:0px; margin-bottom:1%; margin-top:1%; }
 			
 #for_detalle {clear:both; float:left; width:100%;  }			
 #for_detalle form {width:100%; margin-bottom:15px;}
