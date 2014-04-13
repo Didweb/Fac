@@ -1,0 +1,40 @@
+ <div id="crear_proyecto">
+ <form id="form_correo" 
+		action="{{ path('ofi_gestion_editaelpresupuesto',
+					{'idpresupuesto': entity.id}) }}" 
+					method="post" {{ form_enctype(formulario_presupuesto) }}>
+					
+        <input type="hidden" name="_method" value="POST" />
+        {{ form_errors(formulario_presupuesto) }}
+
+			<div id="c_pre_nombre">
+				{{ form_label(formulario_presupuesto.nombre,
+														"Nombre:") }}
+				{{ form_errors(formulario_presupuesto.nombre) }}
+				{{ form_widget(formulario_presupuesto.nombre) }}
+			</div>
+			
+
+			
+			<div id="c_pre_finicio">
+				{{ form_label(formulario_presupuesto.fecha,
+										"Fecha  (DDMMAAAA):") }}
+				{{ form_errors(formulario_presupuesto.fecha) }}
+				{{ form_widget(formulario_presupuesto.fecha) }}
+			</div>		
+
+
+			<div id="c_pre_des">
+				{{ form_label(formulario_presupuesto.texto,
+													"Descripción:") }}
+				{{ form_errors(formulario_presupuesto.texto) }}
+				{{ form_widget(formulario_presupuesto.texto) }}
+			</div>
+
+			<div id="datos_envio_pro">
+			<button type="submit"  class="botones_verde" 
+						title="Editar Correo" >Editar</button>
+		    </div>
+         {{ form_rest(formulario_presupuesto) }}
+ </form> 
+ </div>

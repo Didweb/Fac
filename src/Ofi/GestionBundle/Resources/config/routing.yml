@@ -151,7 +151,13 @@ ofi_gestion_editarproyecto:
 ofi_gestion_editaelproyecto:
     pattern:  /editar-el-proyecto/{idproyecto}
     defaults: { _controller: OfiGestionBundle:Proyecto:editarelproyecto }
-        
+
+ofi_gestion_editaelpresupuesto:
+    pattern:  /editar-el-presupuesto/{idpresupuesto}
+    defaults: { _controller: OfiGestionBundle:Presupuesto:editarelpresupuesto }
+ 
+ 
+ 
 ofi_gestion_creardetallepresupuesto:
     pattern:  /crear-detallepresupuesto/{idpresupuesto}/{idproyecto}
     defaults: { _controller: OfiGestionBundle:Presupuesto:creardetalle }

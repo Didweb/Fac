@@ -206,4 +206,53 @@ class PresupuestoController extends Controller
 			}		
 	}
 	
+	public function editarFormAction($idpresupuesto)
+	{
+		$em 	= $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('OfiGestionBundle:Presupuesto')
+						->find($idpresupuesto);
+		$form = $this->createForm(new PresupuestoType(), $entity);
+		
+		return $this->render('OfiGestionBundle:Presupuesto:editarFormulario.html.twig',
+					array(	'entity'	=> $entity,
+							'formulario_presupuesto'   => $form->createView())
+					);	
+	}
+	
+	
+	public function editarelpresupuestoAction(Request $request,$idpresupuesto)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('OfiGestionBundle:Presupuesto')
+						->find($idpresupuesto);
+		$form = $this->createForm(new PresupuestoType(), $entity);
+		$form->bind($request);
+
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($entity);
+			$em->flush();
+			$this->get('session')->getFlashBag()
+						->add('presupuesto',
+						'Se han editado los datos de este presupuesto.');
+						
+					}else{
+			$this->get('session')->getFlashBag()
+						->add('presupuesto_error',
+						'NO se han podido editar  este presupeusto.');			
+						
+						}
+		$entity = new Detalle();	
+		$em = $this->getDoctrine()->getManager();
+		$idpro= $em->getReference('OfiGestionBundle:Presupuesto', $idpresupuesto);
+		$entity->setPresupuesto($idpro);						
+		$form   = $this->createForm(new DetallePresupuestoType(), $entity);
+					
+		return $this->render('OfiGestionBundle:Presupuesto:editar.html.twig',
+					array(	'entity'	=> $entity,
+							'id'		=> $idpresupuesto,
+							'form_detallepre'   => $form->createView())
+					);	
+	}
+	
 }	
