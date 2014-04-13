@@ -2,7 +2,19 @@ ofi_num_fac:
     resource: "@OfiNumFacBundle/Resources/config/routing.yml"
     prefix:   /
 
+ofi_security:
+    resource: "@OfiSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ofi_gestion:
     resource: "@OfiGestionBundle/Resources/config/routing.yml"
     prefix:   /
 
+login:
+    pattern:   /login
+    defaults:  { _controller: OfiSecurityBundle:Security:login }
+login_check:
+    pattern:   /login_check
+
+logout:
+    path:   /logout
