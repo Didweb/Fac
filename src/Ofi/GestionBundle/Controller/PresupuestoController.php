@@ -21,7 +21,7 @@ class PresupuestoController extends Controller
 	{
 	  $em = $this->getDoctrine()->getManager();
       $entity = $em->getRepository('OfiGestionBundle:Presupuesto')
-						->findByProyecto($idproyecto);	
+						->findByProyecto($idproyecto);					
 
        return $this->render('OfiGestionBundle:Presupuesto:listarPro.html.twig',
 					array('entity' => $entity));
@@ -33,7 +33,8 @@ class PresupuestoController extends Controller
 	{
 	  $em = $this->getDoctrine()->getManager();
       $entity = $em->getRepository('OfiGestionBundle:Detalle')
-						->findByPresupuesto($idpresupuesto);	
+						->findByPresupuesto($idpresupuesto);
+				
 
        return $this->render('OfiGestionBundle:Presupuesto:listarDetallePre.html.twig',
 					array('entity' => $entity));
@@ -173,6 +174,36 @@ class PresupuestoController extends Controller
 		
 	}
 
-
+	public function eliminarAction($idpresupuesto,$ok)
+	{
+	  $em = $this->getDoctrine()->getManager();
+      $entity = $em->getRepository('OfiGestionBundle:Presupuesto')
+						->find($idpresupuesto);	
+		
+	  if($ok=='no'){
+		  
+		 return $this->render(
+					'OfiGestionBundle:Presupuesto:eliminar.html.twig',
+					array('entity' => $entity,'ok'=>'no'));
+		  
+		  }elseif($ok=='si'){
+		$nombreeliminado = $entity->getNombre();	  		
+		
+		$em->remove($entity);
+        $em->flush();
+		
+		$this->get('session')->getFlashBag()
+						->add('proyecto_error',
+						'Se ha eliminado este presupuesto:<br /> <b>'.
+						$nombreeliminado.'</b>.');
+						
+			
+							
+       return $this->redirect($this->generateUrl(
+						'ofi_gestion_editarproyecto', 
+						array('idproyecto' => $entity->getProyecto()->getId())));
+			
+			}		
+	}
 	
 }	

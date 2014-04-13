@@ -19,7 +19,9 @@
  {% endblock%}
 
 
-
+	{% block javascripts %}
+		{{ tinymce_init() }}
+	{% endblock%}
 
 
 
@@ -52,46 +54,60 @@
 <section id="res_proyecto">
 
 
-
+<p class="explica">
+Introducir los detalles del presupuesto 
+	<b>{{ entity.presupuesto.nombre }}</b>. Correspondiente al proyecto:
+						<b>{{ entity.presupuesto.proyecto.nombre }}</b>
+</p>
  
- <form id="form_correo" action="{{ path('ofi_gestion_creardetallepresupuesto',{'idpresupuesto': entity.presupuesto.id,'editpre':'si','idproyecto':entity.presupuesto.id}) }}" method="post" {{ form_enctype(form_detallepre) }}>
-        <input type="hidden" name="_method" value="PUT" />
-        {{ form_errors(form_detallepre) }}
+	<div id="for_detalle"> 
+	<h2>Introducir detalles para el presupuesto...</h2>
+	<div id="accionaDetalle" class="ver_ocultos" 
+								title="Insertar más detalles al presupuesto" ></div> 
+	<div id="targetDetalle" class="caudro_form">	
+	 <form id="form_correo"   action="{{ path('ofi_gestion_creardetallepresupuesto',{'idpresupuesto': entity.presupuesto.id,'editpre':'si','idproyecto':entity.presupuesto.id}) }}" method="post" {{ form_enctype(form_detallepre) }}>
+			<input type="hidden" name="_method" value="PUT" />
+			{{ form_errors(form_detallepre) }}
 
 
-			<div id="c_correo_mail">
-				{{ form_label(form_detallepre.servicio,"Servicio:") }}
-				{{ form_errors(form_detallepre.servicio) }}
-				{{ form_widget(form_detallepre.servicio) }}
-			</div>
+				<div id="caj_servicio">
+					{{ form_label(form_detallepre.servicio,"Servicio:") }}
+					{{ form_errors(form_detallepre.servicio) }}
+					{{ form_widget(form_detallepre.servicio) }}
+				</div>
 
-			<div id="c_correo_nombre">
-				{{ form_label(form_detallepre.descripcion,"Descripción:") }}
-				{{ form_errors(form_detallepre.descripcion) }}
-				{{ form_widget(form_detallepre.descripcion) }}
-			</div>
-			
-			<div id="c_correo_mail">
-				{{ form_label(form_detallepre.precio,"Precio:") }}
-				{{ form_errors(form_detallepre.precio) }}
-				{{ form_widget(form_detallepre.precio) }}
-			</div>
+				<div id="caj_precio">
+					{{ form_label(form_detallepre.precio,"Precio:") }}
+					{{ form_errors(form_detallepre.precio) }}
+					{{ form_widget(form_detallepre.precio) }}
+				</div>
 
-			
-
-			<div id="datos_envio">
-			<button type="submit"  
-			class="botones_verde" title="Editar Correo" >
-								Añadir detalle</button>
-		    </div>
-         {{ form_rest(form_detallepre) }}
- </form> 
- </div>
+				<div id="caj_des">
+					{{ form_label(form_detallepre.descripcion,"Descripción:") }}
+					{{ form_errors(form_detallepre.descripcion) }}
+					{{ form_widget(form_detallepre.descripcion) }}
+				</div>
+				
 
 
+				
+
+				<div id="datos_envio">
+				<button type="submit"  
+				class="botones_verde" title="Editar Correo" >
+									Añadir detalle</button>
+				</div>
+			 {{ form_rest(form_detallepre) }}
+	 </form>
+	 </div> 
+	 </div>
+
+
+	<div id="lista_detalles_pre">
 		{{ render(controller('OfiGestionBundle:Presupuesto:listadoDetallePre',
 							{'idpresupuesto': entity.presupuesto.id })) }} 
-
+	</div>						
+ </div>
  {% endblock%}
  
  {% block footer %}

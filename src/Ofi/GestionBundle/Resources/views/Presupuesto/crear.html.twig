@@ -1,30 +1,31 @@
- <div id="crear_correo">
+ <div id="crear_proyecto">
+ <h2>Crear nuevo presupuesto</h2>
  <form id="form_correo" action="{{ path('ofi_gestion_crearpresupuesto',{'id': entity.proyecto.id,'editpre':'si'}) }}" method="post" {{ form_enctype(form_pre) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_errors(form_pre) }}
 
-			<div id="c_correo_nombre">
-				{{ form_label(form_pre.nombre,"Nombre:") }}
+			<div id="caj_pre_nombre">
+				{{ form_label(form_pre.nombre,"Nombre del Proyecto:") }}
 				{{ form_errors(form_pre.nombre) }}
 				{{ form_widget(form_pre.nombre) }}
 			</div>
 			
-			<div id="c_correo_mail">
-				{{ form_label(form_pre.fecha,"Fecha:") }}
+			
+			<div id="caj_pre_fecha">
+				{{ form_label(form_pre.fecha,"Fecha (DDMMAAAA):") }}
 				{{ form_errors(form_pre.fecha) }}
 				{{ form_widget(form_pre.fecha) }}
 			</div>
 			
 
-			<div>
-			
+			<div id="caj_pre_texto">
 				{{ form_label(form_pre.texto,"Texto descriptivo:") }}
 				{{ form_errors(form_pre.texto) }}
 				{{ form_widget(form_pre.texto) }}
 			</div>
 
 
-			<div id="datos_envio">
+			<div id="datos_envio_pre">
 			<button type="submit"  
 			class="botones_verde" title="Editar Correo" >
 								Crear Presupuesto</button>

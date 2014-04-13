@@ -3,7 +3,8 @@
         
         <thead>
             <tr>
-               <th class="alaiz">Nombre</th>
+				<th class="acciones"></th> 
+				<th class="alaiz">Nombre</th>
 				<th class="alaiz">Fecha</th>
 				<th class="acciones"></th>        
             </tr>
@@ -24,6 +25,14 @@
             <tr class=" {{ linea }} ilumina">
 				
 				<td>
+	<a href="{{ path('ofi_gestion_eliminarpresupuesto',
+	{'idpresupuesto':presupuesto.id,'ok':'no' })}}" 
+	title="Editar presupuesto: {{ presupuesto.id }}" 
+	class="bo_borrar" ></a>
+				</td>				
+				
+				
+				<td>
 				{{ presupuesto.nombre }}
 				</td>
 				
@@ -31,10 +40,6 @@
 				{{ presupuesto.fecha|date('d-m-Y')}}
 				</td>
 				
-
-				
-				
-            
 				<td>
 	<a href="{{ path('ofi_gestion_editarpresupuesto',
 	{'idpresupuesto':presupuesto.id })}}" 

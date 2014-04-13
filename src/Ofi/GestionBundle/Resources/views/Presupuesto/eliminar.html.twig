@@ -1,0 +1,74 @@
+{%  extends '::forntend.html.twig' %}
+
+{% block title %}FAC - Inicio{% endblock %}
+{% block metas %}
+<meta name="description" content="Home">
+<meta name="keywords" content="FAC">
+<meta name="robots" CONTENT="noindex, nofollow">
+{% endblock%}
+
+
+ {% block stylesheets %}
+ {{ parent() }}
+ <link href="{{ asset('bundles/gestionbundle/css/home.css') }}" rel="stylesheet" type="text/css" />
+ <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/gestionbundle/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
+ {% endblock%}
+
+
+
+
+
+
+{% block cabecera %}
+{% include 'OfiGestionBundle:Fijas:sesion.html.twig' %}
+{% include 'OfiGestionBundle:Fijas:menu.html.twig' %} 
+ {% endblock%}
+ 
+ 
+ {% block body %}
+ 
+ 
+ {% for flashMessage2 in app.session.flashbag.get('empresa') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('empresa_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+ 
+ {% if ok=='no' %}
+ <aside id="pregunta" class="redondeo">
+	Estas seguro de que quieres eliminar este presupuesto...<br />
+	<b>{{ entity.nombre }} </b> <br />
+	Al eliminarlo se perderán todos el resto de datos realcionados con 
+	este presupuetso, tales como: Detalles de presupuesto.<br /><br />
+	<b>Este proceso es irreversible</b><br /><br />
+	 ¿Quieres eliminarlo?
+	<nav id="respuesta">
+	
+	 <a href="{{ path('ofi_gestion_editarproyecto',{'idproyecto':entity.proyecto.id}) }}" 
+	title="No quiero que se elimine este presupuesto" class="noquiero">
+	No quiero eliminarlo</a>
+
+	 <a href="{{ path('ofi_gestion_eliminarpresupuesto',
+	 {'idpresupuesto':entity.id,'ok':'si'}) }}" 
+	 title="Sí, quiero eliminar este empresa " class="siquiero"
+	 >Sí, quiero eliminarlo</a>
+	 
+
+	 </nav>
+	
+ </aside>
+ {% endif %}
+ 
+ 
+ {% endblock%}
+ 
+ {% block footer %}
+ {% include 'OfiGestionBundle:Fijas:footer.html.twig' %} 
+ {% endblock%}

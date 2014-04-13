@@ -157,3 +157,7 @@ ofi_gestion_creardetallepresupuesto:
 ofi_gestion_editarpresupuesto:
     pattern:  /editar-presupuesto/{idpresupuesto}
     defaults: { _controller: OfiGestionBundle:Presupuesto:editar }
+
+ofi_gestion_eliminarpresupuesto:
+    pattern:  /eliminar-presupuesto/{idpresupuesto}/{ok}
+    defaults: { _controller: OfiGestionBundle:Presupuesto:eliminar }

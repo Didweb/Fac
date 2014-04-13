@@ -15,7 +15,11 @@ class DetallePresupuestoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descripcion')
+            ->add('descripcion', 'textarea', array(
+				'attr' => array(
+					'class' => 'tinymce',
+					'data-theme' => 'advanced' 
+				) ))
             ->add('precio')
             ->add('servicio')
             ->add('presupuesto', 'entity_id', array(
