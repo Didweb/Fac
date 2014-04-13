@@ -119,4 +119,48 @@ class ProyectoController extends Controller
 					);	
 	}	
 
+	public function editarFormAction($idproyecto)
+	{
+		$em 	= $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('OfiGestionBundle:Proyecto')
+						->find($idproyecto);
+		$form = $this->createForm(new ProyectoType(), $entity);
+		
+		return $this->render('OfiGestionBundle:Proyecto:editarFormulario.html.twig',
+					array(	'entity'	=> $entity,
+							'formulario_proyecto'   => $form->createView())
+					);	
+	}
+	
+	
+	public function editarelproyectoAction(Request $request,$idproyecto,$editpre = "no")
+	{
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('OfiGestionBundle:Proyecto')
+						->find($idproyecto);
+		$form = $this->createForm(new ProyectoType(), $entity);
+		$form->bind($request);
+
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($entity);
+			$em->flush();
+			$this->get('session')->getFlashBag()
+						->add('proyecto',
+						'Se han editado los datos de este proyecto.');
+						
+					}else{
+			$this->get('session')->getFlashBag()
+						->add('proyecto_error',
+						'NO se han podido editar  este proyecto.');			
+						
+						}
+					
+		return $this->render('OfiGestionBundle:Proyecto:editar.html.twig',
+					array(	'entity'	=> $entity,
+							'id'		=> $idproyecto,
+							'editpre'	=> $editpre)
+					);	
+	}
+
 }

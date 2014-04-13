@@ -1,0 +1,44 @@
+ <div id="crear_proyecto">
+ <form id="form_correo" 
+		action="{{ path('ofi_gestion_editaelproyecto',
+					{'idproyecto': entity.id}) }}" 
+					method="post" {{ form_enctype(formulario_proyecto) }}>
+					
+        <input type="hidden" name="_method" value="POST" />
+        {{ form_errors(formulario_proyecto) }}
+
+			<div id="c_pro_nombre">
+				{{ form_label(formulario_proyecto.nombre,
+														"Nombre:") }}
+				{{ form_errors(formulario_proyecto.nombre) }}
+				{{ form_widget(formulario_proyecto.nombre) }}
+			</div>
+			
+			<div id="c_pro_des">
+				{{ form_label(formulario_proyecto.descripcion,
+													"Descripción:") }}
+				{{ form_errors(formulario_proyecto.descripcion) }}
+				{{ form_widget(formulario_proyecto.descripcion) }}
+			</div>
+			
+			<div id="c_pro_finicio">
+				{{ form_label(formulario_proyecto.fechainicio,
+										"Fecha inicio (DDMMAAAA):") }}
+				{{ form_errors(formulario_proyecto.fechainicio) }}
+				{{ form_widget(formulario_proyecto.fechainicio) }}
+			</div>		
+
+			<div id="c_pro_ffinal">
+				{{ form_label(formulario_proyecto.fechafinal,
+										"Fecha final (DDMMAAAA):") }}
+				{{ form_errors(formulario_proyecto.fechafinal) }}
+				{{ form_widget(formulario_proyecto.fechafinal) }}
+			</div>	
+			
+			<div id="datos_envio_pro">
+			<button type="submit"  class="botones_verde" 
+						title="Editar Correo" >Editar</button>
+		    </div>
+         {{ form_rest(formulario_proyecto) }}
+ </form> 
+ </div>

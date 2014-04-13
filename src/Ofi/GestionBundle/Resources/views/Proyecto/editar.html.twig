@@ -59,11 +59,15 @@
   {% endif %}
   
    {{ entity.empresa.nombre }} {{ entity.empresa.apellido }} / 
-   {{ entity.nombre }}
-   </h1>
- 
- 
+   {{ entity.nombre }} 
 
+   </h1>
+    <div id="accionaeditpro" class="editar_datos_txt"
+				title="Editar datos del proyecto" >Editar datos Proyecto</div>
+		<div id="targeteditpro" class="caudro_form">		
+		{{ render(controller('OfiGestionBundle:Proyecto:editarForm',
+							{'idproyecto': entity.id })) }} 
+			</div>
  
 <section id="res_proyecto">
 	<h2>Presupuestos</h2>
