@@ -74,10 +74,16 @@ class Proyecto
 	 */ 
     private $presupuestos;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Detalle", mappedBy="presupuesto", cascade={"all"})
+	 * 
+	 */ 
+    private $detalles;
 
     public function __construct() {
         $this->presupuestos 	= new ArrayCollection();
         $this->facturas 		= new ArrayCollection();
+        $this->detalles 		= new ArrayCollection();
 
     }
 

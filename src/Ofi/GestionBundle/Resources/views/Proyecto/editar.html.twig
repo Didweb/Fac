@@ -45,29 +45,38 @@
         {{ flashMessage2 | raw }}
     </div>
 {% endfor %}
-	<h1>
-	<a href="{{ path('ofi_gestion_editarempresa', {'id':entity.empresa.id }) }}"  title="volver a ficha de empresa: {{ entity.empresa }}" class="vovler"></a>
- 
-  {% if entity.empresa.tipo==1 %}
-	
-	<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" 
-													title="Cliente" />
-  {% elseif tipo==0 %}
-	<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor" 
-													title="Proveedor" />
-  
-  {% endif %}
-  
-   {{ entity.empresa.nombre }} {{ entity.empresa.apellido }} / 
-   {{ entity.nombre }} 
 
-   </h1>
-    <div id="accionaeditpro" class="editar_datos_txt"
-				title="Editar datos del proyecto" >Editar datos Proyecto</div>
+
+   
+	<div id="datos_proyecto">
+		<h1>  
+			{% if entity.empresa.tipo==1 %}
+				<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" title="Cliente" />
+			{% elseif tipo==0 %}
+				<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor"  title="Proveedor" />
+			{% endif %}
+			
+			{{ entity.empresa.nomsocial }}
+			<a href="{{ path('ofi_gestion_editarempresa', {'id':entity.empresa.id }) }}"  title="volver a ficha de empresa: {{ entity.empresa.nomsocial }}" class="vovler"></a>
+		</h1>
+
+		<h2><span class="color_oscuro">PROYECTO: </span>{{ entity.nombre }}</h2>
+  
+		<p class="primer_block">
+			<span class="color_claro">Fecha Inicio:</span> {{ entity.fechainicio | date('d-m-Y') }}<br />
+			<span class="color_claro">Fecha Final:</span> {{ entity.fechafinal | date('d-m-Y') }}<br /><br />
+		</p>
+		
+		<p class="segundo_block">{{ entity.descripcion }}</p>
+   
+        <div id="accionaeditpro" class="editar_datos_txt" title="Editar datos del proyecto" >Editar datos Proyecto</div>
+
 		<div id="targeteditpro" class="caudro_form">		
-		{{ render(controller('OfiGestionBundle:Proyecto:editarForm',
-							{'idproyecto': entity.id })) }} 
-			</div>
+			{{ render(controller('OfiGestionBundle:Proyecto:editarForm',{'idproyecto': entity.id })) }} 
+		</div>
+   
+   </div>
+
  
 <section id="res_proyecto">
 	<h2>Presupuestos</h2>

@@ -24,6 +24,8 @@ class DetallePresupuestoType extends AbstractType
             ->add('servicio')
             ->add('presupuesto', 'entity_id', array(
             'class' => 'Ofi\GestionBundle\Entity\Presupuesto'))
+            ->add('proyecto', 'entity_id', array(
+            'class' => 'Ofi\GestionBundle\Entity\Proyecto'))
 
             
         ;

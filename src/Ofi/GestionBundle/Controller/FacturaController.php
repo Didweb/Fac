@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 
 use Ofi\GestionBundle\Entity\Factura;
+use Ofi\GestionBundle\Entity\Detalle;
 use Ofi\GestionBundle\Form\FacturaType;
 use Ofi\GestionBundle\Form\FacturaEditaType;
 use Ofi\GestionBundle\Form\FacturaProyType;
@@ -44,12 +45,12 @@ class FacturaController extends Controller
 		
         
         return $this->render('OfiGestionBundle:Factura:crearFaProy.html.twig',
-					array(	'entity' => $entity,
-							'form_factura'   => $form->createView(),
-							'idproyecto'	=> $idproyecto,
-							'idempresa'		=> $idempresa
-							)
-					);
+							array(	'entity' => $entity,
+									'form_factura'   => $form->createView(),
+									'idproyecto'	=> $idproyecto,
+									'idempresa'		=> $idempresa
+									)
+							);
     }
 
 
@@ -63,10 +64,10 @@ class FacturaController extends Controller
 		
         
          return $this->render('OfiGestionBundle:Factura:crear.html.twig',
-					array(	'entity' => $entity,
-							'form_factura'   => $form->createView()
-							)
-					);
+							array(	'entity' => $entity,
+									'form_factura'   => $form->createView()
+									)
+							);
     }
 
 
@@ -166,10 +167,10 @@ class FacturaController extends Controller
 		$entity2 = $em->getRepository('OfiGestionBundle:Proyecto')->find($idproyecto);	
 				
 		return $this->render('OfiGestionBundle:Proyecto:editar.html.twig',
-					array(	'entity'	=> $entity2,
-							'id'		=> $idproyecto,
-							'editpre'	=> $editpre)
-					);			
+							array(	'entity'	=> $entity2,
+									'id'		=> $idproyecto,
+									'editpre'	=> $editpre)
+							);			
 	
     }
 
@@ -189,7 +190,7 @@ class FacturaController extends Controller
 		);
 
        return $this->render('OfiGestionBundle:Factura:listar.html.twig',
-					array('pagination' => $pagination));
+							array('pagination' => $pagination));
 	}
 
 
@@ -201,7 +202,7 @@ class FacturaController extends Controller
 						->ListadoFacProyecto($idproyecto);	
 
        return $this->render('OfiGestionBundle:Factura:listarPro.html.twig',
-					array('entity' => $entity));
+							array('entity' => $entity));
 	}
 
 
@@ -239,12 +240,12 @@ class FacturaController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('OfiGestionBundle:Empresa:editar.html.twig',
-			array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-            'tipo'		  => $entity->getTipo()						
-        ));
+							array(
+							'entity'      => $entity,
+							'edit_form'   => $editForm->createView(),
+							'delete_form' => $deleteForm->createView(),
+							'tipo'		  => $entity->getTipo()						
+						));
 			
 				
 	}
@@ -258,20 +259,18 @@ class FacturaController extends Controller
 
 
         if (!$entity) {
-            throw $this->createNotFoundException(
-            'Entidad no encontrada [editarAction.FacturaController].'
-            );
-        }
+            throw $this->createNotFoundException('Entidad no encontrada [editarAction.FacturaController].');
+			}
         
         $editForm = $this->createForm(new FacturaEditaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 		
         return $this->render('OfiGestionBundle:Factura:editar.html.twig',
-			array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
-        ));
+							array(
+							'entity'      => $entity,
+							'edit_form'   => $editForm->createView(),
+							'delete_form' => $deleteForm->createView()
+						));
     }
 
 
@@ -290,12 +289,22 @@ class FacturaController extends Controller
 		
         
         return $this->render('OfiGestionBundle:Factura:editar.html.twig',
-			array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()	
-            ));
+							array(
+							'entity'      => $entity,
+							'edit_form'   => $editForm->createView(),
+							'delete_form' => $deleteForm->createView()	
+							));
      }    
 
+
+	public function MostrarDisponiblesAction($idproyecto)
+	{
+		$em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('OfiGestionBundle:Detalle')->ListadoDisponibles($idproyecto);
+		
+		return $this->render('OfiGestionBundle:Factura:ListaDisponibles.html.twig',
+							array('entity' => $entity));
+		
+	}
 
 }

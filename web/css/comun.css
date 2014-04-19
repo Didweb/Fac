@@ -69,7 +69,16 @@ aside#sesion_ins { float:right; margin-right:10px; background-color:#C4F53E;
 /*-------------------------------------------------------------------
  * Botones
  * ----------------------------------------------------------------- */
-.editar_datos_txt	{float:left; cursor:pointer; margin-left:10px; margin-top:-5px; font-size:12px; color:#46A0A0; text-decoration:underline;} 
+.editar_datos_txt	{
+	clear:both; 
+	float:left; 
+	cursor:pointer; 
+	margin-left:10px; 
+	margin-top:-5px; 
+	font-size:12px; 
+	color:#46A0A0; 
+	text-decoration:underline }
+	 
 .editar_datos_txt:hover {color:#1C7474; }
 
 .retorno { background-image:url(../images/anterior.png); position:left; 
@@ -79,9 +88,12 @@ aside#sesion_ins { float:right; margin-right:10px; background-color:#C4F53E;
 .retorno:hover {color:#4A95B3; text-decoration:underline;}	
 
 		
- .vovler { width:22px; height:22px; 
+ .vovler {
+		float:left;  
+		width:22px; height:22px; 
 		display:block;
-		background-image:url(../images/volver.png);}
+		margin-right:10px;
+		background-image:url(../images/volver.png)}
  
  
 .bo_borrar {background-image:url(../images/borrar.png); 

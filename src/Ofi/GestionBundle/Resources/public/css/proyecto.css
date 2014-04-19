@@ -159,7 +159,41 @@ div#texto_presu p,ol,ul {
 	float:left;
 	color:#999999}	
 
-#datos_envio_fac	{
+
+#datos_envio_fac {
 	clear:both;
 	float:left;
 	margin-left:15px }
+	
+	
+/*
+ * Mostrar datos generales de proyectos
+ * */
+#datos_proyecto {
+	clear:both; 
+	float:left; 
+	width:100%;
+	text-align:left;
+	padding-left:15px;
+	color:#333333}
+	
+#datos_proyecto h1 {
+	float:left; 
+	min-width:15% }
+	
+		
+#datos_proyecto h2 {
+	font-size:19px }
+	
+	
+#datos_proyecto p.primer_block {
+	clear:both;
+	float:left; 
+	width:15% }
+	
+	
+p.segundo_block	{
+	float:left; 
+	border-left:1px solid #cccccc; 
+	padding:10px;
+	width:75% }

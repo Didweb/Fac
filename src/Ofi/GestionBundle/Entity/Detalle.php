@@ -10,7 +10,7 @@ use Ofi\GestionBundle\Entity\Presupuesto;
  * Detalle
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ofi\GestionBundle\Entity\DetalleRepository")
  */
 class Detalle
 {
@@ -42,6 +42,13 @@ class Detalle
 	 * @ORM\JoinColumn(name="presupuesto_id", referencedColumnName="id")
 	 */ 
 	private $presupuesto;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="detalles")
+	 * @ORM\JoinColumn(name="proyecto_id", referencedColumnName="id")
+	 */ 
+	private $proyecto;
+
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Factura", inversedBy="detalles")
@@ -88,6 +95,31 @@ class Detalle
     {
         return $this->descripcion;
     }
+
+    /**
+     * Set proyecto
+     *
+     * @param integer $proyecto
+     * @return Detalles
+     */
+    public function setProyecto($proyecto)
+    {
+        $this->proyecto = $proyecto;
+
+        return $this;
+    }
+
+    /**
+     * Get proyecto
+     *
+     * @return integer 
+     */
+    public function getProyecto()
+    {
+        return $this->proyecto;
+    }
+
+
 
     /**
      * Set precio

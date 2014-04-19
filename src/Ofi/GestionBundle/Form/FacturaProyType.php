@@ -44,7 +44,7 @@ class FacturaProyType extends AbstractType
     }
 
     public function getName()
-    {
-        return 'ofi_gestionbundle_facturaproytype';
+    { 
+        return 'ofi_gestionbundle_facturaproytype'; 
     }
 }

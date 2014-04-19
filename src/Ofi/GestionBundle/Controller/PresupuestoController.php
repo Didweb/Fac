@@ -97,12 +97,14 @@ class PresupuestoController extends Controller
 
 
 
-	public function editarAction($idpresupuesto)
+	public function editarAction($idpresupuesto,$idproyecto)
 	{
 	  $entity = new Detalle();	
 	  $em = $this->getDoctrine()->getManager();
-      $idpro= $em->getReference('OfiGestionBundle:Presupuesto', $idpresupuesto);
-	  $entity->setPresupuesto($idpro);						
+      $idpres= $em->getReference('OfiGestionBundle:Presupuesto', $idpresupuesto);
+      $idproy= $em->getReference('OfiGestionBundle:Presupuesto', $idproyecto);
+	  $entity->setPresupuesto($idpres);		
+	  $entity->setProyecto($idproy);					
 	  $form   = $this->createForm(new DetallePresupuestoType(), $entity);					
 
 

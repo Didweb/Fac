@@ -14,6 +14,7 @@
  <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
  <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
  <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('bundles/ofigestion/css/factura.css') }}" rel="stylesheet" type="text/css" /> 
  {% endblock%}
 
 
@@ -42,13 +43,21 @@
     </div>
 {% endfor %}
  
- <h1>{{ entity.nfactura }} </h1>
- 
+ <h1><span class="color_oscuro">FACTURA:</span> {{ entity.nfactura }} </h1>
+  	{% if entity.proyecto!='' %}
+	<a href="{{ path('ofi_gestion_editarproyecto', {'idproyecto': entity.proyecto.id  }) }}" class="editar_datos_txt"
+				title="Vovler a la ficha del proyecto: {{ entity.proyecto.nombre }}"> {{ entity.proyecto.nombre }}</a>
+	{% endif %}	
+	
  <div id="caja_general">
  <h2>{{ entity.fecha|date('d-m-Y') }}</h2>
+
+ 
  <form action="{{ path('ofi_gestion_actualizafactura',
 				{'id':entity.id}) }}" 
 				method="post" {{ form_enctype(edit_form) }}>
+						
+				
 				
 	<input type="hidden" name="_method" value="POST" />
 	{{ form_errors(edit_form) }}
@@ -87,6 +96,15 @@
  </div>
  
   
+       
+    <div id="masdatos">
+    <h3>Detalles disponibles para esta factura</h3>
+    
+    {{ render(controller('OfiGestionBundle:Factura:MostrarDisponibles',
+							{'idproyecto': entity.proyecto.id })) }} 
+    </div>   
+       
+       
        
  {% endblock%}
  

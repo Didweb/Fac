@@ -1,0 +1,38 @@
+<table>
+        <thead>
+            <tr>
+				<th class="alaiz">Descripción</th>
+				<th class="alaiz">Precio</th>
+				<th class="acciones"></th>        
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        {% set n=1 %}
+        {% for detalle in entity %}
+				
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+			{% else %}
+				{% set linea="par" %}
+			{% endif %}
+			
+			
+				<tr class=" {{ linea }} ilumina">
+					<td>
+					{{ detalle.descripcion | raw }}
+					</td>
+					
+					<td>
+					{{ detalle.precio|number_format(2, '.', ',')  }} €
+					</td>
+				
+					<td>Accion</td>
+				</tr>
+				
+				   {% set n=n+1 %} 
+				      
+        {% endfor %}
+        </tbody>
+</table>         
