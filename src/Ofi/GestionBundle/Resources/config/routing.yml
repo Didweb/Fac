@@ -171,3 +171,11 @@ ofi_gestion_editarpresupuesto:
 ofi_gestion_eliminarpresupuesto:
     pattern:  /eliminar-presupuesto/{idpresupuesto}/{ok}
     defaults: { _controller: OfiGestionBundle:Presupuesto:eliminar }
+
+ofi_gestion_crearfacturaProy:
+    pattern:  /nueva-factura-proyecto/{idproyecto}/{idempresa}
+    defaults: { _controller: OfiGestionBundle:Factura:crearFacProy }
+
+ofi_gestion_editarfacturaProy:
+    pattern:  /edita-factura-proyecto/{idfactura}/{idproyecto}
+    defaults: { _controller: OfiGestionBundle:Factura:crearFacProy }

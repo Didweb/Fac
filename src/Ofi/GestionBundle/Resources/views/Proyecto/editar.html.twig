@@ -46,16 +46,16 @@
     </div>
 {% endfor %}
 	<h1>
-	<a href="{{ path('ofi_gestion_editarempresa',
-					{'id':entity.empresa.id }) }}" 
-				title="volver a ficha de empresa: {{ entity.empresa }}" 
-				class="vovler"></a>
+	<a href="{{ path('ofi_gestion_editarempresa', {'id':entity.empresa.id }) }}"  title="volver a ficha de empresa: {{ entity.empresa }}" class="vovler"></a>
+ 
   {% if entity.empresa.tipo==1 %}
+	
 	<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" 
 													title="Cliente" />
   {% elseif tipo==0 %}
 	<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor" 
 													title="Proveedor" />
+  
   {% endif %}
   
    {{ entity.empresa.nombre }} {{ entity.empresa.apellido }} / 
@@ -88,9 +88,19 @@
 	
 	
 		{{ render(controller('OfiGestionBundle:Presupuesto:listadoPro',
-							{'idproyecto': entity.id })) }} 
+							{'idproyecto': entity.id})) }} 
 							
 	<h2>Facturas</h2>
+	
+	
+		<div id="accionaTelefono" class="ver_ocultos" 
+				title="Insertar factura para este presupuesto" ></div>
+	
+		<div id="targetTelefono" class="cuadro_from_fac">
+		{{ render(controller('OfiGestionBundle:Factura:nuevoProyecto',
+							{'idempresa':entity.empresa.id , 'idproyecto':entity.id })) }} 
+		</div>
+							
 		{{ render(controller('OfiGestionBundle:Factura:listadoPro',
 							{'idproyecto': entity.id })) }} 
 </section>  

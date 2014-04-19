@@ -1,41 +1,165 @@
-section#res_proyecto {clear:both; float:left; text-align:left; 
-		padding:15px; width:95%;}
+section#res_proyecto {
+	clear:both; 
+	float:left; 
+	text-align:left; 
+	padding:15px; 
+	width:95% }
 
-section#res_proyecto h2 {float:left; font-size:16px; color:#cccccc;}
 
-.listado_en_presu {clear:both; float:left; width:100%;}
+section#res_proyecto h2 {
+	float:left; 
+	font-size:16px; 
+	color:#cccccc }
 
-.explica	{clear:both; float:left; width:100%; color:#969F9F; 
-			font-size:12px; margin-top:0px; margin-bottom:1%; margin-top:1%; }
+
+.listado_en_presu {
+	clear:both; 
+	float:left; 
+	width:100% }
+
+
+.explica	{
+	clear:both; 
+	float:left; 
+	width:100%; 
+	color:#969F9F; 
+	font-size:12px; 
+	margin-top:0px; 
+	margin-bottom:1%; 
+	margin-top:1% }
 			
-#for_detalle {clear:both; float:left; width:100%;  }			
-#for_detalle form {width:100%; margin-bottom:15px;}
-div#caj_servicio { float:left;}
-#for_detalle label { display:inline-block; width:100px; padding:3px;
-				margin-left:5px; flaot:left; color:#969F9F;}
-#for_detalle input, select { clear:both; flaot:left;  padding:3px; }
+			
+#for_detalle {
+	clear:both; 
+	float:left; 
+	width:100% }
+			
+			
+#for_detalle form {
+	width:100%; 
+	margin-bottom:15px }
+	
+	
+div#caj_servicio { 
+	float:left }
+	
+	
+#for_detalle label { 
+	display:inline-block; 
+	width:100px; 
+	padding:3px;
+	margin-left:5px; 
+	flaot:left; 
+	color:#969F9F }
+	
+	
+#for_detalle input, select { 
+	clear:both; 
+	padding:3px }
 
-div#caj_des { clear:both; float:left; margin-top:15px; width:100%;}
-#for_detalle  textarea {clear:both; float:left; width:100%;}
 
-td {text-align:left; }
-#final {border-top:1px solid #cccccc;}
-#totalpre	{text-align:right; padding-right:4px; font-weight:bold; 
-			font-size:15px; color:#85ABAB;}
-#totaleuros {padding-left:4px; font-size:15px; font-weight:bold;
-			}
+div#caj_des { 
+	clear:both; 
+	float:left; 
+	margin-top:15px; 
+	width:100% }
+	
+	
+#for_detalle  textarea {
+	clear:both; 
+	float:left; 
+	width:100% }
+
+
+td {
+	text-align:left }
+	
+	
+#final {
+	border-top:1px solid #cccccc }
+	
+	
+#totalpre	{
+	text-align:right; 
+	padding-right:4px; 
+	font-weight:bold; 
+	font-size:15px; 
+	color:#85ABAB }
+	
+	
+#totaleuros {
+	padding-left:4px; 
+	font-size:15px; 
+	font-weight:bold }
 			
 
-#lista_detalles_pre	{ clear:both; float:left; width:95%; margin-left:30px; }			
-						
+#lista_detalles_pre	{ 
+	clear:both; 
+	float:left; 
+	width:95%; 
+	margin-left:30px }			
+					
+					
+div#texto_presu {
+	clear:float; 
+	float:left; 
+	width: 100%; 
+	padding:15px; 
+	background-color:#EAECEC }
+	
+	
+div#texto_presu h1,h2,h3,h4,h5 {
+	color:#333333 }
+	
+	
+div#texto_presu p,ol,ul {
+	clear:both; float:left }
+	
+	
+#c_pre_nombre {
+	float:left }
+	
+	
+#c_pre_finicio {
+	float:left; 
+	margin-left:15px }
+	
+	
+#c_pre_des {
+	clear:both; 
+	float:left; 
+	width:100%; 
+	margin-top:15px }
 
 
+/*
+ * Factura en proyectos 
+ * */
+
+.cuadro_from_fac {
+	width:100% }
+	
+	
+#for_crear {
+	width:100% }
 
 
-div#texto_presu {clear:float; float:left; width: 100%; 
-				padding:15px; background-color:#EAECEC;}
-div#texto_presu h1,h2,h3,h4,h5 {color:#333333;}
-div#texto_presu p,ol,ul {clear:both; float:left; }
-#c_pre_nombre {float:left; }
-#c_pre_finicio {float:left; margin-left:15px; }
-#c_pre_des {clear:both; float:left; width:100%; margin-top:15px;}
+.caj_in {
+	float:left;
+	margin:10px }
+
+
+.caj_in label {
+	float:left;
+	color:#999999}
+	
+	
+.caj_in input {
+	clear:both;
+	float:left;
+	color:#999999}	
+
+#datos_envio_fac	{
+	clear:both;
+	float:left;
+	margin-left:15px }

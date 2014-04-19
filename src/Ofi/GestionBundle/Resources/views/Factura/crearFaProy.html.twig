@@ -1,0 +1,26 @@
+
+ <div id="for_crear2">
+ <form action="{{ path('ofi_gestion_crearfacturaProy', {'idproyecto':idproyecto, 'idempresa':idempresa } ) }}" method="post" 
+				{{ form_enctype(form_factura) }} id="for_crear2">
+        <input type="hidden" name="_method" value="POST" />
+        {{ form_errors(form_factura) }}
+        	<div class="caj_in">
+				{{ form_label(form_factura.fecha,"Fecha (ddmmaaaa):") }}
+				{{ form_errors(form_factura.fecha) }}
+				{{ form_widget(form_factura.fecha) }}
+			</div>
+			
+			<div class="caj_in">
+				{{ form_label(form_factura.nfactura,"Nº Factura: ") }}
+				{{ form_errors(form_factura.nfactura) }}
+				{{ form_widget(form_factura.nfactura) }}
+			</div>
+
+
+			<div id="datos_envio_fac">
+			<button type="submit"  class="botones_verde" 
+					title="Crear Factura" >Crear Factura</button>
+		    </div>
+         {{ form_rest(form_factura) }}
+ </form>  
+ </div>     

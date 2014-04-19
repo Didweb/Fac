@@ -53,14 +53,20 @@ class Factura
 	 private $empresa;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Detalle", mappedBy="factura", cascade={"all"})
+	 * @ORM\OneToMany(targetEntity="Detalle", mappedBy="factura")
 	 * 
 	 */ 
     private $detalles;
 
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Presupuesto", mappedBy="factura", cascade={"all"})
+	 * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="facturas")
+	 * @ORM\JoinColumn(name="proyecto_id", referencedColumnName="id")
+	 */ 
+	 private $proyecto;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Presupuesto", mappedBy="factura")
 	 * 
 	 */ 
     private $presupuestos;
@@ -68,7 +74,7 @@ class Factura
 	 
 	public function __construct()
 	{
-		$this->detalles = new ArrayCollection();
+		$this->detalles 	= new ArrayCollection();
 		$this->presupuestos = new ArrayCollection();
 	}
 
@@ -103,6 +109,30 @@ class Factura
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+
+    /**
+     * Set proyecto
+     *
+     * @param string $proyecto
+     * @return Factura
+     */
+    public function setProyecto($proyecto)
+    {
+        $this->proyecto = $proyecto;
+
+        return $this;
+    }
+
+    /**
+     * Get proyecto
+     *
+     * @return string 
+     */
+    public function getProyecto()
+    {
+        return $this->proyecto;
     }
 
 

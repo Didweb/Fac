@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ofi\GestionBundle\Entity\Factura;
 use Ofi\GestionBundle\Form\FacturaType;
 use Ofi\GestionBundle\Form\FacturaEditaType;
+use Ofi\GestionBundle\Form\FacturaProyType;
 
 class FacturaController extends Controller
 {
@@ -26,6 +27,31 @@ class FacturaController extends Controller
 		return $this->nf=$nf;
 		
 	}
+
+    public function nuevoProyectoAction($idempresa,$idproyecto)
+    {
+		
+		$em = $this->getDoctrine()->getManager();
+        $entity = new Factura();
+        
+		$idemp= $em->getReference('OfiGestionBundle:Empresa', $idempresa);
+		$idpro= $em->getReference('OfiGestionBundle:Proyecto', $idproyecto);
+		
+		$entity->setEmpresa($idemp);
+		$entity->setProyecto($idpro);
+		
+        $form   = $this->createForm(new FacturaProyType($this->getNf()), $entity);
+		
+        
+        return $this->render('OfiGestionBundle:Factura:crearFaProy.html.twig',
+					array(	'entity' => $entity,
+							'form_factura'   => $form->createView(),
+							'idproyecto'	=> $idproyecto,
+							'idempresa'		=> $idempresa
+							)
+					);
+    }
+
 
     public function nuevoAction()
     {
@@ -93,6 +119,63 @@ class FacturaController extends Controller
 
 
 
+  public function crearFacProyAction(Request $request,$idproyecto,$idempresa,$editpre = "no")
+  {
+	  
+		$em = $this->getDoctrine()->getManager();
+		
+	  	$this->numf = $this->get('NumF');
+		$nf = $this->numf->getFormatoD($this->getNf());
+	  
+		$entity  = new Factura();
+		
+		$idemp= $em->getReference('OfiGestionBundle:Presupuesto', $idempresa);
+		$entity->setEmpresa($idemp);
+		
+		$form = $this->createForm(new FacturaProyType($nf), $entity);
+		$form->bind($request);
+
+
+    if ($form->isValid()) {
+		$em = $this->getDoctrine()->getManager();
+        $em->persist($entity);
+        $em->flush();
+		$this->get('session')->getFlashBag()
+					->add('factura',
+					'Se ha creado una nueva factura para este proyecto.');
+		
+		$entityNF = $em->getRepository('OfiGestionBundle:AdminConfig')
+						->find(1);
+		$ulNF = $entityNF->getNumerofactura();				
+		$entityNF->setNumerofactura($ulNF+1);
+		$em->persist($entityNF);
+		$em->flush();
+		
+
+		 
+		 
+		 
+        }else{
+			$this->get('session')->getFlashBag()
+					->add('proyecto_error',
+					'<b>Error</b>:  No se ha añadido la factura.');
+			}
+
+		
+		
+		$entity2 = $em->getRepository('OfiGestionBundle:Proyecto')->find($idproyecto);	
+				
+		return $this->render('OfiGestionBundle:Proyecto:editar.html.twig',
+					array(	'entity'	=> $entity2,
+							'id'		=> $idproyecto,
+							'editpre'	=> $editpre)
+					);			
+	
+    }
+
+
+
+
 	public function listarAction()
 	{
 	  $em = $this->getDoctrine()->getManager();
@@ -115,7 +198,7 @@ class FacturaController extends Controller
 	{
 	  $em = $this->getDoctrine()->getManager();
       $entity = $em->getRepository('OfiGestionBundle:Factura')
-						->findByEmpresa($idproyecto);	
+						->ListadoFacProyecto($idproyecto);	
 
        return $this->render('OfiGestionBundle:Factura:listarPro.html.twig',
 					array('entity' => $entity));

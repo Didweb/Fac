@@ -59,6 +59,15 @@ class Proyecto
 	 */ 
 	private $empresa;
 
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Factura", mappedBy="proyecto")
+	 * 
+	 */ 
+	 protected $facturas;
+
+
+
 	/**
 	 * @ORM\OneToMany(targetEntity="Presupuesto", mappedBy="proyecto", cascade={"all"})
 	 * 
@@ -68,6 +77,7 @@ class Proyecto
 
     public function __construct() {
         $this->presupuestos 	= new ArrayCollection();
+        $this->facturas 		= new ArrayCollection();
 
     }
 
@@ -80,6 +90,30 @@ class Proyecto
     public function getId()
     {
         return $this->id;
+    }
+
+
+    /**
+     * Set factura
+     *
+     * @param integer $factura
+     * @return integer
+     */
+    public function setFactura($factura)
+    {
+        $this->factura = $factura;
+
+        return $this;
+    }
+
+    /**
+     * Get factura
+     *
+     * @return integer 
+     */
+    public function getFactura()
+    {
+        return $this->factura;
     }
 
     /**
