@@ -96,6 +96,20 @@ aside#sesion_ins { float:right; margin-right:10px; background-color:#C4F53E;
 		background-image:url(../images/volver.png)}
  
  
+.bo_uno { background-image:url(../images/uno.png); 
+			width:22px; height:22px; display:block; 
+			opacity:0.4; filter:alpha(opacity=40); 
+			background-repeat:no-repeat;}
+.bo_uno:hover {opacity:1.0; filter:alpha(opacity=100);} 
+ 
+.bo_todos { background-image:url(../images/todos.png); 
+			width:22px; height:22px; display:block; 
+			text-decoration:none; padding-left:25px; color:#666666;
+			margin-left:10px;
+			opacity:0.4; filter:alpha(opacity=40);
+			background-repeat:no-repeat;}
+.bo_todos:hover {opacity:1.0; filter:alpha(opacity=100);}  
+ 
 .bo_borrar {background-image:url(../images/borrar.png); 
 			width:22px; height:22px; display:block; 
 			opacity:0.4; filter:alpha(opacity=40);

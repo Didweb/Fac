@@ -297,14 +297,113 @@ class FacturaController extends Controller
      }    
 
 
-	public function MostrarDisponiblesAction($idproyecto)
+	public function MostrarDisponiblesAction($idproyecto,$idfactura)
 	{
 		$em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('OfiGestionBundle:Detalle')->ListadoDisponibles($idproyecto);
 		
 		return $this->render('OfiGestionBundle:Factura:ListaDisponibles.html.twig',
-							array('entity' => $entity));
+							array(	'entity' => $entity,
+									'idfactura' => $idfactura ));
 		
+	}
+
+
+	public function MostrarInsertadasAction($idproyecto,$idfactura)
+	{
+		$em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('OfiGestionBundle:Detalle')->ListadoInsertadosenFac($idproyecto,$idfactura);
+		
+		return $this->render('OfiGestionBundle:Factura:ListaInsertadas.html.twig',
+							array(	'entity' => $entity,
+									'idfactura' => $idfactura ));
+		
+	}
+
+	public function AnadirLineaDeAction(Request $request, $idfactura,$iddetalle)
+	{
+		
+		$em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('OfiGestionBundle:Detalle')->find($iddetalle);
+		$entity2 = $em->getRepository('OfiGestionBundle:Factura')->find($idfactura);
+		
+        if (!$entity) {
+            throw $this->createNotFoundException('Entidad [ Detalle ] no encontrada [AnadirLineaDeAction.FacturaController].');
+			}        
+     
+		$entity->setFactura($entity2);
+        $em->flush();
+
+		$this->get('session')->getFlashBag()
+					->add('factura',
+					'Se han añadido un detalle a la factura.');
+        
+        $entityFactura = $em->getRepository('OfiGestionBundle:Factura')->findById($entity2->getId());
+		
+		$editForm = $this->createForm(new FacturaEditaType(), $entity2);
+        $deleteForm = $this->createDeleteForm($entity2->getId());
+		$editForm->bind($request);
+		
+		
+		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $entity2->getId() )) );
+       
+		
+	}
+
+
+	public function AnadirTodosDeAction(Request $request, $idfactura,$idpresupuesto)
+	{
+		
+		$em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('OfiGestionBundle:Detalle')->findByPresupuesto($idpresupuesto);
+        $entityFac = $em->getRepository('OfiGestionBundle:Factura')->find($idfactura);
+		
+        if (!$entity) {
+            throw $this->createNotFoundException('Entidad [ Detalle ] no encontrada [AnadirTodosDeAction.FacturaController].');
+			}        
+		
+		foreach ($entity as $nom){
+			echo "<br /> --> ".$nom->getDescripcion();
+			$nom->setFactura($entityFac);
+			$em->flush();
+			}
+		
+		$this->get('session')->getFlashBag()
+					->add('factura',
+					'Se han añadido varios detalles a la factura.');
+		
+			
+        $entityFactura = $em->getRepository('OfiGestionBundle:Factura')->findById($entityFac->getId());
+		
+		$editForm = $this->createForm(new FacturaEditaType(), $entityFac);
+        $deleteForm = $this->createDeleteForm($entityFac->getId());
+		$editForm->bind($request);
+		
+		
+		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $entityFac->getId() )) );
+       
+		
+	}
+
+
+	public function EliminaDetalleAction(Request $request, $iddetalle, $idfactura)
+	{
+		$em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('OfiGestionBundle:Detalle')->find($iddetalle);
+        $entityFac = $em->getRepository('OfiGestionBundle:Factura')->find($idfactura);
+        
+        $entityFactura = $em->getRepository('OfiGestionBundle:Factura')->findById($entityFac->getId());
+        
+		$this->get('session')->getFlashBag()
+					->add('factura',
+					'Se ha eliminado el detalle de esta factura.');
+		$em->remove($entity);
+        $em->flush();
+		
+		$editForm = $this->createForm(new FacturaEditaType(), $entityFac);
+        $deleteForm = $this->createDeleteForm($entityFac->getId());
+		$editForm->bind($request);
+		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $entityFac->getId() )) );
 	}
 
 }

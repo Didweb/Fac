@@ -33,7 +33,7 @@
 				</td>
 				
 				<td>
-				{{ presupuesto.precio|number_format(2, '.', ',') }} €
+				{{ presupuesto.precio|number_format(2, ',', '.') }} €
 				{% set total=total+presupuesto.precio %}
 				</td>
 				

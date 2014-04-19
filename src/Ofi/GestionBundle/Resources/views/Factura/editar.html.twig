@@ -11,6 +11,7 @@
  {% block stylesheets %}
  {{ parent() }}
  <script src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
+ <script src="{{ asset('js/mostrar_divs.js') }}"></script>
  <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
  <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
  <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
@@ -98,11 +99,19 @@
   
        
     <div id="masdatos">
-    <h3>Detalles disponibles para esta factura</h3>
-    
-    {{ render(controller('OfiGestionBundle:Factura:MostrarDisponibles',
-							{'idproyecto': entity.proyecto.id })) }} 
+   <div id="accionaDetalle" class="ver_ocultos" title="Insertar más detalles a la factura" ></div> 
+   
+	<div id="targetDetalle"  class="caudro_form explica"> 							
+		{{ render(controller('OfiGestionBundle:Factura:MostrarDisponibles', {'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}
+	</div>  
+	
     </div>   
+     
+        <div id="masdatos">
+   
+    {{ render(controller('OfiGestionBundle:Factura:MostrarInsertadas',
+							{'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }} 
+    </div>    
        
        
        

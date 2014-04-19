@@ -24,5 +24,19 @@ class DetalleRepository extends EntityRepository
 				->getResult();
 		
 	}
+
+	public function ListadoInsertadosenFac($idproyecto,$idfactura)
+	{
+		return $this->getEntityManager()
+				->createQuery('SELECT d FROM 
+							  OfiGestionBundle:Detalle d
+							  WHERE 
+							  d.proyecto = :idproyecto
+							  AND d.factura=:idfactura')
+				->setParameter('idproyecto',$idproyecto)
+				->setParameter('idfactura',$idfactura)
+				->getResult();
+		
+	}
 	
 }

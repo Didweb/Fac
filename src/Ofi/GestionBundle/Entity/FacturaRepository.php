@@ -23,6 +23,5 @@ class FacturaRepository extends EntityRepository
             ->getResult();
 		
 	}
-	
-	
+
 }

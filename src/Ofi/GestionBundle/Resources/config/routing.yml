@@ -179,3 +179,17 @@ ofi_gestion_crearfacturaProy:
 ofi_gestion_editarfacturaProy:
     pattern:  /edita-factura-proyecto/{idfactura}/{idproyecto}
     defaults: { _controller: OfiGestionBundle:Factura:crearFacProy }
+
+
+ofi_gestion_anadir_liena_detalle:
+    pattern:  /anadir-liena-detalle/{idfactura}/{iddetalle}
+    defaults: { _controller: OfiGestionBundle:Factura:AnadirLineaDe }
+
+ofi_gestion_anadir_todos_detalle:
+    pattern:  /anadir-todos-detalle/{idfactura}/{idpresupuesto}
+    defaults: { _controller: OfiGestionBundle:Factura:AnadirTodosDe }
+
+
+ofi_gestion_eliminardetallefac:
+    pattern:  /eliminar-detalle-fac/{idfactura}/{iddetalle}
+    defaults: { _controller: OfiGestionBundle:Factura:EliminaDetalle }

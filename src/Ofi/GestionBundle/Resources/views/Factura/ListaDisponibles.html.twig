@@ -1,9 +1,11 @@
-<table>
+ <h3>Detalles disponibles para esta factura</h3>
+<table id="dispo">
         <thead>
             <tr>
 				<th class="alaiz">Descripción</th>
 				<th class="alaiz">Precio</th>
-				<th class="acciones"></th>        
+				<th class="acciones">Añadir Presupuesto</th>  
+				<th class="acciones">Añadir Detalle</th>       
             </tr>
         </thead>
         
@@ -28,7 +30,13 @@
 					{{ detalle.precio|number_format(2, '.', ',')  }} €
 					</td>
 				
-					<td>Accion</td>
+					<td>
+					<a href="{{ path('ofi_gestion_anadir_todos_detalle',{'idpresupuesto':detalle.presupuesto.id,'idfactura':idfactura } ) }}" 
+							class="bo_todos" title="Añadir todo el presupuesto">Todo:{{ detalle.presupuesto.id }}</a>
+					</td><td>		
+					<a href="{{ path('ofi_gestion_anadir_liena_detalle',{'idfactura':idfactura,'iddetalle':detalle.id} )}}" 
+							class="bo_uno" title="Añadir solo esta linea del presupuesto"></a>
+					</td>
 				</tr>
 				
 				   {% set n=n+1 %} 

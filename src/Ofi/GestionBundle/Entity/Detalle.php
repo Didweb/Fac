@@ -122,6 +122,30 @@ class Detalle
 
 
     /**
+     * Set factura
+     *
+     * @param integer $factura
+     * @return Detalles
+     */
+    public function setFactura($factura)
+    {
+        $this->factura = $factura;
+
+        return $this;
+    }
+
+    /**
+     * Get factura
+     *
+     * @return integer 
+     */
+    public function getFactura()
+    {
+        return $this->factura;
+    }
+
+
+    /**
      * Set precio
      *
      * @param float $precio
