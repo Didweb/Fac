@@ -44,7 +44,7 @@
  
  
  <div id="for_crear">
- <h2>Creación de nueva factura</h2>
+ <h2>Creación de nueva factura Proveedor</h2>
  <form action="{{ path('ofi_gestion_crearfactura') }}" method="post" 
 				{{ form_enctype(form_factura) }} id="for_crear2">
         <input type="hidden" name="_method" value="POST" />
@@ -67,11 +67,6 @@
 				{{ form_widget(form_factura.empresa) }}
 			</div>	
 
-			<div>
-				{{ form_label(form_factura.tipofactura,"Tipo:") }}
-				{{ form_errors(form_factura.tipofactura) }}
-				{{ form_widget(form_factura.tipofactura) }}
-			</div>	
 			
 
 			<div id="datos_envio">

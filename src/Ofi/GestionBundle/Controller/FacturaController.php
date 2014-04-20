@@ -12,6 +12,7 @@ use Ofi\GestionBundle\Entity\Detalle;
 use Ofi\GestionBundle\Form\FacturaType;
 use Ofi\GestionBundle\Form\FacturaEditaType;
 use Ofi\GestionBundle\Form\FacturaProyType;
+use Ofi\GestionBundle\Form\DetalleFacturaType;
 
 class FacturaController extends Controller
 {
@@ -371,15 +372,7 @@ class FacturaController extends Controller
 		$this->get('session')->getFlashBag()
 					->add('factura',
 					'Se han añadido varios detalles a la factura.');
-		
-			
-        $entityFactura = $em->getRepository('OfiGestionBundle:Factura')->findById($entityFac->getId());
-		
-		$editForm = $this->createForm(new FacturaEditaType(), $entityFac);
-        $deleteForm = $this->createDeleteForm($entityFac->getId());
-		$editForm->bind($request);
-		
-		
+
 		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $entityFac->getId() )) );
        
 		
@@ -392,18 +385,58 @@ class FacturaController extends Controller
         $entity = $em->getRepository('OfiGestionBundle:Detalle')->find($iddetalle);
         $entityFac = $em->getRepository('OfiGestionBundle:Factura')->find($idfactura);
         
-        $entityFactura = $em->getRepository('OfiGestionBundle:Factura')->findById($entityFac->getId());
-        
 		$this->get('session')->getFlashBag()
 					->add('factura',
 					'Se ha eliminado el detalle de esta factura.');
 		$em->remove($entity);
         $em->flush();
 		
-		$editForm = $this->createForm(new FacturaEditaType(), $entityFac);
-        $deleteForm = $this->createDeleteForm($entityFac->getId());
-		$editForm->bind($request);
 		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $entityFac->getId() )) );
+	}
+
+
+	public function FormularioDetalleAction($idfactura,$idproyecto)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$entity = new Detalle();
+		$entityFac = $em->getRepository('OfiGestionBundle:Factura')->find($idfactura);
+		$entityPro = $em->getRepository('OfiGestionBundle:Proyecto')->find($idproyecto);
+		
+		$entity->setFactura($entityFac);
+		$entity->setProyecto($entityPro);
+		
+		$editForm = $this->createForm(new DetalleFacturaType(), $entity);
+		
+		return $this->render('OfiGestionBundle:Factura:AnadirDetalleLibre.html.twig',
+							array(	'entity' => $entity,
+									'idproyecto'	=> $idproyecto,
+									'idfactura'		=> $idfactura,
+									'edit_form_detallefac'   => $editForm->createView(), ));
+	}
+
+
+	public function CrearDetalleLibreAction(Request $request)
+	{
+		$em = $this->getDoctrine()->getManager();
+        $entity  = new Detalle();
+        
+		$form = $this->createForm(new DetalleFacturaType(), $entity);
+		$form->bind($request);
+
+
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($entity);
+			$em->flush();
+			$this->get('session')->getFlashBag()
+						->add('factura',
+						'Se ha insertado un nuevo detalle a esta factura.');
+			
+			}
+
+				
+		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $entity->getFactura()->getId() )) );			
+		
 	}
 
 }

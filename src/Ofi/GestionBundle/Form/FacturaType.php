@@ -4,16 +4,18 @@ namespace Ofi\GestionBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
+use Doctrine\ORM\EntityRepository;
 
 
 class FacturaType extends AbstractType 
 {
 	private $nf;
+	private $tipofactura;
 	
-	public function __construct($nf)
+	public function __construct($nf,$tipofactura=0)
 	{
 		$this->nf = $nf;
+		$this->tipofactura = $tipofactura;
 	}
 	
 	
@@ -26,11 +28,16 @@ class FacturaType extends AbstractType
 				   'required' => false,
 				   'widget'   => 'single_text',
 					'format' => 'ddMMyyyy'))
-            ->add('nfactura','text',array('data'=>$this->nf))
-            ->add('empresa')
-            ->add('tipofactura', 'choice', array(
-					'choices'   => array('1' => '... para un cliente ...', '0' => '... de un proveedor ...'),
-					'required'  => true));
+            ->add('nfactura','text')
+            ->add('empresa','entity', array(
+				'empty_value' => 'Selecciona...',
+				'class' => 'OfiGestionBundle:Empresa',
+				'query_builder' => function(EntityRepository $er) {
+						return $er->createQueryBuilder('e')
+						->where('e.tipo = :tipo')
+						->setParameter('tipo', 0)
+						->orderBy('e.nombre', 'ASC');},))
+            ->add('tipofactura', 'hidden', array( 'data'   => $this->tipofactura))
             
         ;
     }

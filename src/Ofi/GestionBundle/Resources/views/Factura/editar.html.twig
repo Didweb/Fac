@@ -97,20 +97,34 @@
  </div>
  
   
-       
-    <div id="masdatos">
-   <div id="accionaDetalle" class="ver_ocultos" title="Insertar más detalles a la factura" ></div> 
-   
-	<div id="targetDetalle"  class="caudro_form explica"> 							
-		{{ render(controller('OfiGestionBundle:Factura:MostrarDisponibles', {'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}
-	</div>  
-	
-    </div>   
+    
+    {% if entity.tipofactura==1 %}   
+		<div id="masdatos">
+			<div id="accionaDetalle" class="ver_ocultos" title="Insertar más detalles a la factura" ></div> 
+	   
+			<div id="targetDetalle"  class="caudro_form explica"> 							
+				{{ render(controller('OfiGestionBundle:Factura:MostrarDisponibles', {'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}
+			</div>  
+		</div>  
+    {% endif %} 
+
+
+<div id="accionaCorreo" class="ver_ocultos" 
+								title="Insertar más detalles al presupuesto" ></div> 
+	<div id="targetCorreo" class="caudro_form explica">
+{{ render(controller('OfiGestionBundle:Factura:FormularioDetalle', {'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}
+</div>
+
+
      
-        <div id="masdatos">
-   
-    {{ render(controller('OfiGestionBundle:Factura:MostrarInsertadas',
-							{'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }} 
+
+    <div id="masdatos">
+        {% if entity.tipofactura==1 %}
+		{{ render(controller('OfiGestionBundle:Factura:MostrarInsertadas',
+							{'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}         
+        {% elseif entity.tipofactura==0 %} 
+
+	 {% endif %}						
     </div>    
        
        

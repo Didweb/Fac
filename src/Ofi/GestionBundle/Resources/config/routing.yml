@@ -193,3 +193,7 @@ ofi_gestion_anadir_todos_detalle:
 ofi_gestion_eliminardetallefac:
     pattern:  /eliminar-detalle-fac/{idfactura}/{iddetalle}
     defaults: { _controller: OfiGestionBundle:Factura:EliminaDetalle }
+
+ofi_gestion_creardetallefactura:
+    pattern:  /crear-detalle-factura-libre
+    defaults: { _controller: OfiGestionBundle:Factura:CrearDetalleLibre }
