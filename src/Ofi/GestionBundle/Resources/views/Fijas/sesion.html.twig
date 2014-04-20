@@ -3,6 +3,6 @@
 {% else %}
 <aside id="sesion">
 {% endif  %}
-Hola <b>{{ app.user.username }}</b> | 
-<a href="{{ path('logout')}}" class="salir_sesion">Salir</a>
+Hola <b>{{ app.user.username }}</b>  
+<a href="{{ path('logout')}}" class="salir_sesion" title="Cerrar sesión"></a>
 </aside>

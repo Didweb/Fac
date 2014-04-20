@@ -1,10 +1,15 @@
-{% extends '::base.html.twig' %}
+{%  extends '::forntend.html.twig' %}
+
+ {% block stylesheets %}
+ {{ parent() }}
+	 <link href="{{ asset('css/login.css') }}" rel="stylesheet" type="text/css" /> 
+ {% endblock%}
 
 {% block body %}
 <section id="contenidos_login">
-<h1>Procés d'identificació</h1>
+<h1>Proceso de identificación</h1>
 <p>
-Accés al panell de control de FAC.
+Acceso al panel a FAC.
 </p>
 {% if error %}
 <div id="mensa_error">{{ error.message|trans() }}</div>
@@ -22,7 +27,7 @@ Accés al panell de control de FAC.
 		 <input id="password" type="password" name="_password"  class="inp_log" />
 		 </div>
 		 <input type="hidden" name="_target_path" value="ofi_gestion_homepage" />
-		 <input type="submit"  name="login" id="boton_login" value="Accés" title="Iniciar el proceso de identificación"   />
+		 <input type="submit"  name="login" id="boton_login" value="Acceso" title="Iniciar el proceso de identificación"   />
 		</form>
 </div>
 

@@ -1,0 +1,40 @@
+h1 {
+	color:#666666;
+	font-size:18px;}
+	
+#f_login	{
+	margin:auto;
+	width:400px;
+	padding:25px;
+	margin-bottom:300px;
+	border:1px solid #999999;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	 border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;}	
+
+
+.ca_log	{
+	float:left;
+	width:100%;
+	margin-bottom:15px;
+	color:#666666;}
+
+.lab_log	{
+	float:left; 
+	display:block;
+	width:50%;
+	text-align:right;
+	margin-right:5px;}
+
+.inp_log	{
+	color:#666666;
+	width:45%;
+	margin-top:-5px;
+	padding:3px;}
+
+#mensa_error	{
+	font-weight:bold;
+	color:#C31113;
+	margin-bottom:10px;}

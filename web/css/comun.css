@@ -47,10 +47,26 @@ aside#sesion_ins { float:right; margin-right:10px; background-color:#C4F53E;
 			border-radius: 5px 5px 5px 5px;
 			-moz-border-radius: 5px 5px 5px 5px;
 			-webkit-border-radius: 5px 5px 5px 5px;
-			}			
-.salir_sesion	{margin-left:10px; text-decoration:underline; 
-				color:#48A0B6;}
-.salir_sesion:hover {color:#333333;}
+			}
+			
+						
+.salir_sesion	{
+	margin-left:10px; 
+	float:right; margin-top:-17px; margin-left:35px;
+	text-decoration:underline;
+	background-image:url(../images//salir.png);
+	background-repeat:no-repeat;
+	width:23px; 
+	height:23px;
+	display:block;
+	opacity:0.4; filter:alpha(opacity=40);
+	color:#48A0B6}
+	
+.salir_sesion:hover {
+	opacity:1.0; filter:alpha(opacity=100);
+	color:#333333}
+	
+	
 /*-------------------------------------------------------------------
  * Alertas Flash
  * ----------------------------------------------------------------- */
