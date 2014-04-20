@@ -10,18 +10,12 @@
 
  {% block stylesheets %}
  {{ parent() }}
- <script src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
-  <script src="{{ asset('js/mostrar_divs.js') }}"></script>
- <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
- <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
- <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
- 
- 
+	 <script src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
+	 <script src="{{ asset('js/mostrar_divs.js') }}"></script>
+	 <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
+	 <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
+	 <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
  {% endblock%}
-
-
-
-
 
 
 {% block cabecera %}
@@ -45,15 +39,24 @@
     </div>
 {% endfor %}
  
- <h1>
- {% if tipo==1 %}
-				<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" title="Cliente" />
-				{% elseif tipo==0 %}
-				<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor" title="Proveedor" />
-				{% endif %}
-   {{ entity.nombre }} {{ entity.apellido }}</h1>
- 	 <div id="accionaDF"  class="ver_DF"
-								title="Ver/Editar datos de facturación">
+ {% set clase_empresa='' %}
+ <nav id="nav_retorno">
+ 
+ 		{% if tipo==1 %}
+			{% set clase_empresa='img_cli' %}
+		{% elseif tipo==0 %}
+			{% set clase_empresa='img_pro' %}
+		{% endif %}
+		
+	 <div class="capsula_nav">
+		<span class="link_empre1 {{ clase_empresa }}">{{ entity.nomsocial }}</span>
+	 </div>
+	 
+ </nav>
+ 
+ 
+ <h1>Ficha Empresa</h1>
+ 	 <div id="accionaDF"  class="ver_DF" title="Ver/Editar datos de facturación">
 								Datos facturación / Generales</div>
  <div id="caja_general">
  <h2>Datos Generales</h2>

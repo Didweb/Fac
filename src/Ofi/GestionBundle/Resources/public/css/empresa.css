@@ -76,7 +76,7 @@ div#for_crear h2 {color:#343455; font-size:15px; text-align:left;
 #datos_envio	{clear:both; float:left; width:100%; margin-top:5px;}
 
 #caja_telefono	{float:left; width:100%; margin-left:10px;}
-#caja_datos		{float:left; width:29%;  background-color:#ffffff;}
+#caja_datos		{float:left; width:29%;  height:340px; background-color:#ffffff;}
 
 
 /* -------------------------------------------------------------------
@@ -164,7 +164,7 @@ div#for_crear h2 {color:#343455; font-size:15px; text-align:left;
 .ver_DF	{float:left; text-align:left; font-size:12px; width:100%; 
 		margin-top:-15px;color:#0D93A4; margin-right:10px; 
 		padding-left:10px; text-decoration:underline; cursor:pointer; 
-		margin-bottom:5px;}
+		margin-bottom:15px;}
 .ver_DF:hover {color:#333333;}
 
 #eli_DF	{float:left; padding-right:10px; text-align:right; width:100%;}

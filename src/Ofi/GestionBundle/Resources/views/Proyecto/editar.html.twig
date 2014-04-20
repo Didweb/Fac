@@ -10,12 +10,12 @@
 
  {% block stylesheets %}
  {{ parent() }}
- <script src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
-  <script src="{{ asset('js/mostrar_divs.js') }}"></script>
- <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
- <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
- <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
-  <link href="{{ asset('bundles/ofigestion/css/proyecto.css') }}" rel="stylesheet" type="text/css" /> 
+	 <script src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
+	 <script src="{{ asset('js/mostrar_divs.js') }}"></script>
+	 <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
+	 <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
+	 <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
+	 <link href="{{ asset('bundles/ofigestion/css/proyecto.css') }}" rel="stylesheet" type="text/css" /> 
  {% endblock%}
 
 	{% block javascripts %}
@@ -23,12 +23,10 @@
 	{% endblock%}
 
 
-
-
 {% block cabecera %}
-{% include 'OfiGestionBundle:Fijas:sesion.html.twig' %}
-{% include 'OfiGestionBundle:Fijas:menu.html.twig' %} 
- {% endblock%}
+	{% include 'OfiGestionBundle:Fijas:sesion.html.twig' %}
+	{% include 'OfiGestionBundle:Fijas:menu.html.twig' %} 
+{% endblock%}
  
  
  {% block body %}
@@ -46,21 +44,30 @@
     </div>
 {% endfor %}
 
+{% set clase_empresa='' %}
+ <nav id="nav_retorno">
+ 		{% if entity.empresa.tipo==1 %}
+			{% set clase_empresa='img_cli' %}
+		{% elseif entity.empresa.tipo==0 %}
+			{% set clase_empresa='img_pro' %}
+		{% endif %}
+	
+ 
+	<div class="capsula_nav capsula_atras">
+		<a href="{{ path('ofi_gestion_editarempresa', {'id':entity.empresa.id }) }}"  title="volver a ficha de empresa: {{ entity.empresa.nomsocial }}" class="link_empre {{ clase_empresa }}" >
+		{{ entity.empresa.nomsocial }}
+		</a>
+	</div>
+	 
+	<div class="capsula_nav">
+		<b>Proyecto:</b> {{ entity.nombre }}
+	</div>
+	 
+ </nav>
+
 
    
 	<div id="datos_proyecto">
-		<h1>  
-			{% if entity.empresa.tipo==1 %}
-				<img src="{{ asset('images/cliente.png') }}" alt="Icono Cliente" title="Cliente" />
-			{% elseif tipo==0 %}
-				<img src="{{ asset('images/proveedor.png') }}" alt="Icono Proveedor"  title="Proveedor" />
-			{% endif %}
-			
-			{{ entity.empresa.nomsocial }}
-			<a href="{{ path('ofi_gestion_editarempresa', {'id':entity.empresa.id }) }}"  title="volver a ficha de empresa: {{ entity.empresa.nomsocial }}" class="vovler"></a>
-		</h1>
-
-		<h2><span class="color_oscuro">PROYECTO: </span>{{ entity.nombre }}</h2>
   
 		<p class="primer_block">
 			<span class="color_claro">Fecha Inicio:</span> {{ entity.fechainicio | date('d-m-Y') }}<br />

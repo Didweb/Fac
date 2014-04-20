@@ -43,15 +43,37 @@
         {{ flashMessage2 | raw }}
     </div>
 {% endfor %}
- 
- <h1><span class="color_oscuro">FACTURA:</span> {{ entity.nfactura }} </h1>
-  	{% if entity.proyecto!='' %}
-	<a href="{{ path('ofi_gestion_editarproyecto', {'idproyecto': entity.proyecto.id  }) }}" class="editar_datos_txt"
-				title="Vovler a la ficha del proyecto: {{ entity.proyecto.nombre }}"> {{ entity.proyecto.nombre }}</a>
+
+  <nav id="nav_retorno">
+   		{% if entity.empresa.tipo==1 %}
+			{% set clase_empresa='img_cli' %}
+		{% elseif entity.empresa.tipo==0 %}
+			{% set clase_empresa='img_pro' %}
+		{% endif %}
+		
+		<div class="capsula_nav capsula_atras">
+		<a href="{{ path('ofi_gestion_editarempresa', {'id':entity.empresa.id }) }}"  title="volver a ficha de empresa: {{ entity.empresa.nomsocial }}" class="link_empre {{ clase_empresa }}" >
+		{{ entity.empresa.nomsocial }}
+		</a>
+	</div>
+	
+	{% if entity.proyecto!='' %}
+		<div class="capsula_nav capsula_atras">
+			<a class="link_simple" href="{{ path('ofi_gestion_editarproyecto', {'idproyecto':entity.proyecto.id })}}" title="Volver a el Proyecto">
+				<b>Proyecto:</b> {{ entity.proyecto.nombre }}
+			</a> 
+		</div>
 	{% endif %}	
+		
+	<div class="capsula_nav">
+			<b>Factura:</b> {{ entity.nfactura  }}
+	</div>		
+  </nav>
+ 
+
 	
  <div id="caja_general">
- <h2>{{ entity.fecha|date('d-m-Y') }}</h2>
+ <h2><span class="color_claro2">Fecha:</span> {{ entity.fecha|date('d-m-Y') }}</h2>
 
  
  <form action="{{ path('ofi_gestion_actualizafactura',

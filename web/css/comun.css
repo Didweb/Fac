@@ -19,7 +19,9 @@ footer p {font-size:11px; color:#7C8087;}
 
 .color_oscuro {color:#333333;}
 .color_claro  {color:#939698;}
+.color_claro2  {color:#C3C4C4;}
 .color_oscuro_medio {color:#717478;}
+.letra_fina {font-weight:ligther;}
 /*-------------------------------------------------------------------
  * Tablas
  * ----------------------------------------------------------------- */
@@ -212,4 +214,69 @@ nav#respuesta  { width:100%; margin-top:15px; margin-bottom:15px;}
 		font-weight:bold; color:#333333; padding-top:5px;
 		}
 
+/*
+ * Navegacion Retorno en fichas Empresa / Proyecto / Presupuesto / Factura
+ * */
+nav#nav_retorno {
+	clear:both; 
+	float:left; 
+	width:100%;
+	margin-bottom:10px;
+	-webkit-box-shadow: inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	-moz-box-shadow:    inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	box-shadow:         inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);}
 
+.link_simple {
+	 text-decoration:none;
+	 color:#666666}
+
+.link_simple:hover {
+	 text-decoration:underline}
+
+.link_empre1 {background-repeat:no-repeat;
+	 background-position:left;
+	 padding-left:25px;
+	 text-decoration:none;
+	 color:#666666;}
+
+.link_empre {background-repeat:no-repeat;
+	 background-position:left;
+	 padding-left:25px;
+	 text-decoration:none;
+	 color:#666666;}
+	 
+.link_empre:hover {
+	text-decoration:underline}
+		 
+		 
+.img_cli	{
+	 background-image:url(../images/cliente.png);}
+
+
+.img_pro	{
+	 background-image:url(../images/proveedor.png);}
+	
+	
+.capsula_nav	{
+	float:left;
+	padding:8px;
+	margin-left:10px;
+	margin-right:10px;
+	border-top:1px solid rgba(48, 50, 50, 0.18);
+	border-left:1px solid rgba(48, 50, 50, 0.18);
+	border-right:1px solid rgba(48, 50, 50, 0.18);
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	 border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	color:#666666;
+	height:25px; padding-top:10px; font-size:14px;
+	background-color:#ffffff}
+		
+.capsula_atras {
+	-webkit-box-shadow: inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	-moz-box-shadow:    inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	box-shadow:         inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
+	}
