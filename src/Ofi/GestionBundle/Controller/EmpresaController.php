@@ -128,9 +128,11 @@ class EmpresaController extends Controller
 		$query = $em->createQuery($dql);	
 				   
 		}elseif($filtro==1 || $filtro==0){
-		$query = $em->getRepository('OfiGestionBundle:Empresa')
-					 ->ListaEmpresasFiltro($filtro);
-			
+		$dql = "SELECT e FROM 
+						  OfiGestionBundle:Empresa e
+						  WHERE e.tipo = :filtro ";
+		$query = $em->createQuery($dql)
+				->setParameter('filtro',$filtro);	
 			}		
 		
 		$paginator  = $this->get('knp_paginator');

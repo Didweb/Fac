@@ -13,16 +13,4 @@ use Doctrine\ORM\EntityRepository;
 class EmpresaRepository extends EntityRepository
 {
 	
-	public function ListaEmpresasFiltro($filtro)
-	{
-	return $this->getEntityManager()
-            ->createQuery('SELECT e FROM 
-						  OfiGestionBundle:Empresa e
-						  WHERE e.tipo = :filtro ')
-            ->setParameter('filtro',$filtro)
-            ->getResult();
-		
-	}
-	
-	
 }
