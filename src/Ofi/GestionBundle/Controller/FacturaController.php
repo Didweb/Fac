@@ -13,6 +13,7 @@ use Ofi\GestionBundle\Form\FacturaType;
 use Ofi\GestionBundle\Form\FacturaEditaType;
 use Ofi\GestionBundle\Form\FacturaProyType;
 use Ofi\GestionBundle\Form\DetalleFacturaType;
+use Ofi\GestionBundle\Form\DetalleFacturaProvType;
 
 class FacturaController extends Controller
 {
@@ -196,6 +197,17 @@ class FacturaController extends Controller
 
 
 
+	public function ListarFichaEmpresaAction($idempresa)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('OfiGestionBundle:Factura')->ListadoFacEmpresa($idempresa);
+		
+
+       return $this->render('OfiGestionBundle:Factura:ListarProveedor.html.twig',
+							array('entity' => $entity));
+	}
+
+
 	public function listadoProAction($idproyecto)
 	{
 	  $em = $this->getDoctrine()->getManager();
@@ -321,6 +333,18 @@ class FacturaController extends Controller
 		
 	}
 
+
+	public function MostrarInsertadasProvAction($idfactura)
+	{
+		$em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('OfiGestionBundle:Detalle')->ListadoInsertadosenFacPorv($idfactura);
+		
+		return $this->render('OfiGestionBundle:Factura:ListaInsertadas.html.twig',
+							array(	'entity' => $entity,
+									'idfactura' => $idfactura ));
+		
+	}
+
 	public function AnadirLineaDeAction(Request $request, $idfactura,$iddetalle)
 	{
 		
@@ -415,12 +439,30 @@ class FacturaController extends Controller
 	}
 
 
+	public function FormularioDetalleProveeAction($idfactura)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$entity = new Detalle();
+		$entityFac = $em->getRepository('OfiGestionBundle:Factura')->find($idfactura);
+		
+		$entity->setFactura($entityFac);
+		
+		$editForm = $this->createForm(new DetalleFacturaProvType(), $entity);
+		
+		return $this->render('OfiGestionBundle:Factura:AnadirDetalleLibre.html.twig',
+							array(	'entity' => $entity,
+									'idfactura'		=> $idfactura,
+									'edit_form_detallefac'   => $editForm->createView(), ));
+	}
+
+
 	public function CrearDetalleLibreAction(Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
         $entity  = new Detalle();
         
-		$form = $this->createForm(new DetalleFacturaType(), $entity);
+        
+		$form = $this->createForm(new DetalleFacturaProvType(), $entity);
 		$form->bind($request);
 
 
@@ -432,8 +474,7 @@ class FacturaController extends Controller
 						->add('factura',
 						'Se ha insertado un nuevo detalle a esta factura.');
 			
-			}
-
+			} 
 				
 		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $entity->getFactura()->getId() )) );			
 		

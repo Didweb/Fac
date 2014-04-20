@@ -154,23 +154,33 @@
 
        
        
-{% if entity.tipo==1 %}       
-       
- <div id="proyectos">
- <h2>Proyectos</h2>
-	 <div id="accionaProyectos" class="ver_ocultos" 
-								title="Insertar un proyecto" ></div>  
- 	 <div id="targetProyectos" class="caudro_form">				
-	 {{ render(controller('OfiGestionBundle:Proyecto:nuevo',
-								{'idempresa': entity.id})) }} 
-	 </div>
- 
- {{ render(controller('OfiGestionBundle:Proyecto:listar',
-								{'idempresa': entity.id})) }} 
- </div>  
-     
- {% endif %}     
-  
+	{% if entity.tipo==1 %}       
+		   
+		<div id="proyectos">
+			 <h2>Proyectos</h2>
+				 <div id="accionaProyectos" class="ver_ocultos" 
+											title="Insertar un proyecto" ></div>  
+				 <div id="targetProyectos" class="caudro_form">				
+				 {{ render(controller('OfiGestionBundle:Proyecto:nuevo',
+											{'idempresa': entity.id})) }} 
+				 </div>
+			 
+			 {{ render(controller('OfiGestionBundle:Proyecto:listar',
+											{'idempresa': entity.id})) }} 
+		</div>  
+		
+	 {% elseif entity.tipo==0 %}  
+	 
+		<div id="proyectos">
+			 <h2>Facturas recibidas</h2>
+				 
+			 
+			 {{ render(controller('OfiGestionBundle:Factura:ListarFichaEmpresa',
+											{'idempresa': entity.id})) }}  
+		</div>  
+		
+	 {% endif %}     
+	  
   
   
 

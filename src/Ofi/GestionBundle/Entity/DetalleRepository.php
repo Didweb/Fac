@@ -38,5 +38,16 @@ class DetalleRepository extends EntityRepository
 				->getResult();
 		
 	}
-	
+
+	public function ListadoInsertadosenFacPorv($idfactura)
+	{
+		return $this->getEntityManager()
+				->createQuery('SELECT d FROM 
+							  OfiGestionBundle:Detalle d
+							  WHERE 
+							  d.factura=:idfactura')
+				->setParameter('idfactura',$idfactura)
+				->getResult();
+		
+	}	
 }

@@ -24,4 +24,15 @@ class FacturaRepository extends EntityRepository
 		
 	}
 
+
+	public function ListadoFacEmpresa($idempresa)
+	{
+	return $this->getEntityManager()
+            ->createQuery('SELECT f FROM 
+						  OfiGestionBundle:Factura f
+						  WHERE f.empresa = :idempresa ORDER BY f.nfactura ')
+            ->setParameter('idempresa',$idempresa)
+            ->getResult();
+		
+	}
 }
