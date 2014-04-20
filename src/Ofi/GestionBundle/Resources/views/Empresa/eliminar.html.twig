@@ -48,12 +48,12 @@
 	 ¿Quieres eliminarlo?
 	<nav id="respuesta">
 	
-	 <a href="{{ path('ofi_gestion_listarempresa') }}" 
+	 <a href="{{ path('ofi_gestion_listarempresa',{'filtro':filtro}) }}" 
 	title="No quiero que se elimine este empresa" class="noquiero">
 	No quiero eliminarlo</a>
 
 	 <a href="{{ path('ofi_gestion_eliminarempresa',
-	 {'id':entity.id,'ok':'si'}) }}" 
+	 {'id':entity.id,'ok':'si','filtro':filtro}) }}" 
 	 title="Sí, quiero eliminar este empresa " class="siquiero"
 	 >Sí, quiero eliminarlo</a>
 	 

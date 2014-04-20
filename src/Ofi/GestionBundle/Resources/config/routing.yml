@@ -25,7 +25,7 @@ ofi_gestion_listarempresa:
 
 
 ofi_gestion_eliminarempresa:
-    pattern:  /listado-empresas/{id}/{ok}
+    pattern:  /listado-empresas/{id}/{ok}/{filtro}
     defaults: { _controller: OfiGestionBundle:Empresa:eliminar }
 
 ofi_gestion_crearpresupuesto:

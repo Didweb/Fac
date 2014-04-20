@@ -163,39 +163,29 @@ class EmpresaController extends Controller
 	/*
 	 * Eliminar
 	 * */
-	public function eliminarAction($id,$ok)
+	public function eliminarAction($id,$ok,$filtro)
 	{
-	   $em = $this->getDoctrine()->getManager();
-      $entity = $em->getRepository('OfiGestionBundle:Empresa')
-						->find($id);	
+		$em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('OfiGestionBundle:Empresa')->find($id);	
 		
-	  if($ok=='no'){
-		  
-		 return $this->render(
-					'OfiGestionBundle:Empresa:eliminar.html.twig',
-					array('entity' => $entity,'ok'=>'no'));
-		  
-		  }elseif($ok=='si'){
-		$nombreeliminado = $entity->getNombre().' '.
-							$entity->getApellido().
-							' <b>'.$entity->getNomsocial().'</b>';	  		
-		
-		$em->remove($entity);
-        $em->flush();
-		
-		$this->get('session')->getFlashBag()
-						->add('empresa_error',
-						'Se ha eliminado el empresa:<br /> '.
-						$nombreeliminado.'.');
-						
-		$entity = $em->getRepository('OfiGestionBundle:Empresa')
-				->findAll();	
-							
-        return $this->render(
-						'OfiGestionBundle:Empresa:listar.html.twig',
-						array('entity' => $entity));
+		if($ok=='no'){
+			  
+			 return $this->render('OfiGestionBundle:Empresa:eliminar.html.twig',
+									array(	'entity' 	=> $entity,
+											'ok'		=>'no',
+											'filtro'	=> $filtro));
+			  
+		}elseif($ok=='si'){
+				$nombreeliminado = $entity->getNombre().' '.$entity->getApellido().' <b>'.$entity->getNomsocial().'</b>';	  		
 			
-			}		
+				$em->remove($entity);
+				$em->flush();
+			
+				return $this->listarAction($filtro);	
+				
+			}
+		
+					
 	}
 
 }
