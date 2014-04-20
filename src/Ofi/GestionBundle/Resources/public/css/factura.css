@@ -4,7 +4,7 @@
 * */
 #masdatos {
 	float:left;
-	width:75%;
+	width:100%;
 	text-align:left; }
 
 
@@ -14,3 +14,17 @@
 	color:#666666}
 
 #dispo	table {width:700px; background-color:red}
+
+#datos_extras	{
+	clear:both;
+	float:left;
+	width:20% }
+
+#late_der {
+	float:right; 
+	width:75%}
+
+.largo_80	{
+	clear:both;
+	float:left;
+	width:90%;}

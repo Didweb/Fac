@@ -281,3 +281,25 @@ nav#nav_retorno {
 	-moz-box-shadow:    inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
 	box-shadow:         inset 0px -5px 9px -1px rgba(48, 50, 50, 0.18);
 	}
+
+/*
+ * Formulario detalles
+ * */
+	
+div#caj_servicio { 
+	float:left }
+	
+	
+#for_detalle label { 
+	display:inline-block; 
+	width:100px; 
+	padding:3px;
+	margin-left:5px; 
+	flaot:left; 
+	color:#969F9F }
+	
+	
+#for_detalle input, select { 
+	clear:both; 
+	padding:3px }
+

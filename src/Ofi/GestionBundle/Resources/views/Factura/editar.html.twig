@@ -20,7 +20,9 @@
 
 
 
-
+	{% block javascripts %}
+		{{ tinymce_init() }}
+	{% endblock%}
 
 
 {% block cabecera %}
@@ -118,46 +120,52 @@
  </form> 
  </div>
  
-  
-    
-    {% if entity.tipofactura==1 %}   
-		<div id="masdatos">
-			<div id="accionaDetalle" class="ver_ocultos" title="Insertar más detalles a la factura" ></div> 
-	   
-			<div id="targetDetalle"  class="caudro_form explica"> 							
-				{{ render(controller('OfiGestionBundle:Factura:MostrarDisponibles', {'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}
+
+	<div id="late_der"> 
+		{% if entity.tipofactura==1 %}   
+			<div id="masdatos">
+				<div id="accionaDetalle" class="ver_ocultos " title="Insertar más detalles a la factura" ></div> 
+		   
+				<div id="targetDetalle"  class="caudro_form largo_80"> 							
+					{{ render(controller('OfiGestionBundle:Factura:MostrarDisponibles', {'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}
+				</div>  
 			</div>  
-		</div>  
-    {% endif %} 
+		{% endif %} 
 
-	{% if entity.tipofactura==1 %} 
-		<div id="accionaCorreo" class="ver_ocultos" 
-										title="Insertar más detalles a la factura" ></div> 
-			<div id="targetCorreo" class="caudro_form explica">
-		{{ render(controller('OfiGestionBundle:Factura:FormularioDetalle', {'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}
-		</div>
-	{% elseif entity.tipofactura==0 %} 
-		<div id="accionaCorreo" class="ver_ocultos" 
-										title="Insertar más detalles a la factura" ></div> 
-			<div id="targetCorreo" class="caudro_form explica">
-		{{ render(controller('OfiGestionBundle:Factura:FormularioDetalleProvee', {'idfactura':entity.id })) }}
-		</div>
+		{% if entity.tipofactura==1 %} 
+			<div id="accionaCorreo" class="ver_ocultos " 
+											title="Insertar más detalles a la factura" ></div> 
+				<div id="targetCorreo" class="caudro_form largo_80">
+			{{ render(controller('OfiGestionBundle:Factura:FormularioDetalle', {'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}
+			</div>
+		{% elseif entity.tipofactura==0 %} 
+			<div id="accionaCorreo" class="ver_ocultos largo_80"" 
+											title="Insertar más detalles a la factura" ></div> 
+				<div id="targetCorreo" class="caudro_form largo_80">
+			{{ render(controller('OfiGestionBundle:Factura:FormularioDetalleProvee', {'idfactura':entity.id })) }}
+			</div>
 
-	{% endif %} 
+		{% endif %} 
 
-     
+		 
 
-    <div id="masdatos">
-        {% if entity.tipofactura==1 %}
-		{{ render(controller('OfiGestionBundle:Factura:MostrarInsertadas',
-							{'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}         
-        {% elseif entity.tipofactura==0 %} 
-        {{ render(controller('OfiGestionBundle:Factura:MostrarInsertadasProv',
-							{'idfactura':entity.id })) }}  
-	 {% endif %}						
-    </div>    
+		<div id="masdatos">
+			{% if entity.tipofactura==1 %}
+			{{ render(controller('OfiGestionBundle:Factura:MostrarInsertadas',
+								{'idproyecto': entity.proyecto.id,'idfactura':entity.id })) }}         
+			{% elseif entity.tipofactura==0 %} 
+			{{ render(controller('OfiGestionBundle:Factura:MostrarInsertadasProv',
+								{'idfactura':entity.id })) }}  
+		 {% endif %}						
+		</div>    
        
-       
+    </div>   
+  
+  
+   <div id="datos_extras">
+ <h2>Datos Estadisticos</h2>
+ </div>
+  
        
  {% endblock%}
  
