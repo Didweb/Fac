@@ -431,7 +431,7 @@ class FacturaController extends Controller
 		
 		$editForm = $this->createForm(new DetalleFacturaType(), $entity);
 		
-		return $this->render('OfiGestionBundle:Factura:AnadirDetalleLibre.html.twig',
+		return $this->render('OfiGestionBundle:Factura:AnadirDetalleLibre.Cli.html.twig',
 							array(	'entity' => $entity,
 									'idproyecto'	=> $idproyecto,
 									'idfactura'		=> $idfactura,
@@ -468,6 +468,7 @@ class FacturaController extends Controller
 
 		if ($form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
+			$idfac = $entity->getId();
 			$em->persist($entity);
 			$em->flush();
 			$this->get('session')->getFlashBag()
@@ -476,8 +477,32 @@ class FacturaController extends Controller
 			
 			} 
 				
-		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $entity->getFactura()->getId() )) );			
+		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $idfac )) );			
 		
 	}
 
+	public function CrearDetalleLibreCliAction(Request $request,$idfactura)
+	{
+		$em = $this->getDoctrine()->getManager();
+        $entity  = new Detalle();
+        
+        
+		$form = $this->createForm(new DetalleFacturaType(), $entity);
+		$form->bind($request);
+
+
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$idfac = $entity->getId();
+			$em->persist($entity);
+			$em->flush();
+			$this->get('session')->getFlashBag()
+						->add('factura',
+						'Se ha insertado un nuevo detalle a esta factura.');
+			
+			} 
+		echo "xxxxxxxxxxxxxx $idfac";		
+		return $this->redirect($this->generateUrl('ofi_gestion_editarfactura', array('id' => $idfactura )) );			
+		
+	}
 }

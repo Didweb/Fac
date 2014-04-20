@@ -79,6 +79,7 @@ aside#sesion_ins { float:right; margin-right:10px; background-color:#C4F53E;
 	margin-top:-5px; 
 	font-size:12px; 
 	color:#46A0A0; 
+	margin-bottom:10px;
 	text-decoration:underline }
 	 
 .editar_datos_txt:hover {color:#1C7474; }

@@ -61,19 +61,14 @@
  
 <section id="res_proyecto">
 
-<div id="accionaeditpro" class="editar_datos_txt"
-				title="Editar datos del proyecto" >Editar datos Presupuesto</div>
+<div id="accionaeditpro" class="editar_datos_txt" title="Editar datos del proyecto" >Editar datos Presupuesto</div>
 
 <div id="targeteditpro" class="caudro_form explica">		
 		{{ render(controller('OfiGestionBundle:Presupuesto:editarForm',
 							{'idpresupuesto': entity.presupuesto.id })) }} 
 			</div>
 			
-<p class="explica">
-Introducir los detalles del presupuesto 
-	<b>{{ entity.presupuesto.nombre }}</b>. Correspondiente al proyecto:
-						<b>{{ entity.presupuesto.proyecto.nombre }}</b>
-</p>
+
 
  <div id="texto_presu">
  {{ entity.presupuesto.texto | raw }}

@@ -1,0 +1,33 @@
+	 <form id="form_correo"   action="{{ path('ofi_gestion_creardetallefacturaCli',{'idfactura':idfactura}) }}" method="post" {{ form_enctype(edit_form_detallefac) }}>
+			<input type="hidden" name="_method" value="PUT" />
+			{{ form_errors(edit_form_detallefac) }}
+
+				<div id="caj_servicio">
+					{{ form_label(edit_form_detallefac.servicio,"Servicio:") }}
+					{{ form_errors(edit_form_detallefac.servicio) }}
+					{{ form_widget(edit_form_detallefac.servicio) }}
+				</div>
+
+				<div id="caj_precio">
+					{{ form_label(edit_form_detallefac.precio,"Precio:") }}
+					{{ form_errors(edit_form_detallefac.precio) }}
+					{{ form_widget(edit_form_detallefac.precio) }}
+				</div>
+
+				<div id="caj_des">
+					{{ form_label(edit_form_detallefac.descripcion,"Descripción:") }}
+					{{ form_errors(edit_form_detallefac.descripcion) }}
+					{{ form_widget(edit_form_detallefac.descripcion) }}
+				</div>
+				
+
+
+				
+
+				<div id="datos_envio">
+				<button type="submit"  
+				class="botones_verde" title="Editar Correo" >
+									Añadir detalle</button>
+				</div>
+			 {{ form_rest(edit_form_detallefac) }}
+	 </form>

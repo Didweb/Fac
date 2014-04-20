@@ -197,3 +197,7 @@ ofi_gestion_eliminardetallefac:
 ofi_gestion_creardetallefactura:
     pattern:  /crear-detalle-factura-libre
     defaults: { _controller: OfiGestionBundle:Factura:CrearDetalleLibre }
+
+ofi_gestion_creardetallefacturaCli:
+    pattern:  /crear-detalle-factura-libre-cli/{idfactura}
+    defaults: { _controller: OfiGestionBundle:Factura:CrearDetalleLibreCli }
