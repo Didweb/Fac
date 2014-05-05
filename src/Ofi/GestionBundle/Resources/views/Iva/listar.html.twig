@@ -1,0 +1,91 @@
+{%  extends '::forntend.html.twig' %}
+
+{% block title %}FAC - Listar IVA{% endblock %}
+{% block metas %}
+<meta name="description" content="Home">
+<meta name="keywords" content="FAC">
+<meta name="robots" CONTENT="noindex, nofollow">
+{% endblock%}
+
+
+ {% block stylesheets %}
+ {{ parent() }}
+	 <script src="{{ asset('js/jquery-1.7.2.min.js') }}"></script>
+	 <script src="{{ asset('js/mostrar_divs.js') }}"></script>
+	 <link href="{{ asset('bundles/ofigestion/css/home.css') }}" rel="stylesheet" type="text/css" />
+	 <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" /> 
+	 <link href="{{ asset('bundles/ofigestion/css/empresa.css') }}" rel="stylesheet" type="text/css" /> 
+ {% endblock%}
+
+
+{% block cabecera %}
+{% include 'OfiGestionBundle:Fijas:sesion.html.twig' %}
+{% include 'OfiGestionBundle:Fijas:menu.html.twig' %} 
+ {% endblock%}
+ 
+ 
+ {% block body %}
+
+ {% for flashMessage2 in app.session.flashbag.get('iva') %}
+    <div class="flash_ok">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+
+{% for flashMessage2 in app.session.flashbag.get('iva_error') %}
+    <div class="flash_error">
+        {{ flashMessage2 | raw }}
+    </div>
+{% endfor %}
+<div id="lista_correos"> 
+
+<h1>IVA</h1>
+
+{% if entity|length>0 %}
+ <table>
+        
+        <thead>
+            <tr>
+                <th class="acciones"></th>
+				<th class="alaiz">Porcentaje</th>
+				<th class="alaiz">Inicio</th>
+				<th class="alaiz">Final</th>          
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            {% set n=1 %}
+        {% for iva in entity %}
+        
+			{% if n is divisibleby(2)  %}
+				{% set linea="impar" %} 
+            {% else %}
+				{% set linea="par" %}
+            {% endif %}
+        
+        
+            <tr class=" {{ linea }}">
+				<td class="accion">
+				<a href="{{ path('iva_eliminar',
+				{'id':iva.id}) }}" class="bo_borrar" 
+				title="Eliminar"></a>
+				</td>
+				<td>{{ iva.porcentaje }}</td>
+				<td>{{ iva.inicio| date('d-m-Y') }}</td>
+				<td>{{ iva.final| date('d-m-Y')  }}</td>
+            </tr>
+               {% set n=n+1 %}    
+        {% endfor %}
+        </tbody>
+        
+    </table>
+    {% else %}
+   No se ha asignado ningún tipo de IVA
+    {% endif %}
+</div>        
+ {% endblock%}
+ 
+ {% block footer %}
+ {% include 'OfiGestionBundle:Fijas:footer.html.twig' %} 
+ {% endblock%}

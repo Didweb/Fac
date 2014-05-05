@@ -9,14 +9,26 @@
 <ul class="mi-menu">
   
   <li><a href="{{ path('ofi_gestion_nuevafactura') }}">inicio</a></li>
-  
+ 
    <li>
 	<a href="#">Admin</a>
-     <ul>
+    <ul>
       <li><a href="{{ path('ofi_gestion_editarAdminConfig',{'id':1})}}">Configurar</a></li>
     </ul>
+    
+
  </li>
   
+
+   <li>
+	<a href="#">Configurar Impuestos</a>
+     <ul>
+      <li><a href="{{ path('iva_nuevo')}}">Crear IVA</a></li>
+      <li><a href="{{ path('iva_listar')}}">Listar IVA</a></li>
+      <li><a href="{{ path('irpf_nuevo')}}">Crear IRPF</a></li>
+      <li><a href="{{ path('irpf_listar')}}">Listar IRPF</a></li>
+    </ul>
+ </li>
   
   
   <li>

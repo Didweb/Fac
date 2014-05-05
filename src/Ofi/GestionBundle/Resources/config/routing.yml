@@ -201,3 +201,37 @@ ofi_gestion_creardetallefactura:
 ofi_gestion_creardetallefacturaCli:
     pattern:  /crear-detalle-factura-libre-cli/{idfactura}
     defaults: { _controller: OfiGestionBundle:Factura:CrearDetalleLibreCli }
+
+#Rutas para IVA
+iva_nuevo:
+    pattern:  /nuevo-iva
+    defaults: { _controller: OfiGestionBundle:Iva:nuevo}
+
+iva_crear:
+    pattern:  /crear-iva
+    defaults: { _controller: OfiGestionBundle:Iva:crear}    
+    
+iva_listar:
+    pattern:  /listar-iva
+    defaults: { _controller: OfiGestionBundle:Iva:Listar}    
+
+iva_eliminar:
+    pattern:  /elimina-iva/{id}
+    defaults: { _controller: OfiGestionBundle:Iva:Eliminar}   
+
+#Rutas para IRPF
+irpf_nuevo:
+    pattern:  /nuevo-irpf
+    defaults: { _controller: OfiGestionBundle:Irpf:nuevo}
+
+irpf_crear:
+    pattern:  /crear-irpf
+    defaults: { _controller: OfiGestionBundle:Irpf:crear}    
+    
+irpf_listar:
+    pattern:  /listar-irpf
+    defaults: { _controller: OfiGestionBundle:Irpf:Listar}    
+
+irpf_eliminar:
+    pattern:  /elimina-irpf/{id}
+    defaults: { _controller: OfiGestionBundle:Irpf:Eliminar}   
