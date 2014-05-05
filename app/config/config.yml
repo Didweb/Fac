@@ -35,7 +35,7 @@ twig:
     
     globals:
         global:
-            version: v0.6
+            version: v0.8
 
 # Assetic Configuration
 assetic:
