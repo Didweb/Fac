@@ -4,7 +4,10 @@ imports:
     - { resource: "@OfiGestionBundle/Resources/config/services.yml" }
     - { resource: "@OfiNumFacBundle/Resources/config/services.yml" }
 
-
+services:
+    Totales:
+        class: Ofi\GestionBundle\Util\Totales
+        arguments: [@doctrine.orm.entity_manager]
         
 framework:
     #esi:             ~

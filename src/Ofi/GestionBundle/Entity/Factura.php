@@ -206,4 +206,29 @@ class Factura
     {
         return $this->tipofactura;
     }
+
+
+      /**
+     * Set detalles
+     *
+     * 
+     * @return Detalles
+     */
+    public function setDetalles($detalles)
+    {
+        $this->detalles = $detalles;
+
+        return $this;
+    }
+
+    /**
+     * Get detalles
+     *
+     * 
+     */
+    public function getDetalles()
+    {
+        return $this->detalles;
+    }
+
 }
