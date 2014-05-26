@@ -277,14 +277,16 @@ class FacturaController extends Controller
         
         $editForm = $this->createForm(new FacturaEditaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-		echo "<br /> --->> esto es editar";
+        
 		$totales = $this->container->get('Totales');
-		$totales->total($entity);
+		$lostotales = $totales->total($entity);
+		
         return $this->render('OfiGestionBundle:Factura:editar.html.twig',
 							array(
 							'entity'      => $entity,
 							'edit_form'   => $editForm->createView(),
-							'delete_form' => $deleteForm->createView()
+							'delete_form' => $deleteForm->createView(),
+							'lostotales' => $lostotales
 						));
     }
 

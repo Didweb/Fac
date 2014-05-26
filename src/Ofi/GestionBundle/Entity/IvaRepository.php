@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class IvaRepository extends EntityRepository
 {
+	
+	public function BuscaIvas($fecha)
+	{
+		 return $this->getEntityManager()
+				->createQuery('SELECT i FROM 
+							  OfiGestionBundle:Iva i
+							  WHERE 
+							  :lafecha between i.inicio and i.final')
+				->setParameter('lafecha',$fecha)
+				->getResult();
+		
+		
+		
+	}
+
+	
+	
 }

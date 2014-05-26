@@ -7,7 +7,7 @@ imports:
 services:
     Totales:
         class: Ofi\GestionBundle\Util\Totales
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@service_container]
         
 framework:
     #esi:             ~

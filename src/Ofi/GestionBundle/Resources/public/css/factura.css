@@ -28,3 +28,11 @@
 	clear:both;
 	float:left;
 	width:90%;}
+
+.alerta_iva {
+	width:100%;
+	float:left;
+	background-color:#ffff00;
+	color:#ff0000;
+	padding:4px;
+	text-align:center;}

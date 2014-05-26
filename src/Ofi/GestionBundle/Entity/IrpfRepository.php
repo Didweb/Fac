@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class IrpfRepository extends EntityRepository
 {
+	
+	public function BuscaIrpfs($fecha)
+	{
+		 return $this->getEntityManager()
+				->createQuery('SELECT i FROM 
+							  OfiGestionBundle:Irpf i
+							  WHERE 
+							  :lafecha between i.inicio and i.final')
+				->setParameter('lafecha',$fecha)
+				->getResult();
+		
+		
+		
+	}
+	
+	
 }

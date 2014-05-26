@@ -156,8 +156,24 @@
 			{% elseif entity.tipofactura==0 %} 
 			{{ render(controller('OfiGestionBundle:Factura:MostrarInsertadasProv',
 								{'idfactura':entity.id })) }}  
-		 {% endif %}						
+			{% endif %}	
+			
+	   <div id="totalesfactura">
+	   {% if lostotales.alertaIva != '' %}
+	   <div class='alerta_iva'>{{ lostotales.alertaIva }}</div>
+	   {% endif %}
+	   
+	   <table >
+		   <tr><td>Subtotal</td><td>{{ lostotales.subtotal |number_format(2, ',', '.')  }} €</td></tr>
+		   <tr><td>Subtotal IVA </td><td>{{ lostotales.subtotaliva |number_format(2, ',', '.')  }} €</td></tr>
+		   <tr><td>Subtotal IRPF</td><td>{{ lostotales.subtotaliva |number_format(2, ',', '.')  }} €</td></tr>
+		   <tr><td>TOTAL FACTURA</td><td>{{ lostotales.totalfactura |number_format(2, ',', '.')  }} €</td></tr>
+       </table>
+       </div>					
 		</div>    
+       
+       
+
        
     </div>   
   
